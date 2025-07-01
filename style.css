@@ -1,22 +1,20 @@
 :root {
   /* Azules Tiza y Grisáceos (Base) */
-  --color-dark-bg: #1f2a38;   /* Azul muy oscuro, casi negro, para el fondo general */
-  --color-card-bg: #2b3a4a;   /* Azul oscuro para tarjetas y elementos principales */
-  --color-mid-blue: #40566b;  /* Azul medio para headers de grupos, inputs, etc. */
-  --color-light-blue: #6c839a; /* Azul claro, para texto secundario, bordes */
+  --color-dark-bg: #1f2a38;
+  --color-card-bg: #2b3a4a;
+  --color-mid-blue: #40566b;
+  --color-light-blue: #6c839a;
 
   /* Colores de Texto */
-  --color-light-text: #e8f0f7; /* Blanco roto / azul muy pálido para texto principal */
-  --color-muted-text: #aebecd; /* Gris azulado claro para texto secundario/desactivado */
+  --color-light-text: #e8f0f7;
+  --color-muted-text: #aebecd;
 
-  /* Colores de Acento (manteniendo la semántica original, pero con tonos que armonicen) */
-  --color-accent-red: #e76f51;    /* Un rojo anaranjado suave, no tan vibrante */
-  --color-accent-yellow: #f4a261; /* Un naranja suave, cálido */
-  --color-accent-green: #2a9d8f;  /* Un verde azulado (teal), sofisticado y no tan brillante */
-  --color-accent-primary: #7296b1; /* Azul principal de acento, un azul tiza más claro para el título, iconos, etc. */
-
-  /* Puntos (si es diferente al principal) */
-  --color-points: #6a9edc; /* Un azul un poco más vibrante pero aún suave para los puntos */
+  /* Colores de Acento */
+  --color-accent-red: #e76f51;
+  --color-accent-yellow: #f4a261;
+  --color-accent-green: #2a9d8f;
+  --color-accent-primary: #7296b1;
+  --color-points: #6a9edc;
 
   /* Otros */
   --border-radius-lg: 1rem;
@@ -30,33 +28,230 @@ body {
   background-color: var(--color-dark-bg);
   color: var(--color-light-text);
   line-height: 1.6;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
 
-header {
-  background-color: var(--color-card-bg);
-  padding: 0.75rem var(--spacing-unit); /* Padding general del header, más pequeño */
-  display: flex;
-  flex-direction: column; /* Sigue siendo columna para agrupar título y filtros */
-  align-items: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  position: sticky;
-  top: 0;
-  z-index: 100; transition: transform 0.3s ease-in-out; /* <-- Añade esta línea */
+/* --- BARRA DE BÚSQUEDA FIJA --- */
+.search-bar-fixed {
+    position: sticky;
+    top: 0;
+    z-index: 101;
+    background-color: var(--color-card-bg);
+    padding: 0.75rem var(--spacing-unit);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+}
+.search-bar-fixed .filter-group {
+    max-width: 700px;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.buscador {
+    width: 100%;
+    padding: 0.6rem 1.25rem;
+    border: 1px solid var(--color-mid-blue);
+    border-radius: var(--border-radius-md);
+    font-size: 1rem;
+    background-color: var(--color-mid-blue);
+    color: var(--color-light-text);
+    padding-right: 2.5rem;
 }
 
-/* Nueva clase que ocultará el header */
-header.hidden {
-    transform: translateY(-100%); /* <-- Mueve el header hacia arriba */
+/* --- HEADER DESPLEGABLE --- */
+.collapsible-header {
+    background-color: var(--color-card-bg);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out;
+    padding: 0 var(--spacing-unit);
+}
+.collapsible-header.open {
+    padding-top: var(--spacing-unit);
+    padding-bottom: var(--spacing-unit);
+}
+.header-top h1 {
+    font-size: 1.75rem;
+    margin: 0 0 1rem 0;
+    color: var(--color-accent-primary);
+    text-align: center;
+}
+.filters-container .filter-row.full-width {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.75rem;
+}
+.toggle-filters-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--color-mid-blue);
+    color: var(--color-light-text);
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
 }
 
-/* Estilos para el botón flotante */
-.floating-search-btn {
-    position: fixed;
+/* --- FILTROS (dentro del desplegable) --- */
+.filter-row.compact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out;
+}
+.filter-row.compact.open {
+    margin-top: 0.75rem;
+}
+.filter-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    min-width: 180px;
+}
+.filtro-normagris, .filtro-tags, .filtro-rango, .filtro-ambito {
+    width: 100%;
+    padding: 0.6rem 1.25rem;
+    border: 1px solid var(--color-mid-blue);
+    border-radius: var(--border-radius-md);
+    font-size: 1rem;
+    background-color: var(--color-mid-blue);
+    color: var(--color-light-text);
+    padding-right: 2.5rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+.clear-button {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--color-muted-text);
+    font-size: 1.2rem;
+    cursor: pointer;
+    line-height: 1;
+}
+
+/* --- CONTENIDO PRINCIPAL --- */
+main.infracciones-agrupadas {
+    padding: var(--spacing-unit) calc(var(--spacing-unit) * 2);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.infraccion-group {
+    margin-bottom: 1.5rem;
+    background-color: var(--color-card-bg);
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+.infraccion-group-header {
+    background-color: var(--color-mid-blue);
+    padding: var(--spacing-unit) 1.5rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    user-select: none;
+}
+.infraccion-group-header .icon {
+    transition: transform 0.3s ease;
+    margin-right: 0.75rem;
+}
+.infraccion-group.open .icon {
+    transform: rotate(90deg);
+}
+.infracciones-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+    padding: 0 1.5rem;
+}
+.infraccion-group.open .infracciones-content {
+    padding-top: var(--spacing-unit);
+    padding-bottom: var(--spacing-unit);
+}
+.infraccion {
+    background-color: #354656;
+    border-radius: var(--border-radius-md);
+    padding: 1.5rem;
+    margin-bottom: var(--spacing-unit);
+    border-left: 8px solid var(--color-accent-red);
+}
+.infraccion:last-child {
+    margin-bottom: 0;
+}
+.infraccion.media { border-left-color: var(--color-accent-yellow); }
+.infraccion.leve { border-left-color: var(--color-accent-green); }
+.infraccion .cinta {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+.infraccion .circulo {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-accent-red);
+}
+.infraccion.media .circulo { background-color: var(--color-accent-yellow); }
+.infraccion.leve .circulo { background-color: var(--color-accent-green); }
+.infraccion .articulo-apartado {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--color-light-text);
+    line-height: 1.2;
+    margin-bottom: 0.25rem;
+}
+.infraccion .norma {
+    font-size: 0.85rem;
+    color: var(--color-muted-text);
+}
+.infraccion-tags {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px dashed var(--color-light-blue);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+.tag {
+    background-color: var(--color-light-blue);
+    color: var(--color-dark-bg);
+    padding: 0.3rem 0.7rem;
+    border-radius: var(--border-radius-md);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+
+/* --- BOTONES FLOTANTES --- */
+.floating-action-buttons {
+    position: fixed; /* FIJA los botones a la PANTALLA */
     bottom: 2rem;
     right: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    z-index: 1000;
+}
+.fab {
     width: 50px;
     height: 50px;
     background-color: var(--color-accent-primary);
@@ -68,318 +263,34 @@ header.hidden {
     justify-content: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     cursor: pointer;
-    z-index: 999;
     transition: transform 0.3s ease, opacity 0.3s ease;
     opacity: 1;
     transform: scale(1);
 }
-
-.floating-search-btn.hidden {
+.fab:hover {
+    background-color: var(--color-mid-blue);
+}
+.fab.hidden {
     opacity: 0;
     transform: scale(0);
+    pointer-events: none;
 }
-.header-top {
-    width: 100%;
-    display: flex;
-    justify-content: flex-start; /* Alinea el título a la izquierda */
-    align-items: center;
-    margin-bottom: 0.5rem; /* Pequeño espacio entre el título y los filtros */
-}
+/* --- ESTILOS DETALLADOS PARA LAS TARJETAS DE INFRACCIÓN --- */
 
-h1 {
-  font-size: 1.75rem; /* Hacemos el título un poco más pequeño */
-  margin: 0; /* Quitamos márgenes por defecto */
-  color: var(--color-accent-primary);
-  letter-spacing: 0.05em;
-  padding-left: 0.5rem; /* Un pequeño padding para que no esté pegado al borde */
-}
-
-.filters-container {
-    width: 100%;
-    max-width: 1000px; /* Ancho máximo para el contenedor de filtros */
-    display: flex;
-    flex-direction: column; /* Los filter-row se apilarán */
-    align-items: center; /* Centra las filas de filtros */
-}
-
-.filter-row {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    margin-bottom: 0.75rem; /* Espacio entre las filas de filtros, un poco menos */
-    gap: 0.75rem; /* Espacio entre los grupos de filtros, un poco menos */
-    flex-wrap: wrap;
-    justify-content: center; /* Centra los filtros dentro de cada fila */
-}
-
-.filter-row.full-width {
-    margin-bottom: 0.75rem; /* Consistencia en el margen inferior */
-}
-
-.filter-group {
-    position: relative;
-    display: flex;
-    align-items: center;
-    flex-grow: 1;
-    min-width: 150px;
-}
-
-.buscador,
-.filtro-normagris,
-.filtro-tags,
-.filtro-rango,
-.filtro-ambito {
-  width: 100%; /* Ocupa el 100% de su .filter-group */
-  padding: 0.6rem 1.25rem; /* Padding vertical un poco más pequeño */
-  border: 1px solid var(--color-mid-blue);
-  border-radius: var(--border-radius-md);
-  font-size: 1rem; /* Fuente un poco más pequeña */
-  background-color: var(--color-mid-blue);
-  color: var(--color-light-text);
-  transition: all 0.3s ease;
-  -webkit-appearance: none; /* Para quitar el estilo por defecto de los selects/inputs en WebKit */
-  -moz-appearance: none;    /* Para quitar el estilo por defecto de los selects/inputs en Firefox */
-  appearance: none;         /* Estilo estándar */
-  padding-right: 2.5rem; /* Espacio para el icono del botón de limpiar */
-}
-
-.buscador {
-    max-width: 700px; /* El buscador puede ser un poco más ancho si está solo */
-}
-
-.buscador::placeholder,
-.filtro-normagris::placeholder,
-.filtro-tags::placeholder,
-.filtro-rango option:first-child, /* Estilo para el placeholder del select */
-.filtro-ambito option:first-child { /* Estilo para el placeholder del select */
-  color: var(--color-muted-text);
-}
-
-.buscador:focus,
-.filtro-normagris:focus,
-.filtro-tags:focus,
-.filtro-rango:focus,
-.filtro-ambito:focus {
-  outline: none;
-  border-color: var(--color-accent-primary);
-  box-shadow: 0 0 0 3px rgba(114, 150, 177, 0.3);
-}
-
-/* Estilo para los selectores de Rango y Ámbito */
-.filtro-rango,
-.filtro-ambito {
-    background-image: url('data:image/svg+xml;utf8,<svg fill="%23e8f0f7" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>'); /* Flecha abajo SVG */
-    background-repeat: no-repeat;
-    background-position: right 0.75rem center;
-    background-size: 1.2rem;
-}
-
-#norma-gris-options option,
-#tags-options option,
-.filtro-rango option, /* Estilo para las opciones del select */
-.filtro-ambito option { /* Estilo para las opciones del select */
-  background-color: var(--color-card-bg);
-  color: var(--color-light-text);
-}
-
-/* Estilos para el botón de limpiar */
-.clear-button {
-    position: absolute;
-    right: 0.5rem;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    color: var(--color-muted-text);
-    font-size: 1.2rem;
-    cursor: pointer;
-    padding: 0.2rem;
-    line-height: 1; /* Alineación vertical del icono */
-    transition: color 0.2s ease;
-}
-
-.clear-button:hover {
-    color: var(--color-light-text);
-}
-
-.infracciones-agrupadas {
-  padding: var(--spacing-unit) calc(var(--spacing-unit) * 2);
-  max-width: 1200px;
-  margin: 0 auto;
-  flex-grow: 1;
-}
-
-.infraccion-group {
-  margin-bottom: calc(var(--spacing-unit) * 1.5);
-  background-color: var(--color-card-bg);
-  border-radius: var(--border-radius-lg);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-}
-
-.infraccion-group-header {
-  background-color: var(--color-mid-blue);
-  padding: var(--spacing-unit) calc(var(--spacing-unit) * 1.5);
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--color-accent-primary);
-  cursor: pointer;
-  display: flex;
-  justify-content: flex-start; /* Alinea los elementos al inicio */
-  align-items: center;
-  flex-wrap: wrap;
-  user-select: none;
-  transition: background-color 0.3s ease;
-}
-/*aaa*/
-
-.infraccion-group-header:hover {
-  background-color: #506980;
-}
-
-.norma-main-info {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    margin-right: var(--spacing-unit);
-    margin-left: var(--spacing-unit); /* Añade espacio a la izquierda del texto */
-}
-
-.normagris-identificador {
-  font-weight: bold;
-  color: var(--color-light-text);
-  margin-right: 0.5rem;
-  margin-left: 0.5rem;
-  white-space: nowrap;
-}
-
-.normagris-tematica {
-  font-size: 1.1rem;
-  color: var(--color-muted-text);
-}
-
-.norma-properties {
-    display: flex;
-    gap: 0.75rem;
-    align-items: center;
-    margin-left: auto; /* Mantiene las etiquetas de rango/ámbito a la derecha */
-}
-
-.norma-propiedad {
-    background-color: var(--color-light-blue);
-    color: var(--color-dark-bg);
-    padding: 0.25rem 0.6rem;
-    border-radius: var(--border-radius-md);
-    font-size: 0.8rem;
-    font-weight: 600;
-    white-space: nowrap;
-    text-transform: capitalize;
-}
-
-.infraccion-group-header .icon {
-  flex-shrink: 0; /* Evita que el icono se encoja */
-  font-size: 1.5rem;
-  transition: transform 0.3s ease;
-  color: var(--color-muted-text);
-}
-
-.infraccion-group.open .infraccion-group-header .icon {
-  transform: rotate(90deg);
-}
-
-.infracciones-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.5s ease-out, padding-top 0.5s ease-out, padding-bottom 0.5s ease-out;
-  padding-left: calc(var(--spacing-unit) * 1.5);
-  padding-right: calc(var(--spacing-unit) * 1.5);
-  padding-top: 0;
-  padding-bottom: 0;
-}
-
-.infraccion-group.open .infracciones-content {
-  
-  padding-top: var(--spacing-unit); /* Only add top padding when open */
-  padding-bottom: var(--spacing-unit); /* Add bottom padding when open */
-}
-
-.infraccion {
-  background-color: var(--color-card-bg);
-  border-radius: var(--border-radius-md);
-  padding: calc(var(--spacing-unit) * 1.5);
-  margin-bottom: var(--spacing-unit); /* Keep this for spacing between infractions */
-  border-left: 8px solid var(--color-accent-red);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-}
-
-.infraccion:last-child {
-  margin-bottom: 0; /* This correctly removes margin from the last infraction */
-}
-
-.infraccion:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.infraccion.media {
-  border-left-color: var(--color-accent-yellow);
-}
-.infraccion.leve {
-  border-left-color: var(--color-accent-green);
-}
-
-.cinta {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: var(--spacing-unit);
-  gap: var(--spacing-unit);
-}
-
-.cinta .circulo {
-  flex-shrink: 0;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background-color: var(--color-accent-red);
-  color: white;
-  font-weight: bold;
-  font-size: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-.infraccion.media .circulo {
-  background-color: var(--color-accent-yellow);
-}
-.infraccion.leve .circulo {
-  background-color: var(--color-accent-green);
-}
-
-.norma {
-  font-size: 0.9rem;
-  color: var(--color-muted-text);
-  margin-bottom: 0.5rem;
-}
-
-.norma strong {
-  color: var(--color-light-text);
-}
-
+/* Contenedor de la información de importes */
 .importe-info {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   margin-top: 0.5rem;
+  gap: 1.5rem;
 }
 
+/* Colores para Importes y Puntos */
 .importe,
 .importe-reducido,
 .puntos {
   font-weight: bold;
-  margin-right: 1.5rem;
   white-space: nowrap;
 }
 
@@ -395,176 +306,25 @@ h1 {
   color: var(--color-points);
 }
 
+/* Estilo para la Descripción */
 .descripcion {
   margin-top: var(--spacing-unit);
   line-height: 1.5;
   font-size: 1rem;
-  color: var(--color-light-text);
+  color: var(--color-light-text); /* Color principal del texto */
   border-top: 1px solid var(--color-light-blue);
   padding-top: var(--spacing-unit);
 }
 
-.infraccion-tags {
-  margin-top: var(--spacing-unit);
-  padding-top: var(--spacing-unit);
-  border-top: 1px dashed var(--color-light-blue);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+/* Color para la parte en negrita de la norma */
+.norma strong {
+  color: var(--color-light-text);
 }
 
-.tag {
-  background-color: var(--color-light-blue);
-  color: var(--color-dark-bg);
-  padding: 0.3rem 0.7rem;
-  border-radius: var(--border-radius-md);
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-transform: capitalize;
+/* Colores de la barra lateral según la gravedad (ya lo tenías, pero por si acaso) */
+.infraccion.grave {
+  border-left-color: var(--color-accent-red);
 }
-
-/* Responsive adjustments */
-@media (max-width: 992px) { /* Ajustado para que los filtros compactos se envuelvan antes */
-    .filter-row.compact {
-        flex-direction: column;
-        align-items: stretch; /* Estira los grupos para que ocupen todo el ancho */
-    }
-    .filter-group {
-        width: 100%; /* Ocupa todo el ancho disponible */
-        max-width: 500px; /* Limita el ancho para que no sean demasiado grandes */
-        margin: 0 auto; /* Centra los grupos */
-        margin-bottom: 0.75rem; /* Espacio entre ellos */
-    }
-    .filter-group:last-child {
-        margin-bottom: 0;
-    }
-    .filter-row.full-width {
-        margin-bottom: 0.75rem;
-    }
-    header {
-        padding-top: 0.75rem; /* Asegura un padding superior consistente */
-        padding-bottom: 0.75rem; /* Asegura un padding inferior consistente */
-    }
-    h1 {
-        font-size: 1.5rem; /* Título más pequeño en móviles */
-    }
-}
-
-@media (max-width: 768px) {
-  h1 {
-    font-size: 1.75rem;
-  }
-
-  .infracciones-agrupadas {
-    padding: var(--spacing-unit);
-  }
-
-  .infraccion-group-header {
-      flex-direction: row; /* Vuelve a ser fila para el icono y el texto principal */
-      align-items: flex-start; /* Alinea los elementos al inicio */
-      padding: 0.75rem var(--spacing-unit);
-      position: relative;
-  }
-
-  .norma-main-info {
-      flex-direction: column;
-      align-items: flex-start;
-      margin-right: 0;
-      margin-left: 0; /* Reiniciamos el margin-left para móviles */
-  }
-
-  .normagris-identificador {
-      font-size: 1.2rem;
-  }
-
-  .normagris-tematica {
-      font-size: 0.9rem;
-      margin-top: 0.2rem;
-  }
-
-  .norma-properties {
-      margin-left: auto; /* Mantiene las propiedades a la derecha */
-      margin-top: 0; /* Asegura que no haya margin-top extra */
-      width: auto; /* Permite que el ancho se ajuste al contenido */
-      justify-content: flex-end; /* Alinea a la derecha en este caso */
-  }
-
-  .infraccion-group-header .icon {
-      position: static; /* Vuelve a posición normal para que fluya con el contenido */
-      margin-right: 0.5rem; /* Espacio a la derecha del icono */
-      margin-left: 0; /* Asegura que no haya margin extra */
-      top: auto;
-      right: auto;
-  }
-
-  .infraccion {
-    padding: var(--spacing-unit);
-  }
-
-  .cinta .circulo {
-    width: 40px;
-    height: 40px;
-    font-size: 1.2rem;
-  }
-
-  .norma {
-    font-size: 0.85rem;
-  }
-
-  .importe-info {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .importe,
-  .importe-reducido,
-  .puntos {
-    margin-right: 0;
-    margin-bottom: 0.5rem;
-  }
-
-  .tag {
-    font-size: 0.75rem;
-    padding: 0.2rem 0.5rem;
-  }
-
-  .header-top {
-      margin-bottom: 0.5rem; /* Consistencia */
-  }
-}
-
-@media (max-width: 480px) {
-  header {
-    padding: var(--spacing-unit);
-  }
-
-  h1 {
-    font-size: 1.5rem;
-  }
-
-  .buscador,
-  .filtro-normagris,
-  .filtro-tags,
-  .filtro-rango,
-  .filtro-ambito {
-    font-size: 0.9rem; /* Fuente aún más pequeña en móviles muy pequeños */
-    padding: 0.5rem 1rem; /* Padding más compacto */
-  }
-
-  .infraccion-group-header {
-    font-size: 1.1rem;
-    padding: 0.5rem var(--spacing-unit);
-  }
-
-  .infraccion-group-header .icon {
-      top: 0.5rem;
-  }
-
-  .infraccion {
-    padding: 0.75rem;
-  }
-
-  .descripcion {
-    font-size: 0.9rem;
-  }
+.infraccion.grave .circulo {
+    background-color: var(--color-accent-red);
 }
