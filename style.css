@@ -356,13 +356,37 @@ main.infracciones-agrupadas {
 }
 
 /* Colores de fondo de los botones */
-.severity-btn.grave { background-color: var(--color-accent-red); }
-.severity-btn.media { background-color: var(--color-accent-yellow); }
-.severity-btn.leve { background-color: var(--color-accent-green); }
+.severity-btn.grave { background-color: var(--color-accent-red); margin-top: 0.75rem;}
+.severity-btn.media { background-color: var(--color-accent-yellow); margin-top: 0.75rem;}
+.severity-btn.leve { background-color: var(--color-accent-green); margin-top: 0.75rem;}
 
 /* Estilo para el botón activo */
 .severity-btn.active {
   border-color: #fff;
   transform: scale(1.1);
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+/* --- ESTILOS PARA ETIQUETAS DESPLEGABLES --- */
+
+/* Hace que toda la tarjeta de infracción sea clicable */
+.infraccion {
+    cursor: pointer;
+}
+
+/* Oculta el contenedor de etiquetas por defecto */
+.infraccion-tags {
+    max-height: 0;
+    overflow: hidden;
+    margin-top: 0; /* Sin margen cuando está oculto */
+    padding-top: 0; /* Sin padding cuando está oculto */
+    border-top: none; /* Sin borde cuando está oculto */
+    transition: max-height 0.4s ease-out, margin-top 0.4s ease-out, padding-top 0.4s ease-out;
+}
+
+/* Muestra las etiquetas cuando la infracción tiene la clase .tags-visible */
+.infraccion.tags-visible .infraccion-tags {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px dashed var(--color-light-blue);
+    /* La altura máxima la asignará el JavaScript */
 }
