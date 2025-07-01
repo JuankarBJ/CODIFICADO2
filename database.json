@@ -1,4 +1,18 @@
 {
+    "grandesAreas": {
+    "animales": {
+      "nombre": "Animales",
+      "color": "#2a9d8f" 
+    },
+    "seguridad_ciudadana": {
+      "nombre": "Seguridad Ciudadana",
+      "color": "#e76f51" 
+    },
+    "trafico": {
+        "nombre": "Tráfico",
+        "color": "#457b9d"
+    }
+  },
   "settings": {
     "ambitoOrder": [
       "Estatal",
@@ -20,6 +34,7 @@
       "tematica": "Bienestar, Protección y Defensa de los Animales de Castilla-La Mancha.",
       "rango": "Ley Ordinaria",
       "ambito": "Autonómico",
+      "areaId": "animales",
       "infracciones": [
         {
           "tipo": "leve",
@@ -655,6 +670,7 @@
       "tematica": "Protección De La Seguridad Ciudadana.",
       "rango": "Ley Orgánica",
       "ambito": "Estatal",
+      "areaId": "Seguridad Ciudadana",
       "infracciones": [
         {
           "tipo": "leve",

@@ -390,3 +390,23 @@ main.infracciones-agrupadas {
     border-top: 1px dashed var(--color-light-blue);
     /* La altura máxima la asignará el JavaScript */
 }
+/* Modificación para que el grupo acepte un color dinámico */
+.infraccion-group {
+    position: relative; /* Necesario para posicionar la insignia */
+    background-color: var(--area-color, var(--color-card-bg)); /* Usa el color del área o uno por defecto */
+    /* ... el resto de tus estilos para .infraccion-group ... */
+}
+
+/* Estilo para la insignia del área en la esquina */
+.area-badge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.3); /* Fondo semitransparente */
+    color: #fff;
+    padding: 0.2rem 0.8rem;
+    font-size: 0.75rem;
+    font-weight: bold;
+    border-bottom-right-radius: var(--border-radius-md);
+    text-transform: uppercase;
+}
