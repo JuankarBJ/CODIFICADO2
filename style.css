@@ -328,3 +328,41 @@ main.infracciones-agrupadas {
 .infraccion.grave .circulo {
     background-color: var(--color-accent-red);
 }
+/* --- FILTROS DE GRAVEDAD DENTRO DE CADA LEY --- */
+.severity-filter-bar {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0 1.5rem 1rem 1.5rem; /* Espaciado interior */
+  background-color: var(--color-card-bg); /* Mismo fondo que el grupo */
+  display: none; /* Oculto por defecto */
+}
+
+/* Se muestra solo cuando el grupo está abierto */
+.infraccion-group.open .severity-filter-bar {
+  display: flex;
+}
+
+.severity-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid var(--color-light-blue);
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.severity-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Colores de fondo de los botones */
+.severity-btn.grave { background-color: var(--color-accent-red); }
+.severity-btn.media { background-color: var(--color-accent-yellow); }
+.severity-btn.leve { background-color: var(--color-accent-green); }
+
+/* Estilo para el botón activo */
+.severity-btn.active {
+  border-color: #fff;
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}

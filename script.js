@@ -3,9 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 1. CARGA DE DATOS DESDE JSON ---
     fetch('database.json')
         .then(response => {
-            if (!response.ok) {
-                throw new Error('No se pudo cargar database.json. Verifica que el archivo exista y no tenga errores.');
-            }
+            if (!response.ok) throw new Error('No se pudo cargar database.json.');
             return response.json();
         })
         .then(data => {
@@ -29,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 2. FUNCIÓN PRINCIPAL DE LA APP ---
     function iniciarApp(infraccionesData, settings) {
         
+        // --- Selectores del DOM ---
         const searchInput = document.querySelector('.buscador');
         const filterNormagrisInput = document.querySelector('.filtro-normagris');
         const filterTagsInput = document.querySelector('.filtro-tags');
@@ -40,9 +39,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const toggleFiltersButton = document.getElementById('toggleFiltersBtn');
         const compactFiltersContainer = document.querySelector('.filter-row.compact');
 
+        // --- Lógica de renderizado ---
+
         function createInfraccionElement(data) {
             const infraccionDiv = document.createElement('div');
-            infraccionDiv.classList.add('infraccion', data.tipo);
+            // La clase 'grave' del JSON se usa para la barra, pero para la tarjeta usamos la clase 'media'
+            const tipoClase = data.tipo === 'grave' ? 'grave' : (data.tipo === 'media' ? 'media' : 'leve');
+            infraccionDiv.classList.add('infraccion', tipoClase);
+
             const importeReducidoHtml = data.importe_reducido ? `<span class="importe-reducido">${data.importe_reducido}</span>` : '';
             const puntosHtml = data.puntos ? `<span class="puntos">${data.puntos}</span>` : '';
             const tagsHtml = data.tags && data.tags.length > 0 ? `<div class="infraccion-tags">${data.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>` : '';
@@ -70,15 +74,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const groupedData = infraccionesToDisplay.reduce((acc, infraccion) => {
                 const normaGrisKey = `${infraccion.normagris_identificador.trim()} - ${infraccion.normagris_tematica.trim()}`;
                 if (!acc[normaGrisKey]) {
-                    acc[normaGrisKey] = {
-                        rango: infraccion.rango,
-                        ambito: infraccion.ambito,
-                        infracciones: []
-                    };
+                    acc[normaGrisKey] = { rango: infraccion.rango, ambito: infraccion.ambito, infracciones: [] };
                 }
                 acc[normaGrisKey].infracciones.push(infraccion);
                 return acc;
             }, {});
+
             const sortedNormaGrisKeys = Object.keys(groupedData).sort((keyA, keyB) => {
                 const normaInfoA = groupedData[keyA];
                 const normaInfoB = groupedData[keyB];
@@ -89,17 +90,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 const indexB_rango = settings.rangoOrder.indexOf(normaInfoB.rango);
                 return indexA_rango - indexB_rango;
             });
+
             sortedNormaGrisKeys.forEach(normaGrisKey => {
                 const groupInfo = groupedData[normaGrisKey];
                 const groupDiv = document.createElement('div');
                 groupDiv.classList.add('infraccion-group');
+
+                // --- CREACIÓN DEL HEADER ---
                 const groupHeader = document.createElement('div');
                 groupHeader.classList.add('infraccion-group-header');
-                const [identificador, tematica] = normaGrisKey.split(' - ');
-                const rangoHtml = groupInfo.rango ? `<span class="norma-propiedad rango">${groupInfo.rango}</span>` : '';
-                const ambitoHtml = groupInfo.ambito ? `<span class="norma-propiedad ambito">${groupInfo.ambito}</span>` : '';
+                const [identificador] = normaGrisKey.split(' - ');
                 groupHeader.innerHTML = `<span class="icon">▶</span> <span class="normagris-identificador">${identificador}</span>`;
                 groupDiv.appendChild(groupHeader);
+
+                // --- ✅ CREACIÓN DE LA BARRA DE FILTROS POR GRAVEDAD ---
+                const severityFilterBar = document.createElement('div');
+                severityFilterBar.classList.add('severity-filter-bar');
+                severityFilterBar.innerHTML = `
+                    <button class="severity-btn grave" data-severity="grave" title="Filtrar por Muy Graves"></button>
+                    <button class="severity-btn media" data-severity="media" title="Filtrar por Graves"></button>
+                    <button class="severity-btn leve" data-severity="leve" title="Filtrar por Leves"></button>
+                `;
+                groupDiv.appendChild(severityFilterBar);
+
+                // --- CREACIÓN DEL CONTENIDO DE INFRACCIONES ---
                 const infractionsContent = document.createElement('div');
                 infractionsContent.classList.add('infracciones-content');
                 groupInfo.infracciones.sort((a, b) => {
@@ -113,14 +127,42 @@ document.addEventListener('DOMContentLoaded', () => {
                     infractionsContent.appendChild(createInfraccionElement(infraccionData));
                 });
                 groupDiv.appendChild(infractionsContent);
+
+                // --- EVENT LISTENERS ---
                 groupHeader.addEventListener('click', () => {
                     groupDiv.classList.toggle('open');
                     infractionsContent.style.maxHeight = groupDiv.classList.contains('open') ? `${infractionsContent.scrollHeight}px` : null;
                 });
+                
+                // ✅ LÓGICA PARA LOS BOTONES DE FILTRADO POR GRAVEDAD
+                severityFilterBar.querySelectorAll('.severity-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const clickedButton = e.currentTarget;
+                        const severityToFilter = clickedButton.dataset.severity;
+                        
+                        // Si el botón ya está activo, se desactiva el filtro
+                        if (clickedButton.classList.contains('active')) {
+                            clickedButton.classList.remove('active');
+                            infractionsContent.querySelectorAll('.infraccion').forEach(inf => inf.style.display = '');
+                        } else {
+                            // Si no, se activa el filtro
+                            severityFilterBar.querySelectorAll('.severity-btn').forEach(b => b.classList.remove('active'));
+                            clickedButton.classList.add('active');
+                            infractionsContent.querySelectorAll('.infraccion').forEach(inf => {
+                                inf.style.display = inf.classList.contains(severityToFilter) ? '' : 'none';
+                            });
+                        }
+                        
+                        // Recalcular la altura del contenedor
+                        infractionsContent.style.maxHeight = `${infractionsContent.scrollHeight}px`;
+                    });
+                });
+
                 groupedInfraccionesContainer.appendChild(groupDiv);
             });
         }
         
+        // --- El resto de las funciones (populateFilters, applyFilters) no cambian ---
         function populateFilters() {
             const uniqueNormas = [...new Set(infraccionesData.map(d => `${d.normagris_identificador.trim()} - ${d.normagris_tematica.trim()}`))];
             datalistNormagrisOptions.innerHTML = uniqueNormas.sort().map(n => `<option value="${n}"></option>`).join('');
@@ -137,7 +179,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 filterAmbitoSelect.innerHTML += `<option value="${a}">${a}</option>`;
             });
         }
-
         function applyFilters() {
             const searchTerm = searchInput.value.toLowerCase().trim();
             const selectedNormaGris = filterNormagrisInput.value.toLowerCase().trim();
@@ -190,12 +231,10 @@ document.addEventListener('DOMContentLoaded', () => {
         collapsibleHeader.classList.toggle('open');
         collapsibleHeader.style.maxHeight = collapsibleHeader.classList.contains('open') ? `${collapsibleHeader.scrollHeight}px` : null;
     });
-
     window.addEventListener('scroll', () => {
         const scrolledEnough = window.scrollY > window.innerHeight / 2;
         scrollTopBtn.classList.toggle('hidden', !scrolledEnough);
     });
-
     scrollTopBtn.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
