@@ -908,4 +908,39 @@ groupHeader.addEventListener('click', () => {
       }
     });
   });
+
+   // --- ✅ LÓGICA PARA OCULTAR/MOSTRAR HEADER AL HACER SCROLL ---
+    
+    const header = document.querySelector('header');
+    const showSearchBtn = document.getElementById('showSearchBtn');
+    let lastScrollY = window.scrollY;
+
+    window.addEventListener('scroll', () => {
+        // Oculta el header si se hace scroll hacia abajo
+        if (lastScrollY < window.scrollY && window.scrollY > 150) {
+            header.classList.add('hidden');
+            if (showSearchBtn) showSearchBtn.classList.remove('hidden');
+        } 
+        // Muestra el header si se hace scroll hacia arriba
+        else {
+            header.classList.remove('hidden');
+            if (showSearchBtn) showSearchBtn.classList.add('hidden');
+        }
+
+        // Actualiza la última posición de scroll
+        lastScrollY = window.scrollY;
+    });
+
+    // Funcionalidad para el botón flotante
+    if (showSearchBtn) {
+        showSearchBtn.addEventListener('click', () => {
+            // Sube al inicio de la página suavemente
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+            // Al subir, el evento de scroll se encargará de mostrar el header
+        });
+    }
+
 });

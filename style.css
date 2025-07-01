@@ -44,9 +44,40 @@ header {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 100; transition: transform 0.3s ease-in-out; /* <-- Añade esta línea */
 }
 
+/* Nueva clase que ocultará el header */
+header.hidden {
+    transform: translateY(-100%); /* <-- Mueve el header hacia arriba */
+}
+
+/* Estilos para el botón flotante */
+.floating-search-btn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 50px;
+    height: 50px;
+    background-color: var(--color-accent-primary);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    z-index: 999;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 1;
+    transform: scale(1);
+}
+
+.floating-search-btn.hidden {
+    opacity: 0;
+    transform: scale(0);
+}
 .header-top {
     width: 100%;
     display: flex;
