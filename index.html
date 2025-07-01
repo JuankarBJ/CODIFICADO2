@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Codificador Infracciones</title>
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+
+  <header>
+    <div class="header-top"> <h1>CODIFICADO INFRACCIONES</h1>
+    </div>
+
+    <div class="filters-container"> <div class="filter-row full-width">
+            <input class="buscador" type="text" placeholder="🔍 Buscar por texto">
+            <button class="clear-button" data-filter-target="buscador">❌</button>
+        </div>
+
+        <div class="filter-row compact">
+            <div class="filter-group">
+                <input class="filtro-normagris" list="norma-gris-options" type="text" placeholder="📜 Norma">
+                <datalist id="norma-gris-options"></datalist>
+                <button class="clear-button" data-filter-target="filtro-normagris">❌</button>
+            </div>
+
+            <div class="filter-group">
+                <input class="filtro-tags" list="tags-options" type="text" placeholder="🏷️ Etiqueta">
+                <datalist id="tags-options"></datalist>
+                <button class="clear-button" data-filter-target="filtro-tags">❌</button>
+            </div>
+
+            <div class="filter-group">
+                <select class="filtro-rango">
+                    <option value="">🏛️ Rango</option>
+                </select>
+                <button class="clear-button" data-filter-target="filtro-rango">❌</button>
+            </div>
+
+            <div class="filter-group">
+                <select class="filtro-ambito">
+                    <option value="">🌍 Ámbito</option>
+                </select>
+                <button class="clear-button" data-filter-target="filtro-ambito">❌</button>
+            </div>
+        </div>
+    </div>
+  </header>
+
+  <main class="infracciones-agrupadas">
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
