@@ -666,24 +666,200 @@
       ]
     },
     {
-      "identificador": "Ley Orgánica 4/2015, de 30 de marzo",
-      "tematica": "Protección De La Seguridad Ciudadana.",
-      "rango": "Ley Orgánica",
-      "ambito": "Estatal",
-      "areaId": "Seguridad Ciudadana",
-      "infracciones": [
-        {
-          "tipo": "leve",
-          "circulo": "L",
-          "norma": "LOPSC",
-          "articulo": "37",
-          "apartado": "4",
-          "importe": "De 100 a 600 euros",
-          "importe_reducido": "",
-          "descripcion": "Las faltas de respeto a los agentes de la autoridad.",
-          "tags": ["Seguridad Ciudadana", "Orden Público", "Agentes de Autoridad"]
-        }
-      ]
-    }
+  "identificador": "Ley Orgánica 4/2015, de 30 de marzo",
+  "tematica": "Protección De La Seguridad Ciudadana.",
+  "rango": "Ley Orgánica",
+  "ambito": "Estatal",
+  "areaId": "Seguridad Ciudadana",
+  "infracciones": [
+    {
+      "tipo": "leve",
+      "circulo": "L",
+      "norma": "LOPSC",
+      "articulo": "37",
+      "apartado": "1",
+      "importe": "De 100 a 600 euros",
+      "importe_reducido": "",
+      "descripcion": "La celebración de reuniones en lugares de tránsito público o de manifestaciones, incumpliendo lo preceptuado en los artículos 4.2, 8, 9, 10 y 11 de la Ley Orgánica 9/1983.",
+      "tags": ["Manifestaciones", "Reuniones Públicas", "Orden Público"]
+    },
+    {
+      "tipo": "leve",
+      "circulo": "L",
+      "norma": "LOPSC",
+      "articulo": "37",
+      "apartado": "2",
+      "importe": "De 100 a 600 euros",
+      "importe_reducido": "",
+      "descripcion": "La exhibición de objetos peligrosos con ánimo intimidatorio, siempre que no constituya delito o infracción grave.",
+      "tags": ["Intimidación", "Seguridad Ciudadana", "Objetos Peligrosos"]
+    },
+    {
+      "tipo": "leve",
+      "circulo": "L",
+      "norma": "LOPSC",
+      "articulo": "37",
+      "apartado": "3",
+      "importe": "De 100 a 600 euros",
+      "importe_reducido": "",
+      "descripcion": "El incumplimiento de las restricciones de circulación peatonal con ocasión de un acto público, cuando provoquen alteraciones menores.",
+      "tags": ["Circulación", "Eventos Públicos", "Orden Público"]
+    },
+    {
+      "tipo": "leve",
+      "circulo": "L",
+      "norma": "LOPSC",
+      "articulo": "37",
+      "apartado": "4",
+      "importe": "De 100 a 600 euros",
+      "importe_reducido": "",
+      "descripcion": "Las faltas de respeto y consideración hacia miembros de las Fuerzas y Cuerpos de Seguridad en el ejercicio de sus funciones.",
+      "tags": ["Seguridad Ciudadana", "Orden Público", "Agentes de Autoridad"]
+    },
+    {
+      "tipo": "leve",
+      "circulo": "L",
+      "norma": "LOPSC",
+      "articulo": "37",
+      "apartado": "5",
+      "importe": "De 100 a 600 euros",
+      "importe_reducido": "",
+      "descripcion": "La realización o incitación a actos que atenten contra la libertad e indemnidad sexual, o actos de exhibición obscena no constitutivos de infracción penal.",
+      "tags": ["Conducta Obscena", "Libertad Sexual", "Orden Público"]
+    },
+    {
+      "tipo": "leve",
+      "circulo": "L",
+      "norma": "LOPSC",
+      "articulo": "37",
+      "apartado": "6",
+      "importe": "De 100 a 600 euros",
+      "importe_reducido": "",
+      "descripcion": "La proyección de haces de luz sobre agentes para impedir o dificultar sus funciones.",
+      "tags": ["Agentes de Autoridad", "Seguridad Ciudadana", "Luz Intencionada"]
+    },
+    {
+      "tipo": "leve",
+      "circulo": "L",
+      "norma": "LOPSC",
+      "articulo": "37",
+      "apartado": "7",
+      "importe": "De 100 a 600 euros",
+      "importe_reducido": "",
+      "descripcion": "La ocupación de inmuebles ajenos o de la vía pública en contra de lo dispuesto legalmente, siempre que no constituya infracción penal.",
+      "tags": ["Ocupación Ilegal", "Vía Pública", "Seguridad Ciudadana"]
+    },
+    {
+      "tipo": "leve",
+      "circulo": "L",
+      "norma": "LOPSC",
+      "articulo": "37",
+      "apartado": "8",
+      "importe": "De 100 a 600 euros",
+      "importe_reducido": "",
+      "descripcion": "La omisión o insuficiencia de medidas para conservar la documentación de armas y explosivos, o la falta de denuncia de su pérdida o robo.",
+      "tags": ["Armas", "Explosivos", "Documentación"]
+    },
+    {
+      "tipo": "leve",
+      "circulo": "L",
+      "norma": "LOPSC",
+      "articulo": "37",
+      "apartado": "9",
+      "importe": "De 100 a 600 euros",
+      "importe_reducido": "",
+      "descripcion": "Las irregularidades en la cumplimentación de registros previstos en la ley con trascendencia para la seguridad ciudadana.",
+      "tags": ["Registros", "Seguridad Ciudadana", "Datos Falsos"]
+    },
+    {
+      "tipo": "leve",
+      "circulo": "L",
+      "norma": "LOPSC",
+      "articulo": "37",
+      "apartado": "10",
+      "importe": "De 100 a 600 euros",
+      "importe_reducido": "",
+      "descripcion": "El incumplimiento de la obligación de obtener documentación personal o de denunciar su pérdida o sustracción.",
+      "tags": ["Documentación Personal", "Identificación", "Seguridad Ciudadana"]
+    },
+    {
+      "tipo": "leve",
+      "circulo": "L",
+      "norma": "LOPSC",
+      "articulo": "37",
+      "apartado": "11",
+      "importe": "De 100 a 600 euros",
+      "importe_reducido": "",
+      "descripcion": "La negligencia en la custodia de documentación personal exigida legalmente, considerándose la tercera pérdida en un año.",
+      "tags": ["Negligencia", "Documentación Personal", "Seguridad Ciudadana"]
+    },
+    {
+      "tipo": "leve",
+      "circulo": "L",
+      "norma": "LOPSC",
+      "articulo": "37",
+      "apartado": "12",
+      "importe": "De 100 a 600 euros",
+      "importe_reducido": "",
+      "descripcion": "La negativa a entregar la documentación personal legalmente exigida cuando se hubiese acordado su retirada o retención.",
+      "tags": ["Identificación", "Documentación", "Seguridad Ciudadana"]
+    },
+    {
+      "tipo": "leve",
+      "circulo": "L",
+      "norma": "LOPSC",
+      "articulo": "37",
+      "apartado": "13",
+      "importe": "De 100 a 600 euros",
+      "importe_reducido": "",
+      "descripcion": "Los daños o el deslucimiento de bienes de uso o servicio público, o de bienes privados en la vía pública, cuando no constituyan infracción penal.",
+      "tags": ["Daños a Bienes", "Vía Pública", "Mobiliario Urbano"]
+    },
+    {
+      "tipo": "leve",
+      "circulo": "L",
+      "norma": "LOPSC",
+      "articulo": "37",
+      "apartado": "14",
+      "importe": "De 100 a 600 euros",
+      "importe_reducido": "",
+      "descripcion": "El escalamiento de edificios o monumentos sin autorización cuando exista riesgo cierto de daño.",
+      "tags": ["Escalamiento", "Edificios", "Monumentos"]
+    },
+    {
+      "tipo": "leve",
+      "circulo": "L",
+      "norma": "LOPSC",
+      "articulo": "37",
+      "apartado": "15",
+      "importe": "De 100 a 600 euros",
+      "importe_reducido": "",
+      "descripcion": "La remoción de vallas u otros elementos colocados por los agentes para delimitar perímetros de seguridad.",
+      "tags": ["Perímetros de Seguridad", "Agentes", "Vallas"]
+    },
+    {
+      "tipo": "leve",
+      "circulo": "L",
+      "norma": "LOPSC",
+      "articulo": "37",
+      "apartado": "16",
+      "importe": "De 100 a 600 euros",
+      "importe_reducido": "",
+      "descripcion": "Dejar sueltos animales feroces o dañinos, o abandonar animales domésticos en condiciones que pongan en peligro su vida.",
+      "tags": ["Animales", "Abandono", "Seguridad"]
+    },
+{
+  "tipo": "leve",
+  "circulo": "L",
+  "norma": "LOPSC",
+  "articulo": "37",
+  "apartado": "17",
+  "importe": "De 100 a 600 euros",
+  "importe_reducido": "",
+  "descripcion": "El consumo de bebidas alcohólicas en lugares, vías, establecimientos o transportes públicos cuando perturbe gravemente la tranquilidad ciudadana.",
+  "tags": ["Alcohol", "Vía Pública", "Tranquilidad Ciudadana", "Consumo Público"]
+}
+  ]
+}
   ]
 }
