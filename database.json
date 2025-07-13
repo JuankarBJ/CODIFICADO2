@@ -31,7 +31,7 @@
   },
   "normas": [
     {
-      "identificador": "Ley 7/2020, de 31 de agosto",
+      "identificador": "Ley 7/2020, de 31 de agosto - ",
       "tematica": "Bienestar, Protección y Defensa de los Animales de Castilla-La Mancha.",
       "rango": "Ley Ordinaria",
       "ambito": "Autonómico",
@@ -667,7 +667,7 @@
       ]
     },
     {
-  "identificador": "Ley Orgánica 4/2015, de 30 de marzo",
+  "identificador": "Ley Orgánica 4/2015, de 30 de marzo - ",
   "tematica": "Protección De La Seguridad Ciudadana.",
   "rango": "Ley Orgánica",
   "ambito": "Estatal",
@@ -1162,8 +1162,8 @@
     },
 
     {
-      "identificador": "Ordenanza de Parada y Estacionamiento",
-      "tematica": "Daimiel",
+      "identificador": "O.M Daimiel - ",
+      "tematica": "Parada y Estacionamiento",
       "rango": "Ordenanza",
       "ambito": "Local",
       "areaId": "trafico",
@@ -1754,8 +1754,8 @@
       ]
     },
     {
-      "identificador": "Ordenanza de Tenecia y Protección de Animales",
-      "tematica": "Daimiel",
+      "identificador": "O.M Daimiel - ",
+      "tematica": "Tenecia y Protección de Animales",
       "rango": "Ordenanza",
       "ambito":"Local",
       "areaId":"animales",
@@ -2236,8 +2236,8 @@
       ]
     },
     {
-      "identificador": "Ordenanza de Tenecia y Protección de Animales PPP",
-      "tematica": "Daimiel",
+      "identificador": "O.M Daimiel - ",
+      "tematica": "Tenecia y Protección de Animales PPP",
       "rango": "Ordenanza",
       "ambito":"Local",
       "areaId":"animales",
@@ -2411,8 +2411,8 @@
     },
     
   {
-    "identificador": "Ordenanza de Convivencia Ciudadana",
-    "tematica": "Daimiel",
+    "identificador": "O.M Daimiel - ",
+    "tematica": "Bienes Públicos y Convivencia Ciudadana",
     "rango":"Ordenanza",
     "ambito":"Local",
     "areaId":"seguridad_ciudadana",

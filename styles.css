@@ -30,6 +30,13 @@ body {
   line-height: 1.6;
 }
 
+h1 {
+    font-size: 1.75rem;
+    margin: 1.5rem 0 0.5rem 0;
+    color: var(--color-accent-primary);
+    text-align: center;
+}
+
 /* --- BARRA DE BÚSQUEDA FIJA --- */
 .search-bar-fixed {
     position: sticky;
@@ -59,7 +66,7 @@ body {
     padding-right: 2.5rem;
 }
 
-/* --- HEADER DESPLEGABLE --- */
+/* --- CABECERA DESPLEGABLE --- */
 .collapsible-header {
     background-color: var(--color-card-bg);
     max-height: 0;
@@ -71,29 +78,6 @@ body {
     padding-top: var(--spacing-unit);
     padding-bottom: var(--spacing-unit);
 }
-.header-top h1 {
-    font-size: 1.75rem;
-    margin: 0 0 1rem 0;
-    color: var(--color-accent-primary);
-    text-align: center;
-}
-.filters-container .filter-row.full-width {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 0.75rem;
-}
-.toggle-filters-button {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    background-color: var(--color-mid-blue);
-    color: var(--color-light-text);
-    border: none;
-    padding: 0.6rem 1rem;
-    border-radius: var(--border-radius-md);
-    cursor: pointer;
-}
-
 /* --- FILTROS (dentro del desplegable) --- */
 .filter-row.compact {
     display: flex;
@@ -127,6 +111,9 @@ body {
     -moz-appearance: none;
     appearance: none;
 }
+.normagris-tematica {
+    font-weight: bold; 
+}
 .clear-button {
     position: absolute;
     right: 0.5rem;
@@ -148,10 +135,11 @@ main.infracciones-agrupadas {
 }
 .infraccion-group {
     margin-bottom: 1.5rem;
-    background-color: var(--color-card-bg);
+    background-color: var(--color-card-bg); 
     border-radius: var(--border-radius-lg);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     overflow: hidden;
+    position: relative;
 }
 .infraccion-group-header {
     background-color: var(--color-mid-blue);
@@ -161,6 +149,7 @@ main.infracciones-agrupadas {
     display: flex;
     align-items: center;
     user-select: none;
+    padding-top: 1.5rem;
 }
 .infraccion-group-header .icon {
     transition: transform 0.3s ease;
@@ -240,7 +229,6 @@ main.infracciones-agrupadas {
     font-weight: 600;
 }
 
-
 /* --- BOTONES FLOTANTES --- */
 .floating-action-buttons {
     position: fixed; /* FIJA los botones a la PANTALLA */
@@ -279,80 +267,80 @@ main.infracciones-agrupadas {
 
 /* Contenedor de la información de importes */
 .importe-info {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  margin-top: 0.5rem;
-  gap: 1.5rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+    gap: 1.5rem;
 }
 
 /* Colores para Importes y Puntos */
 .importe,
 .importe-reducido,
 .puntos {
-  font-weight: bold;
-  white-space: nowrap;
+    font-weight: bold;
+    white-space: nowrap;
 }
 
 .importe {
-  color: var(--color-accent-red);
+    color: var(--color-accent-red);
 }
 
 .importe-reducido {
-  color: var(--color-accent-yellow);
+    color: var(--color-accent-yellow);
 }
 
 .puntos {
-  color: var(--color-points);
+    color: var(--color-points);
 }
 
 /* Estilo para la Descripción */
 .descripcion {
-  margin-top: var(--spacing-unit);
-  line-height: 1.5;
-  font-size: 1rem;
-  color: var(--color-light-text); /* Color principal del texto */
-  border-top: 1px solid var(--color-light-blue);
-  padding-top: var(--spacing-unit);
+    margin-top: var(--spacing-unit);
+    line-height: 1.5;
+    font-size: 1rem;
+    color: var(--color-light-text); /* Color principal del texto */
+    border-top: 1px solid var(--color-light-blue);
+    padding-top: var(--spacing-unit);
 }
 
 /* Color para la parte en negrita de la norma */
 .norma strong {
-  color: var(--color-light-text);
+    color: var(--color-light-text);
 }
 
-/* Colores de la barra lateral según la gravedad (ya lo tenías, pero por si acaso) */
+/* Colores de la barra lateral según la gravedad */
 .infraccion.grave {
-  border-left-color: var(--color-accent-red);
+    border-left-color: var(--color-accent-red);
 }
 .infraccion.grave .circulo {
     background-color: var(--color-accent-red);
 }
 /* --- FILTROS DE GRAVEDAD DENTRO DE CADA LEY --- */
 .severity-filter-bar {
-  display: flex;
-  gap: 0.5rem;
-  padding: 0 1.5rem 1rem 1.5rem; /* Espaciado interior */
-  background-color: var(--color-card-bg); /* Mismo fondo que el grupo */
-  display: none; /* Oculto por defecto */
+    display: flex;
+    gap: 0.5rem;
+    padding: 0 1.5rem 1rem 1.5rem; /* Espaciado interior */
+    background-color: var(--color-card-bg); /* Mismo fondo que el grupo */
+    display: none; /* Oculto por defecto */
 }
 
 /* Se muestra solo cuando el grupo está abierto */
 .infraccion-group.open .severity-filter-bar {
-  display: flex;
+    display: flex;
 }
 
 .severity-btn {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  border: 2px solid var(--color-light-blue);
-  cursor: pointer;
-  transition: transform 0.2s ease, border-color 0.2s ease;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid var(--color-light-blue);
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
 .severity-btn:hover {
-  transform: scale(1.1);
+    transform: scale(1.1);
 }
 
 /* Colores de fondo de los botones */
@@ -362,9 +350,9 @@ main.infracciones-agrupadas {
 
 /* Estilo para el botón activo */
 .severity-btn.active {
-  border-color: #fff;
-  transform: scale(1.1);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    border-color: #fff;
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 /* --- ESTILOS PARA ETIQUETAS DESPLEGABLES --- */
 
@@ -390,23 +378,72 @@ main.infracciones-agrupadas {
     border-top: 1px dashed var(--color-light-blue);
     /* La altura máxima la asignará el JavaScript */
 }
-/* Modificación para que el grupo acepte un color dinámico */
-.infraccion-group {
-    position: relative; /* Necesario para posicionar la insignia */
-    background-color: var(--area-color, var(--color-card-bg)); /* Usa el color del área o uno por defecto */
-    /* ... el resto de tus estilos para .infraccion-group ... */
-}
 
 /* Estilo para la insignia del área en la esquina */
 .area-badge {
+    /* Ajuste para el solapamiento del texto */
     position: absolute;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.3); /* Fondo semitransparente */
+    background-color: var(--area-color); 
     color: #fff;
     padding: 0.2rem 0.8rem;
     font-size: 0.75rem;
     font-weight: bold;
     border-bottom-right-radius: var(--border-radius-md);
     text-transform: uppercase;
+    filter: brightness(0.8);
+    /* Añadimos un pequeño margen inferior para separar visualmente */
+    margin-bottom: 0.5rem;
+}
+
+/* Estilo para el footer */
+footer {
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+    font-size: 0.8rem;
+    color: var(--color-muted-text);
+}
+
+/* Ajuste para el enlace del título en buscador.html */
+h1 a {
+    text-decoration: none;
+    color: var(--color-accent-primary);
+}
+
+/* --- BARRA LATERAL (SIDEBAR) --- */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 300px; /* Ancho de la barra lateral */
+    background-color: var(--color-card-bg);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+    z-index: 2000;
+    transform: translateX(100%); /* Oculto por defecto a la derecha */
+    transition: transform 0.4s ease-in-out;
+}
+
+.sidebar.open {
+    transform: translateX(0); /* Visible cuando tiene la clase 'open' */
+}
+
+.sidebar-content {
+    padding: 2rem 1.5rem;
+}
+
+/* Estilos para el botón de cerrar en la barra lateral */
+#closeSidebarBtn {
+    background-color: var(--color-mid-blue);
+    color: var(--color-light-text);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+    margin-top: 1rem;
+}
+#closeSidebarBtn:hover {
+    background-color: var(--color-accent-red);
 }
