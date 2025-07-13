@@ -4,13 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch('database.json')
         .then(response => {
             if (!response.ok) {
-                // Manejo de error si el archivo no se encuentra o no se puede cargar
                 throw new Error('No se pudo cargar database.json. Verifica que el archivo exista y no tenga errores.');
             }
             return response.json();
         })
         .then(data => {
-            // Preparamos los datos para que sean compatibles con el resto del script
             // Aplanamos la estructura de las infracciones y añadimos propiedades de la norma padre
             const allInfracciones = data.normas.flatMap(norma =>
                 norma.infracciones.map(infraccion => ({
@@ -19,7 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     normagris_tematica: norma.tematica,
                     rango: norma.rango,
                     ambito: norma.ambito,
-                    areaId: norma.areaId // Pasamos el areaId a cada infracción
+                    areaId: norma.areaId,
+                    modelo_sancion: norma.modelo_sancion
                 }))
             );
             
@@ -28,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(error => {
             console.error('Error fatal al cargar los datos:', error);
-            // Muestra el mensaje de error en el contenedor principal
             document.querySelector('main').innerHTML = `<p style="color: red; text-align: center;">${error.message}</p>`;
         });
 
@@ -46,25 +44,63 @@ document.addEventListener('DOMContentLoaded', () => {
             const infraccionDiv = document.createElement('div');
             // Asigna la clase CSS según el tipo de infracción (grave, media, leve)
             const tipoClase = data.tipo === 'grave' ? 'grave' : (data.tipo === 'media' ? 'media' : 'leve');
-            infraccionDiv.classList.add('infraccion', tipoClase);
+            
+            // Definimos la variable modeloSancionClase basada en el dato de la norma
+            const modeloSancionClase = data.modelo_sancion ? `modelo-${data.modelo_sancion}` : 'modelo-desconocido';
 
-            // Genera HTML para importe reducido, puntos y tags si existen
-            const importeReducidoHtml = data.importe_reducido ? `<span class="importe-reducido">${data.importe_reducido}</span>` : '';
-            const puntosHtml = data.puntos ? `<span class="puntos">${data.puntos}</span>` : '';
+            // Añadimos las clases al div de la infracción
+            infraccionDiv.classList.add('infraccion', tipoClase, modeloSancionClase);
+
+            // Determinamos si el apartado existe para formatear el Art. / Apdo.
+            // Si data.apartado es una cadena vacía o null, solo mostrará el artículo.
+            const apartadoHtml = data.apartado && data.apartado.trim() !== '' ? ` | Apdo. ${data.apartado}` : '';
+            
+            // Tags (aunque estén ocultos por CSS, se generan en el DOM)
             const tagsHtml = data.tags && data.tags.length > 0 ? `<div class="infraccion-tags">${data.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>` : '';
+
+            // Generamos las filas de importe solo si los datos existen.
+            let importeContentHtml = '';
+
+            // Fila de Importe (siempre debe existir un importe para que exista la infracción)
+            if (data.importe) {
+                importeContentHtml += `
+                    <div class="importe-row">
+                        <span class="label">Importe:</span> 
+                        <span class="importe" title="Importe completo">${data.importe}</span>
+                    </div>
+                `;
+            }
+            
+            // Fila de Importe Reducido
+            if (data.importe_reducido) {
+                importeContentHtml += `
+                    <div class="importe-row">
+                        <span class="label">Reducida:</span> 
+                        <span class="importe-reducido" title="Importe reducido">${data.importe_reducido}</span>
+                    </div>
+                `;
+            }
+
+            // Fila de Puntos
+            if (data.puntos) {
+                importeContentHtml += `
+                    <div class="importe-row">
+                        <span class="label">Puntos:</span> 
+                        <span class="puntos" title="Puntos a detraer">${data.puntos}</span>
+                    </div>
+                `;
+            }
 
             // Estructura interna de la tarjeta de infracción
             infraccionDiv.innerHTML = `
-                <div class="cinta">
+                <div class="infraccion-header">
                     <div class="circulo">${data.circulo}</div>
-                    <div>
-                        <div class="articulo-apartado">Art. ${data.articulo} | Apdo. ${data.apartado}</div>
+                    <div class="header-info">
+                        <div class="articulo-apartado">Art. ${data.articulo}${apartadoHtml}</div>
                         <div class="norma">Norma: <strong>${data.norma}</strong></div>
-                        <div class="importe-info">
-                            <span class="importe">${data.importe}</span>
-                            ${importeReducidoHtml}
-                            ${puntosHtml}
-                        </div>
+                    </div>
+                    <div class="importe-info">
+                        ${importeContentHtml}
                     </div>
                 </div>
                 <div class="descripcion">${data.descripcion}</div>
@@ -111,27 +147,51 @@ document.addEventListener('DOMContentLoaded', () => {
                 const groupDiv = document.createElement('div');
                 groupDiv.classList.add('infraccion-group');
 
-                // Añade la insignia de área si está disponible
+                // Creamos groupHeader antes de cualquier lógica que intente adjuntar elementos a él
+                const groupHeader = document.createElement('div');
+                groupHeader.classList.add('infraccion-group-header');
+
+                // Añade la insignia de área y el icono grande si están disponibles
                 const areaInfo = grandesAreas[groupInfo.areaId];
                 if (areaInfo) {
+                    // 1. Establecer la variable CSS --area-color en el grupo (para el icono grande)
                     groupDiv.style.setProperty('--area-color', areaInfo.color);
+
+                    // 2. Crear la insignia de área (etiqueta superior izquierda)
                     const areaBadge = document.createElement('span');
                     areaBadge.className = 'area-badge';
                     areaBadge.textContent = areaInfo.nombre;
+
+                    // APLICAMOS EL COLOR DE FONDO DIRECTAMENTE EN EL ELEMENTO para asegurar su visibilidad
+                    areaBadge.style.backgroundColor = areaInfo.color; 
+                    
+                    // 3. Añadir el icono grande si existe
+                    if (areaInfo.icon) {
+                         const areaIconDiv = document.createElement('div');
+                         areaIconDiv.className = `area-group-icon icon-${areaInfo.icon}`;
+                         areaIconDiv.dataset.icon = areaInfo.icon; 
+                         
+                         groupHeader.appendChild(areaIconDiv); // Añade el icono grande al encabezado
+                    }
+
+                    // 4. Añadir la insignia al grupo
                     groupDiv.prepend(areaBadge);
                 }
                 
-                // Crea el encabezado del grupo
-                const groupHeader = document.createElement('div');
-                groupHeader.classList.add('infraccion-group-header');
+                // Finaliza la estructura del groupHeader (se ha movido groupHeader.appendChild(areaIconDiv) al bloque anterior)
                 const [identificador, tematica] = normaGrisKey.split(' - ');
+                
+                // Reconstruimos el innerHTML de groupHeader, asegurando que el icono (si existe) no sea sobrescrito
+                const currentHeaderContent = groupHeader.innerHTML; // Guarda el contenido (posiblemente el icono)
                 groupHeader.innerHTML = `
                     <span class="icon">▶</span>
                     <div class="norma-main-info">
                         <span class="normagris-identificador">${identificador}</span>
                         <span class="normagris-tematica">${tematica || ''}</span>
                     </div>
-                `;
+                ` + currentHeaderContent; // Añade el contenido principal y mantiene el icono si se añadió.
+
+
                 groupDiv.appendChild(groupHeader);
 
                 // Barra de filtros de gravedad dentro del grupo
@@ -158,20 +218,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 }).forEach(infraccionData => {
                     const infraccionElement = createInfraccionElement(infraccionData);
                     
-                    // Lógica para desplegar tags al hacer clic en la infracción
+                    // Lógica para desplegar tags al hacer clic en la infracción (eliminada)
                     infraccionElement.addEventListener('click', () => {
-                        infraccionElement.classList.toggle('tags-visible');
-                        const tagsContainer = infraccionElement.querySelector('.infraccion-tags');
-                        if (tagsContainer) {
-                            if (infraccionElement.classList.contains('tags-visible')) {
-                                tagsContainer.style.maxHeight = tagsContainer.scrollHeight + 'px';
-                            } else {
-                                tagsContainer.style.maxHeight = null;
-                            }
-                            if (groupDiv.classList.contains('open')) {
-                                infractionsContent.style.maxHeight = infractionsContent.scrollHeight + 'px';
-                            }
-                        }
+                        // La lógica del click ya no despliega las etiquetas
                     });
                     infractionsContent.appendChild(infraccionElement);
                 });
@@ -282,6 +331,4 @@ document.addEventListener('DOMContentLoaded', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
-
-    // showSearchBtn (si existe en el HTML) no tiene funcionalidad de colapsado asociada en este script ya que se eliminó el header colapsable.
 });

@@ -1,19 +1,28 @@
 {
+  
     "grandesAreas": {
-    "animales": {
-      "nombre": "Animales",
-      "color": "#2a9d8f" 
-    },
-    "seguridad_ciudadana": {
-      "nombre": "Seguridad Ciudadana",
-      "color": "#e76f51" 
+    "urbanismo": {
+        "nombre": "Urbanismo",
+        "color": "#... (color)",
+        "icon": "building" 
     },
     "trafico": {
         "nombre": "Tráfico",
-        "color": "#457b9d"
+        "color": "#... (color)",
+        "icon": "car" 
+    },
+    "animales": {
+        "nombre": "Animales",
+        "color": "#... (color)",
+        "icon": "dog" 
+    },
+    "seguridad_ciudadana": {
+        "nombre": "Seguridad Ciudadana",
+        "color": "#... (color)",
+        "icon": "handcuffs" 
     }
     
-  },
+},
   "settings": {
     "ambitoOrder": [
       "Estatal",
@@ -33,6 +42,7 @@
     {
       "identificador": "Ley 7/2020, de 31 de agosto - ",
       "tematica": "Bienestar, Protección y Defensa de los Animales de Castilla-La Mancha.",
+      "modelo_sancion": "solo_importe_rango",
       "rango": "Ley Ordinaria",
       "ambito": "Autonómico",
       "areaId": "animales",
@@ -44,7 +54,7 @@
           "articulo": "41",
           "apartado": "1",
           "importe": "De 300 a 3.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "No facilitar a los animales alimentación adecuada a sus necesidades, no solamente para su subsistencia, así como alimentarlos con productos o sustancias prohibidas por la legislación vigente o sin poseer la autorización en caso de que sea necesaria, siempre que con ello no se les cause trastornos graves o la muerte del animal.",
           "tags": ["Animales", "Alimentación"]
         },
@@ -55,7 +65,7 @@
           "articulo": "41",
           "apartado": "2",
           "importe": "De 300 a 3.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "Mantener a los animales en condiciones inadecuadas desde el punto de vista higiénico-sanitario, desatendiendo su cuidado y atención, de acuerdo con las necesidades fisiológicas y etológicas por especie y raza, siempre que no se hayan causado lesiones, enfermedades o sufrimiento al animal.",
           "tags": ["Animales", "Higiene", "Bienestar"]
         },
@@ -66,7 +76,7 @@
           "articulo": "41",
           "apartado": "3",
           "importe": "De 300 a 3.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "No educar o socializar a los animales de compañía que así lo requieran.",
           "tags": ["Animales", "Educación", "Socialización"]
         },
@@ -77,7 +87,7 @@
           "articulo": "41",
           "apartado": "4",
           "importe": "De 300 a 3.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "No estar en posesión del preceptivo documento sanitario o no tenerlos adecuadamente diligenciados, en los casos que proceda.",
           "tags": ["Animales", "Documentación"]
         },
@@ -88,7 +98,7 @@
           "articulo": "41",
           "apartado": "5",
           "importe": "De 300 a 3.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "No disponer, en su caso, de los archivos de las fichas clínicas de los animales objeto de vacunación o de tratamiento obligatorio, o que éstos estén incompletos.",
           "tags": ["Animales", "Documentación"]
         },
@@ -99,7 +109,7 @@
           "articulo": "41",
           "apartado": "6",
           "importe": "De 300 a 3.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "La falta de comunicación a los registros de identificación de animales de compañía de las altas, bajas y cambios de titularidad de los mismos.",
           "tags": ["Animales", "Registro"]
         },
@@ -110,7 +120,7 @@
           "articulo": "41",
           "apartado": "7",
           "importe": "De 300 a 3.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "El incumplimiento de las condiciones de circulación de los animales de compañía previstas en esta ley.",
           "tags": ["Animales", "Circulación"]
         },
@@ -121,7 +131,7 @@
           "articulo": "41",
           "apartado": "8",
           "importe": "De 300 a 3.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "El transporte de animales con vulneración de los requisitos establecidos en la legislación vigente siempre que, como consecuencia de dicha vulneración, no se hayan producido trastornos graves, lesiones o heridas en los animales.",
           "tags": ["Animales", "Transporte"]
         },
@@ -132,7 +142,7 @@
           "articulo": "41",
           "apartado": "9",
           "importe": "De 300 a 3.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "No entregar la documentación exigida en la entrega, cesión, adopción y venta de animales",
           "tags": ["Animales", "Venta"]
         },
@@ -143,7 +153,7 @@
           "articulo": "41",
           "apartado": "10",
           "importe": "De 300 a 3.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "No comunicar en el tiempo establecido la desaparición de un animal.",
           "tags": ["Animales", "Registro"]
         },
@@ -154,7 +164,7 @@
           "articulo": "41",
           "apartado": "11",
           "importe": "De 300 a 3.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "La manipulación artificial de los animales con objeto de hacerlos atractivos como diversión o juguete para su venta, si no se les causa sufrimiento, daño o lesión",
           "tags": ["Animales", "Maltrato", "Comercio"]
         },
@@ -165,7 +175,7 @@
           "articulo": "41",
           "apartado": "12",
           "importe": "De 300 a 3.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "Exhibir a los animales de compañía en escaparates que estén en vías públicas y accesos públicos.",
           "tags": ["Animales", "Comercio"]
         },
@@ -176,7 +186,7 @@
           "articulo": "41",
           "apartado": "13",
           "importe": "De 300 a 3.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "No realizar tratamientos sanitarios y vacunaciones declarados obligatorios en los animales.",
           "tags": ["Animales", "Salud Animal"]
         },
@@ -187,7 +197,7 @@
           "articulo": "41",
           "apartado": "14",
           "importe": "De 300 a 3.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "No adoptar las medidas oportunas para impedir que los animales ensucien las vías, espacios públicos o establecimientos, o para eliminar las deyecciones que realicen en estos lugares.",
           "tags": ["Animales", "Higiene Pública"]
         },
@@ -198,7 +208,7 @@
           "articulo": "41",
           "apartado": "15",
           "importe": "De 300 a 3.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "La carencia de los libros de registro establecidos en esta ley en los núcleos zoológicos",
           "tags": ["Animales", "Registro", "Núcleos Zoológicos"]
         },
@@ -209,7 +219,7 @@
           "articulo": "41",
           "apartado": "16",
           "importe": "De 300 a 3.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "No disponer de los correspondientes certificados de competencia o cualificaciones profesionales exigidos en esta ley",
           "tags": ["Animales", "Cualificaciones"]
         },
@@ -220,7 +230,7 @@
           "articulo": "41",
           "apartado": "17",
           "importe": "De 300 a 3.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "Cualquier incumplimiento de los requisitos, obligaciones o prohibiciones establecidas en esta ley que no esté calificado específicamente como grave o muy grave.",
           "tags": ["Animales", "General"]
         },
@@ -231,7 +241,7 @@
           "articulo": "41",
           "apartado": "18",
           "importe": "De 300 a 3.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "La utilización y uso de objetos que causen lesión a los animales que están bajo nuestra responsabilidad (collares de pinchos o púas), collares de ahogo y collares de descarga eléctrica, fuera de lo previsto en esta ley.",
           "tags": ["Animales", "Maltrato"]
         },
@@ -242,7 +252,7 @@
           "articulo": "42",
           "apartado": "1",
           "importe": "De 3.001 a 9.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "Mantener a los animales en condiciones inadecuadas desde el punto de vista higiénico-sanitario, desatendiendo su cuidado y atención, de acuerdo con las necesidades fisiológicas y etológicas por especie y raza, siempre que se les cause lesiones y enfermedades a los animales.",
           "tags": ["Animales", "Higiene", "Sanidad", "Maltrato"]
         },
@@ -253,7 +263,7 @@
           "articulo": "42",
           "apartado": "2",
           "importe": "De 3.001 a 9.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "No facilitarles la alimentación necesaria de acuerdo a sus necesidades ocasionando trastornos graves al animal.",
           "tags": ["Animales", "Alimentación", "Salud", "Maltrato"]
         },
@@ -264,7 +274,7 @@
           "articulo": "42",
           "apartado": "3",
           "importe": "De 3.001 a 9.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "No disponer de las autorizaciones, permisos y licencias en cada caso necesarias, para la titularidad y posesión de un animal.",
           "tags": ["Animales", "Autorizaciones", "Permisos", "Licencias"]
         },
@@ -275,7 +285,7 @@
           "articulo": "42",
           "apartado": "4",
           "importe": "De 3.001 a 9.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "No facilitar a los animales la asistencia veterinaria necesaria, cuando con ello se cause una enfermedad grave, lesión en el animal o sufrimiento innecesario.",
           "tags": ["Animales", "Veterinaria", "Salud", "Sufrimiento"]
         },
@@ -286,7 +296,7 @@
           "articulo": "42",
           "apartado": "5",
           "importe": "De 3.001 a 9.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "Vender animales enfermos.",
           "tags": ["Animales", "Venta", "Enfermedad"]
         },
@@ -297,7 +307,7 @@
           "articulo": "42",
           "apartado": "6",
           "importe": "De 3.001 a 9.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "Ceder, o donar animales enfermos, sin el consentimiento de quien los recibe.",
           "tags": ["Animales", "Cesión", "Donación", "Enfermedad"]
         },
@@ -308,7 +318,7 @@
           "articulo": "42",
           "apartado": "7",
           "importe": "De 3.001 a 9.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "El abandono de animales.",
           "tags": ["Animales", "Abandono"]
         },
@@ -319,7 +329,7 @@
           "articulo": "42",
           "apartado": "8",
           "importe": "De 3.001 a 9.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "Mantener permanentemente atados o encadenados a los animales.",
           "tags": ["Animales", "Atados", "Encadenados", "Maltrato"]
         },
@@ -330,7 +340,7 @@
           "articulo": "42",
           "apartado": "9",
           "importe": "De 3.001 a 9.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "No registrar e identificar reglamentariamente los animales que deban estarlo de acuerdo con la legislación aplicable.",
           "tags": ["Animales", "Registro", "Identificación"]
         },
@@ -341,7 +351,7 @@
           "articulo": "42",
           "apartado": "10",
           "importe": "De 3.001 a 9.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "La negación de asistencia sanitaria, por parte de los veterinarios en ejercicio, a animales enfermos o heridos, salvo en las excepciones contempladas en el Código para el ejercicio de la profesión veterinaria aprobado por el Consejo General de Colegios Veterinarios de España.",
           "tags": ["Animales", "Veterinarios", "Asistencia Sanitaria"]
         },
@@ -352,7 +362,7 @@
           "articulo": "42",
           "apartado": "11",
           "importe": "De 3.001 a 9.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "Realizar prácticas de experimentación animal y selección animal no autorizadas.",
           "tags": ["Animales", "Experimentación", "Selección"]
         },
@@ -363,7 +373,7 @@
           "articulo": "42",
           "apartado": "12",
           "importe": "De 3.001 a 9.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "No evitar la huida de animales que por sus características y carácter puedan causar daños a las personas, otros animales, vías, espacios públicos y medio natural.",
           "tags": ["Animales", "Huida", "Seguridad Pública", "Medio Ambiente"]
         },
@@ -374,7 +384,7 @@
           "articulo": "42",
           "apartado": "13",
           "importe": "De 3.001 a 9.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "Sujeción de animales a vehículos a motor en movimiento sin que existan daños, heridas o sufrimiento en el animal.",
           "tags": ["Animales", "Transporte", "Vehículos"]
         },
@@ -385,7 +395,7 @@
           "articulo": "42",
           "apartado": "14",
           "importe": "De 3.001 a 9.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "Utilizar animales en atracciones de feria.",
           "tags": ["Animales", "Ferias", "Espectáculos"]
         },
@@ -396,7 +406,7 @@
           "articulo": "42",
           "apartado": "15",
           "importe": "De 3.001 a 9.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "Incumplimiento de registro de los núcleos zoológicos.",
           "tags": ["Animales", "Núcleos Zoológicos", "Registro"]
         },
@@ -407,7 +417,7 @@
           "articulo": "42",
           "apartado": "16",
           "importe": "De 3.001 a 9.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "La manipulación artificial de los animales con objeto de hacerlos atractivos como diversión o juguete para su venta, si les causa un sufrimiento, daño o lesión.",
           "tags": ["Animales", "Manipulación", "Venta", "Sufrimiento"]
         },
@@ -418,7 +428,7 @@
           "articulo": "42",
           "apartado": "17",
           "importe": "De 3.001 a 9.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "La práctica de mutilaciones, salvo aquellas permitidas y realizadas por veterinarios en caso de necesidad médico-quirúrgica.",
           "tags": ["Animales", "Mutilaciones", "Veterinaria"]
         },
@@ -429,7 +439,7 @@
           "articulo": "42",
           "apartado": "18",
           "importe": "De 3.001 a 9.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "La cría, mantenimiento, venta y comercialización de animales sin cumplir los correspondientes requisitos y sin tener las autorizaciones y registros necesarios.",
           "tags": ["Animales", "Cría", "Venta", "Autorizaciones", "Registro"]
         },
@@ -440,7 +450,7 @@
           "articulo": "42",
           "apartado": "19",
           "importe": "De 3.001 a 9.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "Impedir la libre inspección de los animales y sus instalaciones a las autoridades competentes, así como no suministrar la información y documentos necesarios para realizar las funciones de control.",
           "tags": ["Animales", "Inspección", "Autoridades"]
         },
@@ -451,7 +461,7 @@
           "articulo": "42",
           "apartado": "20",
           "importe": "De 3.001 a 9.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "El transporte de animales con vulneración de los requisitos establecidos en la legislación vigente cuando, como consecuencia de dicha vulneración, se hayan producido lesiones en los animales o muerte evitable de los mismos.",
           "tags": ["Animales", "Transporte", "Lesiones", "Muerte Evitable"]
         },
@@ -462,7 +472,7 @@
           "articulo": "42",
           "apartado": "21",
           "importe": "De 3.001 a 9.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "Efectuar venta ambulante de animales fuera de mercados, ferias y cualquier otro certamen autorizado.",
           "tags": ["Animales", "Venta Ambulante", "Mercados", "Ferias"]
         },
@@ -473,7 +483,7 @@
           "articulo": "42",
           "apartado": "22",
           "importe": "De 3.001 a 9.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "Vender o hacer donación de animales a menores de dieciséis años y a personas con capacidad modificada judicialmente.",
           "tags": ["Animales", "Venta", "Donación", "Menores"]
         },
@@ -484,7 +494,7 @@
           "articulo": "42",
           "apartado": "23",
           "importe": "De 3.001 a 9.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "Anular o manipular los sistemas de identificación de los animales, sin prescripción ni control veterinario.",
           "tags": ["Animales", "Identificación", "Manipulación"]
         },
@@ -495,7 +505,7 @@
           "articulo": "42",
           "apartado": "24",
           "importe": "De 3.001 a 9.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "Suministrar sustancias a un animal que le causen alteraciones graves de la salud o del comportamiento, salvo en los casos amparados por la normativa vigente.",
           "tags": ["Animales", "Sustancias", "Salud", "Comportamiento"]
         },
@@ -506,7 +516,7 @@
           "articulo": "42",
           "apartado": "25",
           "importe": "De 3.001 a 9.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "Uso de animales salvajes y fauna silvestre en circos.",
           "tags": ["Animales", "Fauna Silvestre", "Circos", "Espectáculos"]
         },
@@ -517,7 +527,7 @@
           "articulo": "42",
           "apartado": "26",
           "importe": "De 3.001 a 9.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "Alimentar animales con alimento animal vivo sin estar autorizado para ello.",
           "tags": ["Animales", "Alimentación", "Alimento Vivo"]
         },
@@ -528,7 +538,7 @@
           "articulo": "42",
           "apartado": "27",
           "importe": "De 3.001 a 9.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "Hacer donación de los animales como reclamo publicitario, recompensa o regalo de compensación por otras adquisiciones de naturaleza distinta a la transacción onerosa de animales.",
           "tags": ["Animales", "Donación", "Publicidad"]
         },
@@ -539,7 +549,7 @@
           "articulo": "42",
           "apartado": "28",
           "importe": "De 3.001 a 9.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "Negativa a realizar las medidas provisionales previstas en el artículo 48 de esta ley.",
           "tags": ["Animales", "Medidas Provisionales", "Autoridades"]
         },
@@ -550,7 +560,7 @@
           "articulo": "43",
           "apartado": "1",
           "importe": "De 9.001 a 60.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "Maltratar o agredir a los animales o someterlos a cualquier práctica que pueda producir daños o sufrimientos innecesarios o injustificados, causándoles lesiones, deformidades, defectos o la muerte.",
           "tags": ["Maltrato", "Agresión", "Lesiones Graves", "Muerte"]
         },
@@ -561,7 +571,7 @@
           "articulo": "43",
           "apartado": "2",
           "importe": "De 9.001 a 60.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "Disparar a los animales, con las excepciones contempladas en el artículo 18.2.",
           "tags": ["Armas de Fuego", "Agresión", "Maltrato"]
         },
@@ -572,7 +582,7 @@
           "articulo": "43",
           "apartado": "3",
           "importe": "De 9.001 a 60.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "Depositar alimentos envenenados en espacios y lugares públicos, salvo los empleados por empresas autorizadas para el control de plagas.",
           "tags": ["Veneno", "Salud Pública", "Maltrato"]
         },
@@ -583,7 +593,7 @@
           "articulo": "43",
           "apartado": "4",
           "importe": "De 9.001 a 60.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "El suministro a los animales de alimentos y medicamentos que contengan sustancias que puedan provocarles daño grave o muerte.",
           "tags": ["Alimentación", "Medicamentos", "Veneno", "Muerte"]
         },
@@ -594,7 +604,7 @@
           "articulo": "43",
           "apartado": "5",
           "importe": "De 9.001 a 60.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "La organización de peleas con y entre animales.",
           "tags": ["Peleas", "Organización", "Maltrato", "Crueldad"]
         },
@@ -605,7 +615,7 @@
           "articulo": "43",
           "apartado": "6",
           "importe": "De 9.001 a 60.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "Organización y participación de espectáculos o prácticas prohibidas en la presente ley.",
           "tags": ["Espectáculos", "Maltrato", "Prohibido"]
         },
@@ -616,7 +626,7 @@
           "articulo": "43",
           "apartado": "7",
           "importe": "De 9.001 a 60.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "La utilización de animales por parte de sus titulares o poseedores para su participación en peleas.",
           "tags": ["Peleas", "Titulares", "Maltrato"]
         },
@@ -627,7 +637,7 @@
           "articulo": "43",
           "apartado": "8",
           "importe": "De 9.001 a 60.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "La filmación con animales de escenas reales que conlleven crueldad, maltrato o sufrimiento.",
           "tags": ["Filmación", "Publicidad", "Crueldad", "Maltrato"]
         },
@@ -638,7 +648,7 @@
           "articulo": "43",
           "apartado": "9",
           "importe": "De 9.001 a 60.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "Realizar el sacrificio de un animal sin seguir las especificaciones de esta ley y de la normativa aplicable.",
           "tags": ["Sacrificio", "Maltrato", "Eutanasia"]
         },
@@ -649,7 +659,7 @@
           "articulo": "43",
           "apartado": "10",
           "importe": "De 9.001 a 60.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "Esterilizaciones, mutilaciones y sacrificios de animales sin la asistencia de un veterinario, y sin los requisitos y condiciones establecidos por esta ley y por cualquier normativa que sea de aplicación.",
           "tags": ["Mutilaciones", "Sacrificio", "Veterinaria", "Intrusismo"]
         },
@@ -660,510 +670,511 @@
           "articulo": "43",
           "apartado": "11",
           "importe": "De 9.001 a 60.000 euros",
-          "importe_reducido": "",
+          
           "descripcion": "Sujeción de animales a vehículos a motor en movimiento, siempre que existan daños, heridas o sufrimiento en el animal.",
           "tags": ["Vehículos", "Transporte", "Maltrato", "Lesiones Graves"]
         }
       ]
     },
     {
-  "identificador": "Ley Orgánica 4/2015, de 30 de marzo - ",
-  "tematica": "Protección De La Seguridad Ciudadana.",
-  "rango": "Ley Orgánica",
-  "ambito": "Estatal",
-  "areaId": "seguridad_ciudadana",
-  "infracciones": [
+    "identificador": "Ley Orgánica 4/2015, de 30 de marzo - ",
+    "tematica": "Protección De La Seguridad Ciudadana.",
+    "modelo_sancion": "solo_importe_rango",
+    "rango": "Ley Orgánica",
+    "ambito": "Estatal",
+    "areaId": "seguridad_ciudadana",
+    "infracciones": [
+      {
+        "tipo": "leve",
+        "circulo": "L",
+        "norma": "LOPSC",
+        "articulo": "37",
+        "apartado": "1",
+        "importe": "De 100 a 600 euros",
+        
+        "descripcion": "La celebración de reuniones en lugares de tránsito público o de manifestaciones, incumpliendo lo preceptuado en los artículos 4.2, 8, 9, 10 y 11 de la Ley Orgánica 9/1983.",
+        "tags": ["Manifestaciones", "Reuniones Públicas", "Orden Público"]
+      },
+      {
+        "tipo": "leve",
+        "circulo": "L",
+        "norma": "LOPSC",
+        "articulo": "37",
+        "apartado": "2",
+        "importe": "De 100 a 600 euros",
+        
+        "descripcion": "La exhibición de objetos peligrosos con ánimo intimidatorio, siempre que no constituya delito o infracción grave.",
+        "tags": ["Intimidación", "Seguridad Ciudadana", "Objetos Peligrosos"]
+      },
+      {
+        "tipo": "leve",
+        "circulo": "L",
+        "norma": "LOPSC",
+        "articulo": "37",
+        "apartado": "3",
+        "importe": "De 100 a 600 euros",
+        
+        "descripcion": "El incumplimiento de las restricciones de circulación peatonal con ocasión de un acto público, cuando provoquen alteraciones menores.",
+        "tags": ["Circulación", "Eventos Públicos", "Orden Público"]
+      },
+      {
+        "tipo": "leve",
+        "circulo": "L",
+        "norma": "LOPSC",
+        "articulo": "37",
+        "apartado": "4",
+        "importe": "De 100 a 600 euros",
+        
+        "descripcion": "Las faltas de respeto y consideración hacia miembros de las Fuerzas y Cuerpos de Seguridad en el ejercicio de sus funciones.",
+        "tags": ["Seguridad Ciudadana", "Orden Público", "Agentes de Autoridad"]
+      },
+      {
+        "tipo": "leve",
+        "circulo": "L",
+        "norma": "LOPSC",
+        "articulo": "37",
+        "apartado": "5",
+        "importe": "De 100 a 600 euros",
+        
+        "descripcion": "La realización o incitación a actos que atenten contra la libertad e indemnidad sexual, o actos de exhibición obscena no constitutivos de infracción penal.",
+        "tags": ["Conducta Obscena", "Libertad Sexual", "Orden Público"]
+      },
+      {
+        "tipo": "leve",
+        "circulo": "L",
+        "norma": "LOPSC",
+        "articulo": "37",
+        "apartado": "6",
+        "importe": "De 100 a 600 euros",
+        
+        "descripcion": "La proyección de haces de luz sobre agentes para impedir o dificultar sus funciones.",
+        "tags": ["Agentes de Autoridad", "Seguridad Ciudadana", "Luz Intencionada"]
+      },
+      {
+        "tipo": "leve",
+        "circulo": "L",
+        "norma": "LOPSC",
+        "articulo": "37",
+        "apartado": "7",
+        "importe": "De 100 a 600 euros",
+        
+        "descripcion": "La ocupación de inmuebles ajenos o de la vía pública en contra de lo dispuesto legalmente, siempre que no constituya infracción penal.",
+        "tags": ["Ocupación Ilegal", "Vía Pública", "Seguridad Ciudadana"]
+      },
+      {
+        "tipo": "leve",
+        "circulo": "L",
+        "norma": "LOPSC",
+        "articulo": "37",
+        "apartado": "8",
+        "importe": "De 100 a 600 euros",
+        
+        "descripcion": "La omisión o insuficiencia de medidas para conservar la documentación de armas y explosivos, o la falta de denuncia de su pérdida o robo.",
+        "tags": ["Armas", "Explosivos", "Documentación"]
+      },
+      {
+        "tipo": "leve",
+        "circulo": "L",
+        "norma": "LOPSC",
+        "articulo": "37",
+        "apartado": "9",
+        "importe": "De 100 a 600 euros",
+        
+        "descripcion": "Las irregularidades en la cumplimentación de registros previstos en la ley con trascendencia para la seguridad ciudadana.",
+        "tags": ["Registros", "Seguridad Ciudadana", "Datos Falsos"]
+      },
+      {
+        "tipo": "leve",
+        "circulo": "L",
+        "norma": "LOPSC",
+        "articulo": "37",
+        "apartado": "10",
+        "importe": "De 100 a 600 euros",
+        
+        "descripcion": "El incumplimiento de la obligación de obtener documentación personal o de denunciar su pérdida o sustracción.",
+        "tags": ["Documentación Personal", "Identificación", "Seguridad Ciudadana"]
+      },
+      {
+        "tipo": "leve",
+        "circulo": "L",
+        "norma": "LOPSC",
+        "articulo": "37",
+        "apartado": "11",
+        "importe": "De 100 a 600 euros",
+        
+        "descripcion": "La negligencia en la custodia de documentación personal exigida legalmente, considerándose la tercera pérdida en un año.",
+        "tags": ["Negligencia", "Documentación Personal", "Seguridad Ciudadana"]
+      },
+      {
+        "tipo": "leve",
+        "circulo": "L",
+        "norma": "LOPSC",
+        "articulo": "37",
+        "apartado": "12",
+        "importe": "De 100 a 600 euros",
+        
+        "descripcion": "La negativa a entregar la documentación personal legalmente exigida cuando se hubiese acordado su retirada o retención.",
+        "tags": ["Identificación", "Documentación", "Seguridad Ciudadana"]
+      },
+      {
+        "tipo": "leve",
+        "circulo": "L",
+        "norma": "LOPSC",
+        "articulo": "37",
+        "apartado": "13",
+        "importe": "De 100 a 600 euros",
+        
+        "descripcion": "Los daños o el deslucimiento de bienes de uso o servicio público, o de bienes privados en la vía pública, cuando no constituyan infracción penal.",
+        "tags": ["Daños a Bienes", "Vía Pública", "Mobiliario Urbano"]
+      },
+      {
+        "tipo": "leve",
+        "circulo": "L",
+        "norma": "LOPSC",
+        "articulo": "37",
+        "apartado": "14",
+        "importe": "De 100 a 600 euros",
+        
+        "descripcion": "El escalamiento de edificios o monumentos sin autorización cuando exista riesgo cierto de daño.",
+        "tags": ["Escalamiento", "Edificios", "Monumentos"]
+      },
+      {
+        "tipo": "leve",
+        "circulo": "L",
+        "norma": "LOPSC",
+        "articulo": "37",
+        "apartado": "15",
+        "importe": "De 100 a 600 euros",
+        
+        "descripcion": "La remoción de vallas u otros elementos colocados por los agentes para delimitar perímetros de seguridad.",
+        "tags": ["Perímetros de Seguridad", "Agentes", "Vallas"]
+      },
+      {
+        "tipo": "leve",
+        "circulo": "L",
+        "norma": "LOPSC",
+        "articulo": "37",
+        "apartado": "16",
+        "importe": "De 100 a 600 euros",
+        
+        "descripcion": "Dejar sueltos animales feroces o dañinos, o abandonar animales domésticos en condiciones que pongan en peligro su vida.",
+        "tags": ["Animales", "Abandono", "Seguridad"]
+      },
+      {
+        "tipo": "leve",
+        "circulo": "L",
+        "norma": "LOPSC",
+        "articulo": "37",
+        "apartado": "17",
+        "importe": "De 100 a 600 euros",
+        
+        "descripcion": "El consumo de bebidas alcohólicas en lugares, vías, establecimientos o transportes públicos cuando perturbe gravemente la tranquilidad ciudadana.",
+        "tags": ["Alcohol", "Vía Pública", "Tranquilidad Ciudadana", "Consumo Público"]
+      },
     {
-      "tipo": "leve",
-      "circulo": "L",
-      "norma": "LOPSC",
-      "articulo": "37",
-      "apartado": "1",
-      "importe": "De 100 a 600 euros",
-      "importe_reducido": "",
-      "descripcion": "La celebración de reuniones en lugares de tránsito público o de manifestaciones, incumpliendo lo preceptuado en los artículos 4.2, 8, 9, 10 y 11 de la Ley Orgánica 9/1983.",
-      "tags": ["Manifestaciones", "Reuniones Públicas", "Orden Público"]
-    },
-    {
-      "tipo": "leve",
-      "circulo": "L",
-      "norma": "LOPSC",
-      "articulo": "37",
-      "apartado": "2",
-      "importe": "De 100 a 600 euros",
-      "importe_reducido": "",
-      "descripcion": "La exhibición de objetos peligrosos con ánimo intimidatorio, siempre que no constituya delito o infracción grave.",
-      "tags": ["Intimidación", "Seguridad Ciudadana", "Objetos Peligrosos"]
-    },
-    {
-      "tipo": "leve",
-      "circulo": "L",
-      "norma": "LOPSC",
-      "articulo": "37",
-      "apartado": "3",
-      "importe": "De 100 a 600 euros",
-      "importe_reducido": "",
-      "descripcion": "El incumplimiento de las restricciones de circulación peatonal con ocasión de un acto público, cuando provoquen alteraciones menores.",
-      "tags": ["Circulación", "Eventos Públicos", "Orden Público"]
-    },
-    {
-      "tipo": "leve",
-      "circulo": "L",
-      "norma": "LOPSC",
-      "articulo": "37",
-      "apartado": "4",
-      "importe": "De 100 a 600 euros",
-      "importe_reducido": "",
-      "descripcion": "Las faltas de respeto y consideración hacia miembros de las Fuerzas y Cuerpos de Seguridad en el ejercicio de sus funciones.",
-      "tags": ["Seguridad Ciudadana", "Orden Público", "Agentes de Autoridad"]
-    },
-    {
-      "tipo": "leve",
-      "circulo": "L",
-      "norma": "LOPSC",
-      "articulo": "37",
-      "apartado": "5",
-      "importe": "De 100 a 600 euros",
-      "importe_reducido": "",
-      "descripcion": "La realización o incitación a actos que atenten contra la libertad e indemnidad sexual, o actos de exhibición obscena no constitutivos de infracción penal.",
-      "tags": ["Conducta Obscena", "Libertad Sexual", "Orden Público"]
-    },
-    {
-      "tipo": "leve",
-      "circulo": "L",
-      "norma": "LOPSC",
-      "articulo": "37",
-      "apartado": "6",
-      "importe": "De 100 a 600 euros",
-      "importe_reducido": "",
-      "descripcion": "La proyección de haces de luz sobre agentes para impedir o dificultar sus funciones.",
-      "tags": ["Agentes de Autoridad", "Seguridad Ciudadana", "Luz Intencionada"]
-    },
-    {
-      "tipo": "leve",
-      "circulo": "L",
-      "norma": "LOPSC",
-      "articulo": "37",
-      "apartado": "7",
-      "importe": "De 100 a 600 euros",
-      "importe_reducido": "",
-      "descripcion": "La ocupación de inmuebles ajenos o de la vía pública en contra de lo dispuesto legalmente, siempre que no constituya infracción penal.",
-      "tags": ["Ocupación Ilegal", "Vía Pública", "Seguridad Ciudadana"]
-    },
-    {
-      "tipo": "leve",
-      "circulo": "L",
-      "norma": "LOPSC",
-      "articulo": "37",
-      "apartado": "8",
-      "importe": "De 100 a 600 euros",
-      "importe_reducido": "",
-      "descripcion": "La omisión o insuficiencia de medidas para conservar la documentación de armas y explosivos, o la falta de denuncia de su pérdida o robo.",
-      "tags": ["Armas", "Explosivos", "Documentación"]
-    },
-    {
-      "tipo": "leve",
-      "circulo": "L",
-      "norma": "LOPSC",
-      "articulo": "37",
-      "apartado": "9",
-      "importe": "De 100 a 600 euros",
-      "importe_reducido": "",
-      "descripcion": "Las irregularidades en la cumplimentación de registros previstos en la ley con trascendencia para la seguridad ciudadana.",
-      "tags": ["Registros", "Seguridad Ciudadana", "Datos Falsos"]
-    },
-    {
-      "tipo": "leve",
-      "circulo": "L",
-      "norma": "LOPSC",
-      "articulo": "37",
-      "apartado": "10",
-      "importe": "De 100 a 600 euros",
-      "importe_reducido": "",
-      "descripcion": "El incumplimiento de la obligación de obtener documentación personal o de denunciar su pérdida o sustracción.",
-      "tags": ["Documentación Personal", "Identificación", "Seguridad Ciudadana"]
-    },
-    {
-      "tipo": "leve",
-      "circulo": "L",
-      "norma": "LOPSC",
-      "articulo": "37",
-      "apartado": "11",
-      "importe": "De 100 a 600 euros",
-      "importe_reducido": "",
-      "descripcion": "La negligencia en la custodia de documentación personal exigida legalmente, considerándose la tercera pérdida en un año.",
-      "tags": ["Negligencia", "Documentación Personal", "Seguridad Ciudadana"]
-    },
-    {
-      "tipo": "leve",
-      "circulo": "L",
-      "norma": "LOPSC",
-      "articulo": "37",
-      "apartado": "12",
-      "importe": "De 100 a 600 euros",
-      "importe_reducido": "",
-      "descripcion": "La negativa a entregar la documentación personal legalmente exigida cuando se hubiese acordado su retirada o retención.",
-      "tags": ["Identificación", "Documentación", "Seguridad Ciudadana"]
-    },
-    {
-      "tipo": "leve",
-      "circulo": "L",
-      "norma": "LOPSC",
-      "articulo": "37",
-      "apartado": "13",
-      "importe": "De 100 a 600 euros",
-      "importe_reducido": "",
-      "descripcion": "Los daños o el deslucimiento de bienes de uso o servicio público, o de bienes privados en la vía pública, cuando no constituyan infracción penal.",
-      "tags": ["Daños a Bienes", "Vía Pública", "Mobiliario Urbano"]
-    },
-    {
-      "tipo": "leve",
-      "circulo": "L",
-      "norma": "LOPSC",
-      "articulo": "37",
-      "apartado": "14",
-      "importe": "De 100 a 600 euros",
-      "importe_reducido": "",
-      "descripcion": "El escalamiento de edificios o monumentos sin autorización cuando exista riesgo cierto de daño.",
-      "tags": ["Escalamiento", "Edificios", "Monumentos"]
-    },
-    {
-      "tipo": "leve",
-      "circulo": "L",
-      "norma": "LOPSC",
-      "articulo": "37",
-      "apartado": "15",
-      "importe": "De 100 a 600 euros",
-      "importe_reducido": "",
-      "descripcion": "La remoción de vallas u otros elementos colocados por los agentes para delimitar perímetros de seguridad.",
-      "tags": ["Perímetros de Seguridad", "Agentes", "Vallas"]
-    },
-    {
-      "tipo": "leve",
-      "circulo": "L",
-      "norma": "LOPSC",
-      "articulo": "37",
-      "apartado": "16",
-      "importe": "De 100 a 600 euros",
-      "importe_reducido": "",
-      "descripcion": "Dejar sueltos animales feroces o dañinos, o abandonar animales domésticos en condiciones que pongan en peligro su vida.",
-      "tags": ["Animales", "Abandono", "Seguridad"]
-    },
-    {
-      "tipo": "leve",
-      "circulo": "L",
-      "norma": "LOPSC",
-      "articulo": "37",
-      "apartado": "17",
-      "importe": "De 100 a 600 euros",
-      "importe_reducido": "",
-      "descripcion": "El consumo de bebidas alcohólicas en lugares, vías, establecimientos o transportes públicos cuando perturbe gravemente la tranquilidad ciudadana.",
-      "tags": ["Alcohol", "Vía Pública", "Tranquilidad Ciudadana", "Consumo Público"]
-    },
-   {
-      "tipo": "media",
-      "circulo": "G",
-      "norma": "LOPSC",
-      "articulo": "36",
-      "apartado": "1",
-      "importe": "De 601 a 30.000 euros",
-      "importe_reducido": "",
-      "descripcion": "La perturbación de la seguridad ciudadana en actos públicos, espectáculos deportivos o culturales, solemnidades y oficios religiosos u otras reuniones a las que asistan numerosas personas, cuando no sean constitutivas de infracción penal.",
-      "tags": ["Perturbación", "Actos Públicos", "Seguridad Ciudadana"]
-    },
-    {
-      "tipo": "media",
-      "circulo": "G",
-      "norma": "LOPSC",
-      "articulo": "36",
-      "apartado": "2",
-      "importe": "De 601 a 30.000 euros",
-      "importe_reducido": "",
-      "descripcion": "La perturbación grave de la seguridad ciudadana que se produzca con ocasión de reuniones o manifestaciones frente a las sedes del Congreso de los Diputados, el Senado y las asambleas legislativas de las comunidades autónomas, aunque no estuvieran reunidas, cuando no constituya infracción penal.",
-      "tags": ["Perturbación", "Sedes Oficiales", "Manifestaciones", "Seguridad Ciudadana"]
-    },
-    {
-      "tipo": "media",
-      "circulo": "G",
-      "norma": "LOPSC",
-      "articulo": "36",
-      "apartado": "3",
-      "importe": "De 601 a 30.000 euros",
-      "importe_reducido": "",
-      "descripcion": "Causar desórdenes en las vías, espacios o establecimientos públicos, u obstaculizar la vía pública con mobiliario urbano, vehículos, contenedores, neumáticos u otros objetos, cuando en ambos casos se ocasione una alteración grave de la seguridad ciudadana.",
-      "tags": ["Desórdenes", "Vía Pública", "Obstaculización", "Seguridad Ciudadana"]
-    },
-    {
-      "tipo": "media",
-      "circulo": "G",
-      "norma": "LOPSC",
-      "articulo": "36",
-      "apartado": "4",
-      "importe": "De 601 a 30.000 euros",
-      "importe_reducido": "",
-      "descripcion": "Los actos de obstrucción que pretendan impedir a cualquier autoridad, empleado público o corporación oficial el ejercicio legítimo de sus funciones, el cumplimiento o la ejecución de acuerdos o resoluciones administrativas o judiciales, siempre que se produzcan al margen de los procedimientos legalmente establecidos y no sean constitutivos de delito.",
-      "tags": ["Obstrucción", "Autoridad", "Funciones Públicas"]
-    },
-    {
-      "tipo": "media",
-      "circulo": "G",
-      "norma": "LOPSC",
-      "articulo": "36",
-      "apartado": "5",
-      "importe": "De 601 a 30.000 euros",
-      "importe_reducido": "",
-      "descripcion": "Las acciones y omisiones que impidan u obstaculicen el funcionamiento de los servicios de emergencia, provocando o incrementando un riesgo para la vida o integridad de las personas o de daños en los bienes, o agravando las consecuencias del suceso que motive la actuación de aquéllos.",
-      "tags": ["Emergencias", "Obstrucción", "Riesgo"]
-    },
-    {
-      "tipo": "media",
-      "circulo": "G",
-      "norma": "LOPSC",
-      "articulo": "36",
-      "apartado": "6",
-      "importe": "De 601 a 30.000 euros",
-      "importe_reducido": "",
-      "descripcion": "La desobediencia o la resistencia a la autoridad o a sus agentes en el ejercicio de sus funciones, cuando no sean constitutivas de delito, así como la negativa a identificarse a requerimiento de la autoridad o de sus agentes o la alegación de datos falsos o inexactos en los procesos de identificación.",
-      "tags": ["Desobediencia", "Resistencia", "Autoridad", "Identificación"]
-    },
-    {
-      "tipo": "media",
-      "circulo": "G",
-      "norma": "LOPSC",
-      "articulo": "36",
-      "apartado": "7",
-      "importe": "De 601 a 30.000 euros",
-      "importe_reducido": "",
-      "descripcion": "La negativa a la disolución de reuniones y manifestaciones en lugares de tránsito público ordenada por la autoridad competente cuando concurran los supuestos del artículo 5 de la Ley Orgánica 9/1983, de 15 de julio.",
-      "tags": ["Disolución", "Reuniones", "Manifestaciones", "Autoridad"]
-    },
-    {
-      "tipo": "media",
-      "circulo": "G",
-      "norma": "LOPSC",
-      "articulo": "36",
-      "apartado": "8",
-      "importe": "De 601 a 30.000 euros",
-      "importe_reducido": "",
-      "descripcion": "La perturbación del desarrollo de una reunión o manifestación lícita, cuando no constituya infracción penal.",
-      "tags": ["Perturbación", "Reunión Lícita", "Manifestación Lícita"]
-    },
-    {
-      "tipo": "media",
-      "circulo": "G",
-      "norma": "LOPSC",
-      "articulo": "36",
-      "apartado": "9",
-      "importe": "De 601 a 30.000 euros",
-      "importe_reducido": "",
-      "descripcion": "La intrusión en infraestructuras o instalaciones en las que se prestan servicios básicos para la comunidad, incluyendo su sobrevuelo, cuando se haya producido una interferencia grave en su funcionamiento.",
-      "tags": ["Intrusión", "Infraestructuras", "Servicios Básicos"]
-    },
-    {
-      "tipo": "media",
-      "circulo": "G",
-      "norma": "LOPSC",
-      "articulo": "36",
-      "apartado": "10",
-      "importe": "De 601 a 30.000 euros",
-      "importe_reducido": "",
-      "descripcion": "Portar, exhibir o usar armas prohibidas, así como portar, exhibir o usar armas de modo negligente, temerario o intimidatorio, o fuera de los lugares habilitados para su uso, aún cuando en este último caso se tuviera licencia, siempre que dichas conductas no constituyan infracción penal.",
-      "tags": ["Armas Prohibidas", "Uso Negligente", "Armas"]
-    },
-    {
-      "tipo": "media",
-      "circulo": "G",
-      "norma": "LOPSC",
-      "articulo": "36",
-      "apartado": "11",
-      "importe": "De 601 a 30.000 euros",
-      "importe_reducido": "",
-      "descripcion": "La solicitud o aceptación por el demandante de servicios sexuales retribuidos en zonas de tránsito público en las proximidades de lugares destinados a su uso por menores, como centros educativos, parques infantiles o espacios de ocio accesibles a menores de edad, o cuando estas conductas, por el lugar en que se realicen, puedan generar un riesgo para la seguridad vial. Los agentes de la autoridad requerirán a las personas que ofrezcan estos servicios para que se abstengan de hacerlo en dichos lugares, informándoles de que la inobservancia de dicho requerimiento podría constituir una infracción del párrafo 6 de este artículo.",
-      "tags": ["Servicios Sexuales", "Menores", "Seguridad Vial"]
-    },
-    {
-      "tipo": "media",
-      "circulo": "G",
-      "norma": "LOPSC",
-      "articulo": "36",
-      "apartado": "12",
-      "importe": "De 601 a 30.000 euros",
-      "importe_reducido": "",
-      "descripcion": "La fabricación, reparación, almacenamiento, circulación, comercio, transporte, distribución, adquisición, certificación, enajenación o utilización de armas reglamentarias, explosivos catalogados, cartuchería o artículos pirotécnicos, incumpliendo la normativa de aplicación, careciendo de la documentación o autorización requeridas o excediendo los límites autorizados cuando tales conductas no sean constitutivas de delito, así como la omisión, insuficiencia, o falta de eficacia de las medidas de seguridad o precauciones que resulten obligatorias.",
-      "tags": ["Armas Reglamentarias", "Explosivos", "Pirotecnia", "Normativa"]
-    },
-    {
-      "tipo": "media",
-      "circulo": "G",
-      "norma": "LOPSC",
-      "articulo": "36",
-      "apartado": "13",
-      "importe": "De 601 a 30.000 euros",
-      "importe_reducido": "",
-      "descripcion": "La negativa de acceso o la obstrucción deliberada de las inspecciones o controles reglamentarios, establecidos conforme a lo dispuesto en esta Ley, en fábricas, locales, establecimientos, embarcaciones y aeronaves.",
-      "tags": ["Inspecciones", "Controles", "Obstrucción"]
-    },
-    {
-      "tipo": "media",
-      "circulo": "G",
-      "norma": "LOPSC",
-      "articulo": "36",
-      "apartado": "14",
-      "importe": "De 601 a 30.000 euros",
-      "importe_reducido": "",
-      "descripcion": "El uso público e indebido de uniformes, insignias o condecoraciones oficiales, o réplicas de los mismos, así como otros elementos del equipamiento de los cuerpos policiales o de los servicios de emergencia que puedan generar engaño acerca de la condición de quien los use, cuando no sea constitutivo de infracción penal.",
-      "tags": ["Uniformes Oficiales", "Engaño", "Cuerpos Policiales"]
-    },
-    {
-      "tipo": "media",
-      "circulo": "G",
-      "norma": "LOPSC",
-      "articulo": "36",
-      "apartado": "15",
-      "importe": "De 601 a 30.000 euros",
-      "importe_reducido": "",
-      "descripcion": "La falta de colaboración con las Fuerzas y Cuerpos de Seguridad en la averiguación de delitos o en la prevención de acciones que puedan poner en riesgo la seguridad ciudadana en los supuestos previstos en el artículo 7.",
-      "tags": ["Colaboración", "Fuerzas de Seguridad", "Prevención"]
-    },
-    {
-      "tipo": "media",
-      "circulo": "G",
-      "norma": "LOPSC",
-      "articulo": "36",
-      "apartado": "16",
-      "importe": "De 601 a 30.000 euros",
-      "importe_reducido": "",
-      "descripcion": "El consumo o la tenencia ilícitos de drogas tóxicas, estupefacientes o sustancias psicotrópicas, aunque no estuvieran destinadas al tráfico, en lugares, vías, establecimientos públicos o transportes colectivos, así como el abandono de los instrumentos u otros efectos empleados para ello en los citados lugares.",
-      "tags": ["Drogas", "Consumo Ilícito", "Tenencia Ilícita", "Lugares Públicos"]
-    },
-    {
-      "tipo": "media",
-      "circulo": "G",
-      "norma": "LOPSC",
-      "articulo": "36",
-      "apartado": "17",
-      "importe": "De 601 a 30.000 euros",
-      "importe_reducido": "",
-      "descripcion": "El traslado de personas, con cualquier tipo de vehículo, con el objeto de facilitar a éstas el acceso a drogas tóxicas, estupefacientes o sustancias psicotrópicas, siempre que no constituya delito.",
-      "tags": ["Drogas", "Tráfico", "Facilitación"]
-    },
-    {
-      "tipo": "media",
-      "circulo": "G",
-      "norma": "LOPSC",
-      "articulo": "36",
-      "apartado": "18",
-      "importe": "De 601 a 30.000 euros",
-      "importe_reducido": "",
-      "descripcion": "La ejecución de actos de plantación y cultivo ilícitos de drogas tóxicas, estupefacientes o sustancias psicotrópicas en lugares visibles al público, cuando no sean constitutivos de infracción penal.",
-      "tags": ["Drogas", "Cultivo Ilícito", "Plantación Ilícita"]
-    },
-    {
-      "tipo": "media",
-      "circulo": "G",
-      "norma": "LOPSC",
-      "articulo": "36",
-      "apartado": "19",
-      "importe": "De 601 a 30.000 euros",
-      "importe_reducido": "",
-      "descripcion": "La tolerancia del consumo ilegal o el tráfico de drogas tóxicas, estupefacientes o sustancias psicotrópicas en locales o establecimientos públicos o la falta de diligencia en orden a impedirlos por parte de los propietarios, administradores o encargados de los mismos.",
-      "tags": ["Drogas", "Tolerancia", "Tráfico", "Locales Públicos"]
-    },
-    {
-      "tipo": "media",
-      "circulo": "G",
-      "norma": "LOPSC",
-      "articulo": "36",
-      "apartado": "20",
-      "importe": "De 601 a 30.000 euros",
-      "importe_reducido": "",
-      "descripcion": "La carencia de los registros previstos en esta Ley para las actividades con trascendencia para la seguridad ciudadana o la omisión de comunicaciones obligatorias.",
-      "tags": ["Registros", "Comunicaciones Obligatorias", "Seguridad Ciudadana"]
-    },
-    {
-      "tipo": "media",
-      "circulo": "G",
-      "norma": "LOPSC",
-      "articulo": "36",
-      "apartado": "21",
-      "importe": "De 601 a 30.000 euros",
-      "importe_reducido": "",
-      "descripcion": "La alegación de datos o circunstancias falsos para la obtención de las documentaciones previstas en esta Ley, siempre que no constituya infracción penal.",
-      "tags": ["Datos Falsos", "Documentación", "Fraude"]
-    },
-    {
-      "tipo": "media",
-      "circulo": "G",
-      "norma": "LOPSC",
-      "articulo": "36",
-      "apartado": "22",
-      "importe": "De 601 a 30.000 euros",
-      "importe_reducido": "",
-      "descripcion": "El incumplimiento de las restricciones a la navegación reglamentariamente impuestas a las embarcaciones de alta velocidad y aeronaves ligeras. Téngase en cuenta que se declara que el apartado 22 no es inconstitucional siempre que se interprete que la conducta que tipifica consiste en (i) el incumplimiento de las restricciones a la navegación en esos sectores impuestas por motivos de seguridad ciudadana (ii) que produjese como resultado un perjuicio real para la seguridad ciudadana o una amenaza concreta de la que razonablemente se pueda seguir aquel perjuicio, por la Sentencia del TC 13/2021, de 28 de enero. Ref. BOE-A-2021-2832",
-      "tags": ["Navegación", "Restricciones", "Seguridad Ciudadana"]
-    },
-    {
-      "tipo": "media",
-      "circulo": "G",
-      "norma": "LOPSC",
-      "articulo": "36",
-      "apartado": "23",
-      "importe": "De 601 a 30.000 euros",
-      "importe_reducido": "",
-      "descripcion": "El uso no autorizado de imágenes o datos personales o profesionales de autoridades o miembros de las Fuerzas y Cuerpos de Seguridad que pueda poner en peligro la seguridad personal o familiar de los agentes, de las instalaciones protegidas o en riesgo el éxito de una operación, con respeto al derecho fundamental a la información.",
-      "tags": ["Imágenes No Autorizadas", "Datos Personales", "Fuerzas de Seguridad", "Seguridad Personal"]
-    },
-    {
-      "tipo": "grave",
-      "circulo": "MG",
-      "norma": "LOPSC",
-      "articulo": "35",
-      "apartado": "1",
-      "importe": "De 30.001 a 600.000 euros",
-      "importe_reducido": "",
-      "descripcion": "Las reuniones o manifestaciones no comunicadas o prohibidas en infraestructuras o instalaciones en las que se prestan servicios básicos para la comunidad o en sus inmediaciones, así como la intrusión en los recintos de éstas, incluido su sobrevuelo, cuando, en cualquiera de estos supuestos, se haya generado un riesgo para la vida o la integridad física de las personas. En el caso de las reuniones y manifestaciones serán responsables los organizadores o promotores.",
-      "tags": ["Manifestaciones Ilegales", "Intrusión", "Infraestructuras Críticas", "Riesgo Vital"]
-    },
-    {
-      "tipo": "grave",
-      "circulo": "MG",
-      "norma": "LOPSC",
-      "articulo": "35",
-      "apartado": "2",
-      "importe": "De 30.001 a 600.000 euros",
-      "importe_reducido": "",
-      "descripcion": "La fabricación, reparación, almacenamiento, circulación, comercio, transporte, distribución, adquisición, certificación, enajenación o utilización de armas reglamentarias, explosivos catalogados, cartuchería o artículos pirotécnicos, incumpliendo la normativa de aplicación, careciendo de la documentación o autorización requeridas o excediendo los límites autorizados cuando tales conductas no sean constitutivas de delito así como la omisión, insuficiencia, o falta de eficacia de las medidas de seguridad o precauciones que resulten obligatorias, siempre que en tales actuaciones se causen perjuicios muy graves.",
-      "tags": ["Armas", "Explosivos", "Pirotecnia", "Perjuicios Graves", "Incumplimiento Normativa"]
-    },
-    {
-      "tipo": "grave",
-      "circulo": "MG",
-      "norma": "LOPSC",
-      "articulo": "35",
-      "apartado": "3",
-      "importe": "De 30.001 a 600.000 euros",
-      "importe_reducido": "",
-      "descripcion": "La celebración de espectáculos públicos o actividades recreativas quebrantando la prohibición o suspensión ordenada por la autoridad correspondiente por razones de seguridad pública.",
-      "tags": ["Espectáculos Prohibidos", "Suspensión", "Seguridad Pública"]
-    },
-    {
-      "tipo": "grave",
-      "circulo": "MG",
-      "norma": "LOPSC",
-      "articulo": "35",
-      "apartado": "4",
-      "importe": "De 30.001 a 600.000 euros",
-      "importe_reducido": "",
-      "descripcion": "La proyección de haces de luz, mediante cualquier tipo de dispositivo, sobre los pilotos o conductores de medios de transporte que puedan deslumbrarles o distraer su atención y provocar accidentes.",
-      "tags": ["Haces de Luz", "Deslumbramiento", "Accidentes", "Seguridad Vial"]
-    }
+        "tipo": "media",
+        "circulo": "G",
+        "norma": "LOPSC",
+        "articulo": "36",
+        "apartado": "1",
+        "importe": "De 601 a 30.000 euros",
+        
+        "descripcion": "La perturbación de la seguridad ciudadana en actos públicos, espectáculos deportivos o culturales, solemnidades y oficios religiosos u otras reuniones a las que asistan numerosas personas, cuando no sean constitutivas de infracción penal.",
+        "tags": ["Perturbación", "Actos Públicos", "Seguridad Ciudadana"]
+      },
+      {
+        "tipo": "media",
+        "circulo": "G",
+        "norma": "LOPSC",
+        "articulo": "36",
+        "apartado": "2",
+        "importe": "De 601 a 30.000 euros",
+        
+        "descripcion": "La perturbación grave de la seguridad ciudadana que se produzca con ocasión de reuniones o manifestaciones frente a las sedes del Congreso de los Diputados, el Senado y las asambleas legislativas de las comunidades autónomas, aunque no estuvieran reunidas, cuando no constituya infracción penal.",
+        "tags": ["Perturbación", "Sedes Oficiales", "Manifestaciones", "Seguridad Ciudadana"]
+      },
+      {
+        "tipo": "media",
+        "circulo": "G",
+        "norma": "LOPSC",
+        "articulo": "36",
+        "apartado": "3",
+        "importe": "De 601 a 30.000 euros",
+        
+        "descripcion": "Causar desórdenes en las vías, espacios o establecimientos públicos, u obstaculizar la vía pública con mobiliario urbano, vehículos, contenedores, neumáticos u otros objetos, cuando en ambos casos se ocasione una alteración grave de la seguridad ciudadana.",
+        "tags": ["Desórdenes", "Vía Pública", "Obstaculización", "Seguridad Ciudadana"]
+      },
+      {
+        "tipo": "media",
+        "circulo": "G",
+        "norma": "LOPSC",
+        "articulo": "36",
+        "apartado": "4",
+        "importe": "De 601 a 30.000 euros",
+        
+        "descripcion": "Los actos de obstrucción que pretendan impedir a cualquier autoridad, empleado público o corporación oficial el ejercicio legítimo de sus funciones, el cumplimiento o la ejecución de acuerdos o resoluciones administrativas o judiciales, siempre que se produzcan al margen de los procedimientos legalmente establecidos y no sean constitutivos de delito.",
+        "tags": ["Obstrucción", "Autoridad", "Funciones Públicas"]
+      },
+      {
+        "tipo": "media",
+        "circulo": "G",
+        "norma": "LOPSC",
+        "articulo": "36",
+        "apartado": "5",
+        "importe": "De 601 a 30.000 euros",
+        
+        "descripcion": "Las acciones y omisiones que impidan u obstaculicen el funcionamiento de los servicios de emergencia, provocando o incrementando un riesgo para la vida o integridad de las personas o de daños en los bienes, o agravando las consecuencias del suceso que motive la actuación de aquéllos.",
+        "tags": ["Emergencias", "Obstrucción", "Riesgo"]
+      },
+      {
+        "tipo": "media",
+        "circulo": "G",
+        "norma": "LOPSC",
+        "articulo": "36",
+        "apartado": "6",
+        "importe": "De 601 a 30.000 euros",
+        
+        "descripcion": "La desobediencia o la resistencia a la autoridad o a sus agentes en el ejercicio de sus funciones, cuando no sean constitutivas de delito, así como la negativa a identificarse a requerimiento de la autoridad o de sus agentes o la alegación de datos falsos o inexactos en los procesos de identificación.",
+        "tags": ["Desobediencia", "Resistencia", "Autoridad", "Identificación"]
+      },
+      {
+        "tipo": "media",
+        "circulo": "G",
+        "norma": "LOPSC",
+        "articulo": "36",
+        "apartado": "7",
+        "importe": "De 601 a 30.000 euros",
+        
+        "descripcion": "La negativa a la disolución de reuniones y manifestaciones en lugares de tránsito público ordenada por la autoridad competente cuando concurran los supuestos del artículo 5 de la Ley Orgánica 9/1983, de 15 de julio.",
+        "tags": ["Disolución", "Reuniones", "Manifestaciones", "Autoridad"]
+      },
+      {
+        "tipo": "media",
+        "circulo": "G",
+        "norma": "LOPSC",
+        "articulo": "36",
+        "apartado": "8",
+        "importe": "De 601 a 30.000 euros",
+        
+        "descripcion": "La perturbación del desarrollo de una reunión o manifestación lícita, cuando no constituya infracción penal.",
+        "tags": ["Perturbación", "Reunión Lícita", "Manifestación Lícita"]
+      },
+      {
+        "tipo": "media",
+        "circulo": "G",
+        "norma": "LOPSC",
+        "articulo": "36",
+        "apartado": "9",
+        "importe": "De 601 a 30.000 euros",
+        
+        "descripcion": "La intrusión en infraestructuras o instalaciones en las que se prestan servicios básicos para la comunidad, incluyendo su sobrevuelo, cuando se haya producido una interferencia grave en su funcionamiento.",
+        "tags": ["Intrusión", "Infraestructuras", "Servicios Básicos"]
+      },
+      {
+        "tipo": "media",
+        "circulo": "G",
+        "norma": "LOPSC",
+        "articulo": "36",
+        "apartado": "10",
+        "importe": "De 601 a 30.000 euros",
+        
+        "descripcion": "Portar, exhibir o usar armas prohibidas, así como portar, exhibir o usar armas de modo negligente, temerario o intimidatorio, o fuera de los lugares habilitados para su uso, aún cuando en este último caso se tuviera licencia, siempre que dichas conductas no constituyan infracción penal.",
+        "tags": ["Armas Prohibidas", "Uso Negligente", "Armas"]
+      },
+      {
+        "tipo": "media",
+        "circulo": "G",
+        "norma": "LOPSC",
+        "articulo": "36",
+        "apartado": "11",
+        "importe": "De 601 a 30.000 euros",
+        
+        "descripcion": "La solicitud o aceptación por el demandante de servicios sexuales retribuidos en zonas de tránsito público en las proximidades de lugares destinados a su uso por menores, como centros educativos, parques infantiles o espacios de ocio accesibles a menores de edad, o cuando estas conductas, por el lugar en que se realicen, puedan generar un riesgo para la seguridad vial. Los agentes de la autoridad requerirán a las personas que ofrezcan estos servicios para que se abstengan de hacerlo en dichos lugares, informándoles de que la inobservancia de dicho requerimiento podría constituir una infracción del párrafo 6 de este artículo.",
+        "tags": ["Servicios Sexuales", "Menores", "Seguridad Vial"]
+      },
+      {
+        "tipo": "media",
+        "circulo": "G",
+        "norma": "LOPSC",
+        "articulo": "36",
+        "apartado": "12",
+        "importe": "De 601 a 30.000 euros",
+        
+        "descripcion": "La fabricación, reparación, almacenamiento, circulación, comercio, transporte, distribución, adquisición, certificación, enajenación o utilización de armas reglamentarias, explosivos catalogados, cartuchería o artículos pirotécnicos, incumpliendo la normativa de aplicación, careciendo de la documentación o autorización requeridas o excediendo los límites autorizados cuando tales conductas no sean constitutivas de delito, así como la omisión, insuficiencia, o falta de eficacia de las medidas de seguridad o precauciones que resulten obligatorias.",
+        "tags": ["Armas Reglamentarias", "Explosivos", "Pirotecnia", "Normativa"]
+      },
+      {
+        "tipo": "media",
+        "circulo": "G",
+        "norma": "LOPSC",
+        "articulo": "36",
+        "apartado": "13",
+        "importe": "De 601 a 30.000 euros",
+        
+        "descripcion": "La negativa de acceso o la obstrucción deliberada de las inspecciones o controles reglamentarios, establecidos conforme a lo dispuesto en esta Ley, en fábricas, locales, establecimientos, embarcaciones y aeronaves.",
+        "tags": ["Inspecciones", "Controles", "Obstrucción"]
+      },
+      {
+        "tipo": "media",
+        "circulo": "G",
+        "norma": "LOPSC",
+        "articulo": "36",
+        "apartado": "14",
+        "importe": "De 601 a 30.000 euros",
+        
+        "descripcion": "El uso público e indebido de uniformes, insignias o condecoraciones oficiales, o réplicas de los mismos, así como otros elementos del equipamiento de los cuerpos policiales o de los servicios de emergencia que puedan generar engaño acerca de la condición de quien los use, cuando no sea constitutivo de infracción penal.",
+        "tags": ["Uniformes Oficiales", "Engaño", "Cuerpos Policiales"]
+      },
+      {
+        "tipo": "media",
+        "circulo": "G",
+        "norma": "LOPSC",
+        "articulo": "36",
+        "apartado": "15",
+        "importe": "De 601 a 30.000 euros",
+        
+        "descripcion": "La falta de colaboración con las Fuerzas y Cuerpos de Seguridad en la averiguación de delitos o en la prevención de acciones que puedan poner en riesgo la seguridad ciudadana en los supuestos previstos en el artículo 7.",
+        "tags": ["Colaboración", "Fuerzas de Seguridad", "Prevención"]
+      },
+      {
+        "tipo": "media",
+        "circulo": "G",
+        "norma": "LOPSC",
+        "articulo": "36",
+        "apartado": "16",
+        "importe": "De 601 a 30.000 euros",
+        
+        "descripcion": "El consumo o la tenencia ilícitos de drogas tóxicas, estupefacientes o sustancias psicotrópicas, aunque no estuvieran destinadas al tráfico, en lugares, vías, establecimientos públicos o transportes colectivos, así como el abandono de los instrumentos u otros efectos empleados para ello en los citados lugares.",
+        "tags": ["Drogas", "Consumo Ilícito", "Tenencia Ilícita", "Lugares Públicos"]
+      },
+      {
+        "tipo": "media",
+        "circulo": "G",
+        "norma": "LOPSC",
+        "articulo": "36",
+        "apartado": "17",
+        "importe": "De 601 a 30.000 euros",
+        
+        "descripcion": "El traslado de personas, con cualquier tipo de vehículo, con el objeto de facilitar a éstas el acceso a drogas tóxicas, estupefacientes o sustancias psicotrópicas, siempre que no constituya delito.",
+        "tags": ["Drogas", "Tráfico", "Facilitación"]
+      },
+      {
+        "tipo": "media",
+        "circulo": "G",
+        "norma": "LOPSC",
+        "articulo": "36",
+        "apartado": "18",
+        "importe": "De 601 a 30.000 euros",
+        
+        "descripcion": "La ejecución de actos de plantación y cultivo ilícitos de drogas tóxicas, estupefacientes o sustancias psicotrópicas en lugares visibles al público, cuando no sean constitutivos de infracción penal.",
+        "tags": ["Drogas", "Cultivo Ilícito", "Plantación Ilícita"]
+      },
+      {
+        "tipo": "media",
+        "circulo": "G",
+        "norma": "LOPSC",
+        "articulo": "36",
+        "apartado": "19",
+        "importe": "De 601 a 30.000 euros",
+        
+        "descripcion": "La tolerancia del consumo ilegal o el tráfico de drogas tóxicas, estupefacientes o sustancias psicotrópicas en locales o establecimientos públicos o la falta de diligencia en orden a impedirlos por parte de los propietarios, administradores o encargados de los mismos.",
+        "tags": ["Drogas", "Tolerancia", "Tráfico", "Locales Públicos"]
+      },
+      {
+        "tipo": "media",
+        "circulo": "G",
+        "norma": "LOPSC",
+        "articulo": "36",
+        "apartado": "20",
+        "importe": "De 601 a 30.000 euros",
+        
+        "descripcion": "La carencia de los registros previstos en esta Ley para las actividades con trascendencia para la seguridad ciudadana o la omisión de comunicaciones obligatorias.",
+        "tags": ["Registros", "Comunicaciones Obligatorias", "Seguridad Ciudadana"]
+      },
+      {
+        "tipo": "media",
+        "circulo": "G",
+        "norma": "LOPSC",
+        "articulo": "36",
+        "apartado": "21",
+        "importe": "De 601 a 30.000 euros",
+        
+        "descripcion": "La alegación de datos o circunstancias falsos para la obtención de las documentaciones previstas en esta Ley, siempre que no constituya infracción penal.",
+        "tags": ["Datos Falsos", "Documentación", "Fraude"]
+      },
+      {
+        "tipo": "media",
+        "circulo": "G",
+        "norma": "LOPSC",
+        "articulo": "36",
+        "apartado": "22",
+        "importe": "De 601 a 30.000 euros",
+        
+        "descripcion": "El incumplimiento de las restricciones a la navegación reglamentariamente impuestas a las embarcaciones de alta velocidad y aeronaves ligeras. Téngase en cuenta que se declara que el apartado 22 no es inconstitucional siempre que se interprete que la conducta que tipifica consiste en (i) el incumplimiento de las restricciones a la navegación en esos sectores impuestas por motivos de seguridad ciudadana (ii) que produjese como resultado un perjuicio real para la seguridad ciudadana o una amenaza concreta de la que razonablemente se pueda seguir aquel perjuicio, por la Sentencia del TC 13/2021, de 28 de enero. Ref. BOE-A-2021-2832",
+        "tags": ["Navegación", "Restricciones", "Seguridad Ciudadana"]
+      },
+      {
+        "tipo": "media",
+        "circulo": "G",
+        "norma": "LOPSC",
+        "articulo": "36",
+        "apartado": "23",
+        "importe": "De 601 a 30.000 euros",
+        
+        "descripcion": "El uso no autorizado de imágenes o datos personales o profesionales de autoridades o miembros de las Fuerzas y Cuerpos de Seguridad que pueda poner en peligro la seguridad personal o familiar de los agentes, de las instalaciones protegidas o en riesgo el éxito de una operación, con respeto al derecho fundamental a la información.",
+        "tags": ["Imágenes No Autorizadas", "Datos Personales", "Fuerzas de Seguridad", "Seguridad Personal"]
+      },
+      {
+        "tipo": "grave",
+        "circulo": "MG",
+        "norma": "LOPSC",
+        "articulo": "35",
+        "apartado": "1",
+        "importe": "De 30.001 a 600.000 euros",
+        
+        "descripcion": "Las reuniones o manifestaciones no comunicadas o prohibidas en infraestructuras o instalaciones en las que se prestan servicios básicos para la comunidad o en sus inmediaciones, así como la intrusión en los recintos de éstas, incluido su sobrevuelo, cuando, en cualquiera de estos supuestos, se haya generado un riesgo para la vida o la integridad física de las personas. En el caso de las reuniones y manifestaciones serán responsables los organizadores o promotores.",
+        "tags": ["Manifestaciones Ilegales", "Intrusión", "Infraestructuras Críticas", "Riesgo Vital"]
+      },
+      {
+        "tipo": "grave",
+        "circulo": "MG",
+        "norma": "LOPSC",
+        "articulo": "35",
+        "apartado": "2",
+        "importe": "De 30.001 a 600.000 euros",
+        
+        "descripcion": "La fabricación, reparación, almacenamiento, circulación, comercio, transporte, distribución, adquisición, certificación, enajenación o utilización de armas reglamentarias, explosivos catalogados, cartuchería o artículos pirotécnicos, incumpliendo la normativa de aplicación, careciendo de la documentación o autorización requeridas o excediendo los límites autorizados cuando tales conductas no sean constitutivas de delito así como la omisión, insuficiencia, o falta de eficacia de las medidas de seguridad o precauciones que resulten obligatorias, siempre que en tales actuaciones se causen perjuicios muy graves.",
+        "tags": ["Armas", "Explosivos", "Pirotecnia", "Perjuicios Graves", "Incumplimiento Normativa"]
+      },
+      {
+        "tipo": "grave",
+        "circulo": "MG",
+        "norma": "LOPSC",
+        "articulo": "35",
+        "apartado": "3",
+        "importe": "De 30.001 a 600.000 euros",
+        
+        "descripcion": "La celebración de espectáculos públicos o actividades recreativas quebrantando la prohibición o suspensión ordenada por la autoridad correspondiente por razones de seguridad pública.",
+        "tags": ["Espectáculos Prohibidos", "Suspensión", "Seguridad Pública"]
+      },
+      {
+        "tipo": "grave",
+        "circulo": "MG",
+        "norma": "LOPSC",
+        "articulo": "35",
+        "apartado": "4",
+        "importe": "De 30.001 a 600.000 euros",
+        
+        "descripcion": "La proyección de haces de luz, mediante cualquier tipo de dispositivo, sobre los pilotos o conductores de medios de transporte que puedan deslumbrarles o distraer su atención y provocar accidentes.",
+        "tags": ["Haces de Luz", "Deslumbramiento", "Accidentes", "Seguridad Vial"]
+      }
 
-  ]
+      ]
     },
-
     {
       "identificador": "O.M Daimiel - ",
       "tematica": "Parada y Estacionamiento",
+      "modelo_sancion": "estandar_sin_puntos",
       "rango": "Ordenanza",
       "ambito": "Local",
       "areaId": "trafico",
@@ -1756,6 +1767,7 @@
     {
       "identificador": "O.M Daimiel - ",
       "tematica": "Tenecia y Protección de Animales",
+      "modelo_sancion": "solo_importe_rango",
       "rango": "Ordenanza",
       "ambito":"Local",
       "areaId":"animales",
@@ -1767,7 +1779,7 @@
       "articulo": "31",
       "apartado": "1",
       "importe": "151 a 300 €",
-      "importe_reducido": "",
+      
       "descripcion": "No garantizar las debidas condiciones sanitarias o no proporcionar los controles veterinarios necesarios el propietario de animales.",
       "tags": ["Condiciones Sanitarias", "Controles Veterinarios", "Propietarios"]
     },
@@ -1778,7 +1790,7 @@
       "articulo": "31",
       "apartado": "2",
       "importe": "151 a 300 €",
-      "importe_reducido": "",
+      
       "descripcion": "No disponer de la documentación sanitaria en la que se especifiquen las características del animal y sus vacunas y tratamientos.",
       "tags": ["Documentación Sanitaria", "Vacunas", "Tratamientos"]
     },
@@ -1789,7 +1801,7 @@
       "articulo": "32",
       "apartado": "",
       "importe": "151 a 300 €",
-      "importe_reducido": "",
+      
       "descripcion": "No cumplir los dueños de animales las prevenciones dictadas por autoridad competente en caso de epizootías -epidemias animales-.",
       "tags": ["Epizootías", "Autoridad", "Prevenciones"]
     },
@@ -1800,7 +1812,7 @@
       "articulo": "34",
       "apartado": "1",
       "importe": "151 a 300 €",
-      "importe_reducido": "",
+      
       "descripcion": "No sacrificar o entregar para su sacrificio un animal cuando lo indique la autoridad competente.",
       "tags": ["Sacrificio", "Autoridad Competente"]
     },
@@ -1811,7 +1823,7 @@
       "articulo": "34",
       "apartado": "2",
       "importe": "151 a 300 €",
-      "importe_reducido": "",
+      
       "descripcion": "No comunicar los profesionales veterinarios al servicio municipal correspondiente, la detección en el término municipal de cualquier enfermedad de declaración obligatoria.",
       "tags": ["Veterinarios", "Enfermedades Obligatorias"]
     },
@@ -1822,7 +1834,7 @@
       "articulo": "8",
       "apartado": "1",
       "importe": "151 a 300 €",
-      "importe_reducido": "",
+      
       "descripcion": "Causar la muerte de un animal, salvo caso ineludible o enfermedad incurable y solo por veterinarios y por métodos eutanásicos.",
       "tags": ["Muerte Animal", "Eutanasia", "Veterinarios"]
     },
@@ -1833,7 +1845,7 @@
       "articulo": "8",
       "apartado": "5",
       "importe": "151 a 300 €",
-      "importe_reducido": "",
+      
       "descripcion": "Las peleas de animales, o parodias en las que se mate, hiera o enseñe a ser hostiles a los animales y, en general, todos aquellos no regulados legalmente que puedan herir la sensibilidad de las personas que los contemplen.",
       "tags": ["Peleas Animales", "Crueldad Animal", "Sensibilidad"]
     },
@@ -1844,7 +1856,7 @@
       "articulo": "8",
       "apartado": "7",
       "importe": "151 a 300 €",
-      "importe_reducido": "",
+      
       "descripcion": "La venta de animales a menores de edad y a personas mentalmente discapacitadas sin autorización de quienes tengan su patria potestad o custodia.",
       "tags": ["Venta Animales", "Menores", "Discapacitados"]
     },
@@ -1855,7 +1867,7 @@
       "articulo": "8",
       "apartado": "8",
       "importe": "151 a 300 €",
-      "importe_reducido": "",
+      
       "descripcion": "La venta de animales pertenecientes a especies protegidas, así como su posesión y exhibición según lo previsto en su legislación específica.",
       "tags": ["Especies Protegidas", "Posesión Ilegal"]
     },
@@ -1866,7 +1878,7 @@
       "articulo": "44",
       "apartado": "",
       "importe": "151 a 300 €",
-      "importe_reducido": "",
+      
       "descripcion": "Las infracciones al Art. 44 de la ordenanza, en materia de requisitos de los establecimientos para el fomento y cuidado de animales de compañía, incluyendo: a) Construcciones, instalaciones y equipos adecuados para asegurar un ambiente higiénico y zoosanitario; b) Dotación de agua corriente y desagües adecuados; c) Disposición de medios suficientes para limpieza y desinfección; d) Realización de desinfectaciones, desinsectaciones y desratizaciones periódicas; e) Cumplimiento de lo establecido en el artículo 35; f) Eliminación higiénica de cadáveres o restos; g) Disposición obligatoria de sala de espera; h) Declaración como Núcleo zoológico para la concesión de licencia de apertura por el Ayuntamiento; 2. Contar con servicio veterinario colaborador que garantice el adecuado estado sanitario de los animales antes de su venta; 3. Venta de animales desparasitados, libres de enfermedades y con vacunas pertinentes; 4. Obligación del vendedor de entregar documentación acreditativa y/o cartilla sanitaria.",
       "tags": ["Establecimientos Animales", "Núcleo Zoológico", "Sanidad Veterinaria"]
     },
@@ -1877,7 +1889,7 @@
       "articulo": "46",
       "apartado": "4",
       "importe": "151 a 300 €",
-      "importe_reducido": "",
+      
       "descripcion": "Reiteración de una falta grave.",
       "tags": ["Reiteración"]
     },
@@ -1888,7 +1900,7 @@
       "articulo": "8",
       "apartado": "2",
       "importe": "61 a 150 €",
-      "importe_reducido": "",
+      
       "descripcion": "Daños, actos de crueldad y malos tratos a animales propios o ajenos o someterlos a prácticas que les causen sufrimiento o daños injustificados.",
       "tags": ["Malos Tratos", "Crueldad Animal", "Sufrimiento"]
     },
@@ -1899,7 +1911,7 @@
       "articulo": "8",
       "apartado": "3",
       "importe": "61 a 150 €",
-      "importe_reducido": "",
+      
       "descripcion": "Practicarles mutilaciones, excepto las controladas por veterinarios por razones de necesidad, exigencia funcional o mantenimiento de las características de la raza.",
       "tags": ["Mutilaciones", "Veterinarios"]
     },
@@ -1910,7 +1922,7 @@
       "articulo": "8",
       "apartado": "4",
       "importe": "61 a 150 €",
-      "importe_reducido": "",
+      
       "descripcion": "Utilización de animales en teatros, salas de fiestas, filmaciones o actividades de propaganda que supongan daño, sufrimiento o degradación del animal.",
       "tags": ["Espectáculos", "Propaganda", "Degradación Animal"]
     },
@@ -1921,7 +1933,7 @@
       "articulo": "8",
       "apartado": "6",
       "importe": "61 a 150 €",
-      "importe_reducido": "",
+      
       "descripcion": "Venta ambulante de animales, fuera de los mercados y ferias autorizados a tal fin.",
       "tags": ["Venta Ambulante"]
     },
@@ -1932,7 +1944,7 @@
       "articulo": "8",
       "apartado": "9",
       "importe": "61 a 150 €",
-      "importe_reducido": "",
+      
       "descripcion": "Tenencia de animales en solares o lugares en que no pueda ejercerse sobre los mismos la adecuada vigilancia.",
       "tags": ["Tenencia", "Vigilancia"]
     },
@@ -1943,7 +1955,7 @@
       "articulo": "10",
       "apartado": "",
       "importe": "61 a 150 €",
-      "importe_reducido": "",
+      
       "descripcion": "No inscribir, los poseedores o propietarios de perros o gatos que vivan habitualmente en el término municipal de Daimiel en el Censo Municipal de Animales, en el plazo máximo de tres meses desde la fecha de su nacimiento, o de un mes desde la fecha de su adquisición, recogida o adopción (si tienen más de tres meses). -Están obligados a poseer el documento que acredite la inscripción-.",
       "tags": ["Censo Municipal", "Inscripción", "Perros", "Gatos"]
     },
@@ -1954,7 +1966,7 @@
       "articulo": "12",
       "apartado": "",
       "importe": "61 a 150 €",
-      "importe_reducido": "",
+      
       "descripcion": "No comunicar la cesión, venta o cambio de domicilio de algún perro o gato ya censado el propietario o poseedor al Censo Municipal de Animales en el plazo de un mes, indicando expresamente su número de identificación censal.",
       "tags": ["Censo Municipal", "Cambio de Domicilio", "Cesión", "Venta"]
     },
@@ -1965,7 +1977,7 @@
       "articulo": "14",
       "apartado": "",
       "importe": "61 a 150 €",
-      "importe_reducido": "",
+      
       "descripcion": "No estar dotado de tatuaje o microchip que contenga los datos de su propietario para casos de extravío o abandono todo animal inscrito en el Censo Municipal de Animales y/o en el registro de animales potencialmente peligrosos.",
       "tags": ["Identificación", "Microchip", "Tatuaje"]
     },
@@ -1976,7 +1988,7 @@
       "articulo": "47",
       "apartado": "4",
       "importe": "61 a 150 €",
-      "importe_reducido": "",
+      
       "descripcion": "No facilitar los datos y antecedentes requeridos para la inscripción censal.",
       "tags": ["Inscripción Censal", "Datos Falsos"]
     },
@@ -1987,7 +1999,7 @@
       "articulo": "16",
       "apartado": "1",
       "importe": "61 a 150 €",
-      "importe_reducido": "",
+      
       "descripcion": "No disponer en los domicilios particulares de alojamiento adecuado para los animales (en el aspecto higiénico-sanitario y sin que se produzca situación alguna de peligro, incomodidad o molestia razonable para los vecinos u otras personas).",
       "tags": ["Alojamiento", "Higiene", "Salud Pública", "Molestias"]
     },
@@ -1998,7 +2010,7 @@
       "articulo": "17",
       "apartado": "2",
       "importe": "61 a 150 €",
-      "importe_reducido": "",
+      
       "descripcion": "No higienizar y desinfectar con la frecuencia precisa los alojamientos de los animales.",
       "tags": ["Higiene", "Desinfección"]
     },
@@ -2009,7 +2021,7 @@
       "articulo": "18",
       "apartado": "",
       "importe": "61 a 150 €",
-      "importe_reducido": "",
+      
       "descripcion": "Tener alojados a los animales de compañía en un lugar sin ventilación, sin luz o en condiciones climáticas extremas. No retirar de forma cotidiana los excrementos y los orines, manteniendo, el alojamiento limpio, desinfectado y desinsectado.",
       "tags": ["Ventilación", "Excrementos", "Limpieza"]
     },
@@ -2020,7 +2032,7 @@
       "articulo": "19",
       "apartado": "",
       "importe": "61 a 150 €",
-      "importe_reducido": "",
+      
       "descripcion": "Mantener atado permanentemente al animal.",
       "tags": ["Alojamiento", "Atado Permanente"]
     },
@@ -2031,7 +2043,7 @@
       "articulo": "20",
       "apartado": "",
       "importe": "61 a 150 €",
-      "importe_reducido": "",
+      
       "descripcion": "La estancia de animales en terrazas, patios o jardines en horario nocturno.",
       "tags": ["Horario Nocturno", "Terrazas", "Jardines"]
     },
@@ -2042,7 +2054,7 @@
       "articulo": "21",
       "apartado": "",
       "importe": "61 a 150 €",
-      "importe_reducido": "",
+      
       "descripcion": "La estancia permanente de los animales en terrazas de las viviendas, patios y jardines, sin cumplir las condiciones del Art 19 (recinto cerrado con las adecuadas medidas de seguridad e higiene).",
       "tags": ["Estancia Permanente", "Seguridad", "Higiene"]
     },
@@ -2053,7 +2065,7 @@
       "articulo": "22",
       "apartado": "2",
       "importe": "61 a 150 €",
-      "importe_reducido": "",
+      
       "descripcion": "No advertir en lugar visible y de forma adecuada de la presencia del perro, en parcelas con alojamiento para animales.",
       "tags": ["Parcelas", "Advertencia"]
     },
@@ -2064,7 +2076,7 @@
       "articulo": "23",
       "apartado": "",
       "importe": "61 a 150 €",
-      "importe_reducido": "",
+      
       "descripcion": "Incitar a los perros a atacarse entre sí o a lanzarse contra personas o bienes, o, hacer cualquier ostentación de la agresividad del animal.",
       "tags": ["Agresividad", "Ataques", "Seguridad"]
     },
@@ -2075,7 +2087,7 @@
       "articulo": "24",
       "apartado": "1",
       "importe": "61 a 150 €",
-      "importe_reducido": "",
+      
       "descripcion": "No estar los perros destinados a guarda en recintos donde no puedan causar daños en las personas o cosas bajo la responsabilidad de sus dueños, o no advertirse en lugar visible su existencia.",
       "tags": ["Perros Guarda", "Recintos", "Daños"]
     },
@@ -2086,7 +2098,7 @@
       "articulo": "24",
       "apartado": "2",
       "importe": "61 a 150 €",
-      "importe_reducido": "",
+      
       "descripcion": "Tener perros guardianes de menos de seis meses de edad.",
       "tags": ["Perros Guarda", "Edad"]
     },
@@ -2097,7 +2109,7 @@
       "articulo": "24",
       "apartado": "3",
       "importe": "61 a 150 €",
-      "importe_reducido": "",
+      
       "descripcion": "Tener atado permanentemente a un perro guardián o sujeto con algún medio que no permita su libertad de movimientos.",
       "tags": ["Perros Guarda", "Atado Permanente"]
     },
@@ -2108,7 +2120,7 @@
       "articulo": "25",
       "apartado": "",
       "importe": "61 a 150 €",
-      "importe_reducido": "",
+      
       "descripcion": "Tener en la vivienda, entre perros y gatos, más de cinco animales, salvo autorización del Ayuntamiento.",
       "tags": ["Límite de Animales", "Vivienda", "Autorización"]
     },
@@ -2119,7 +2131,7 @@
       "articulo": "26",
       "apartado": "2",
       "importe": "61 a 150 €",
-      "importe_reducido": "",
+      
       "descripcion": "Circular un animal doméstico suelto por la zona urbana del municipio, incluidos parques y jardines.",
       "tags": ["Animales Sueltos", "Vía Pública", "Parques"]
     },
@@ -2130,7 +2142,7 @@
       "articulo": "26",
       "apartado": "3",
       "importe": "61 a 150 €",
-      "importe_reducido": "",
+      
       "descripcion": "No ir provisto el animal de collar o conducido con correa o cadena resistentes y de longitud adecuada para dominarlo en todo momento.",
       "tags": ["Collar", "Correa", "Seguridad"]
     },
@@ -2141,7 +2153,7 @@
       "articulo": "28",
       "apartado": "1",
       "importe": "61 a 150 €",
-      "importe_reducido": "",
+      
       "descripcion": "No presentar, el propietario del animal la cartilla o documentación sanitaria o no aportar los datos que puedan ser de utilidad, en caso de agresión del animal a una persona.",
       "tags": ["Agresión", "Documentación", "Responsabilidad"]
     },
@@ -2152,7 +2164,7 @@
       "articulo": "29",
       "apartado": "",
       "importe": "61 a 150 €",
-      "importe_reducido": "",
+      
       "descripcion": "Prohibiciones: a) La entrada de animales en las zonas de juego infantiles así como que beban de fuentes de uso público; b) La circulación o permanencia de perros y otros animales en las piscinas públicas durante la temporada de baños; c) Alimentar a los animales en la vía pública y/o espacios públicos, especialmente por lo que respecta a gatos o palomas.",
       "tags": ["Zonas Públicas", "Prohibiciones", "Piscinas", "Alimentación"]
     },
@@ -2163,7 +2175,7 @@
       "articulo": "38",
       "apartado": "",
       "importe": "61 a 150 €",
-      "importe_reducido": "",
+      
       "descripcion": "El abandono de animales muertos o su depósito en contenedores de recogida de basuras.",
       "tags": ["Animales Muertos", "Abandono"]
     },
@@ -2174,7 +2186,7 @@
       "articulo": "47",
       "apartado": "7",
       "importe": "61 a 150 €",
-      "importe_reducido": "",
+      
       "descripcion": "Reiteración de una falta leve.",
       "tags": ["Reiteración"]
     },
@@ -2185,7 +2197,7 @@
       "articulo": "9",
       "apartado": "",
       "importe": "6 a 60 €",
-      "importe_reducido": "",
+      
       "descripcion": "Prohibiciones específicas, incluyendo la entrada y permanencia de animales en los establecimientos de fabricación, manipulación, almacenamiento, transporte o venta de alimentos; espectáculos públicos, recintos deportivos o culturales, piscinas públicas y centros sanitarios (excepto casos autorizados); centros educativos; y el transporte de animales en vehículos particulares de forma que afecte negativamente a la conducción o a la seguridad vial.",
       "tags": ["Prohibiciones Específicas", "Salud Pública", "Seguridad Vial"]
     },
@@ -2196,7 +2208,7 @@
       "articulo": "11",
       "apartado": "",
       "importe": "6 a 60 €",
-      "importe_reducido": "",
+      
       "descripcion": "No proveerse el dueño de perros o gatos, de la documentación relativa a su censado si el animal tiene más de 3 meses o carece de ella.",
       "tags": ["Censado", "Documentación"]
     },
@@ -2207,7 +2219,7 @@
       "articulo": "30",
       "apartado": "",
       "importe": "6 A 60 €",
-      "importe_reducido": "",
+      
       "descripcion": "a) Hacer los perros sus deposiciones en las áreas infantiles; b) Hacer los animales sus deposiciones en la vía pública, parques o jardines; c) No proceder el propietario o conductor del animal a la eliminación de las deyecciones depositadas sobre aceras o zonas peatonales, parques o jardines.",
       "tags": ["Deposiciones", "Vía Pública", "Higiene"]
     },
@@ -2218,7 +2230,7 @@
       "articulo": "40",
       "apartado": "",
       "importe": "6 a 60 €",
-      "importe_reducido": "",
+      
       "descripcion": "Llevar a cabo la crianza doméstica de aves de corral, conejos, palomas y otros animales análogos en domicilios particulares, terrazas, azoteas o patios, sin que las circunstancias de alojamiento, adecuación de las instalaciones y número de animales lo permitan, tanto en el aspecto higiénico sanitario, como por las incomodidades o peligros para los vecinos, otras personas o animales.",
       "tags": ["Crianza Doméstica", "Higiene", "Molestias"]
     },
@@ -2229,7 +2241,7 @@
       "articulo": "41",
       "apartado": "",
       "importe": "6 a 60 €",
-      "importe_reducido": "",
+      
       "descripcion": "Queda prohibido el establecimiento de vaquerías, establos, corrales de ganado y aves dentro del núcleo urbano conforme a lo establecido en el RAMINP.",
       "tags": ["Prohibido Establecimiento", "Núcleo Urbano"]
     }
@@ -2238,6 +2250,7 @@
     {
       "identificador": "O.M Daimiel - ",
       "tematica": "Tenecia y Protección de Animales PPP",
+      "modelo_sancion": "solo_importe_rango",
       "rango": "Ordenanza",
       "ambito":"Local",
       "areaId":"animales",
@@ -2249,7 +2262,7 @@
       "articulo": "57",
       "apartado": "1 a)",
       "importe": "2404,06 a 15025,30 €",
-      "importe_reducido": "",
+      
       "descripcion": "Abandonar un animal potencialmente peligroso.",
       "tags": ["APP", "Abandono", "PPP"]
     },
@@ -2260,7 +2273,7 @@
       "articulo": "57",
       "apartado": "1 b)",
       "importe": "2404,06 a 15025,30 €",
-      "importe_reducido": "",
+      
       "descripcion": "Tener perros o animales potencialmente peligrosos sin licencia.",
       "tags": ["APP", "Sin Licencia", "PPP"]
     },
@@ -2271,7 +2284,7 @@
       "articulo": "57",
       "apartado": "1 c)",
       "importe": "2404,06 a 15025,30 €",
-      "importe_reducido": "",
+      
       "descripcion": "Vender o transmitir un perro o animal potencialmente peligroso a quien carezca de licencia.",
       "tags": ["APP", "Venta", "Transferencia", "PPP"]
     },
@@ -2282,7 +2295,7 @@
       "articulo": "57",
       "apartado": "1 d)",
       "importe": "2404,06 a 15025,30 €",
-      "importe_reducido": "",
+      
       "descripcion": "Adiestrar animales para activar su agresividad o para finalidades prohibidas.",
       "tags": ["APP", "Adiestramiento", "Agresividad", "PPP"]
     },
@@ -2293,7 +2306,7 @@
       "articulo": "57",
       "apartado": "1 e)",
       "importe": "2404,06 a 15025,30 €",
-      "importe_reducido": "",
+      
       "descripcion": "Adiestrar animales potencialmente peligrosos por quien carezca de certificado de capacitación.",
       "tags": ["APP", "Adiestramiento", "Sin Certificado", "PPP"]
     },
@@ -2304,7 +2317,7 @@
       "articulo": "57",
       "apartado": "1 f)",
       "importe": "2404,06 a 15025,30 €",
-      "importe_reducido": "",
+      
       "descripcion": "Organizar o celebrar concursos, ejercicios, exhibiciones o espectáculos de animales potencialmente peligrosos, o su participación en ellos, destinados a demostrar la agresividad de los animales.",
       "tags": ["APP", "Espectáculos", "Agresividad", "PPP"]
     },
@@ -2315,7 +2328,7 @@
       "articulo": "57",
       "apartado": "2 a)",
       "importe": "300,52 a 2404,05 €",
-      "importe_reducido": "",
+      
       "descripcion": "Dejar suelto un animal potencialmente peligroso o no haber adoptado las medidas necesarias para evitar su escapada o extravío.",
       "tags": ["APP", "Suelto", "Extravío", "PPP"]
     },
@@ -2326,7 +2339,7 @@
       "articulo": "57",
       "apartado": "2 b)",
       "importe": "300,52 a 2404,05 €",
-      "importe_reducido": "",
+      
       "descripcion": "Incumplir la obligación de identificar al animal.",
       "tags": ["APP", "Identificación", "PPP"]
     },
@@ -2337,7 +2350,7 @@
       "articulo": "57",
       "apartado": "2 c)",
       "importe": "300,52 a 2404,05 €",
-      "importe_reducido": "",
+      
       "descripcion": "Omitir la inscripción en el registro.",
       "tags": ["APP", "Registro", "PPP"]
     },
@@ -2348,7 +2361,7 @@
       "articulo": "57",
       "apartado": "2 d)",
       "importe": "300,52 a 2404,05 €",
-      "importe_reducido": "",
+      
       "descripcion": "Hallarse el perro potencialmente peligroso en lugares públicos sin bozal o no sujeto con cadena.",
       "tags": ["APP", "Bozal", "Cadena", "Vía Pública", "PPP"]
     },
@@ -2359,7 +2372,7 @@
       "articulo": "57",
       "apartado": "2 e)",
       "importe": "300,52 a 2404,05 €",
-      "importe_reducido": "",
+      
       "descripcion": "Transportar animales potencialmente peligrosos sin tomar las medidas precautorias necesarias para garantizar la seguridad de las personas, bienes y otros animales.",
       "tags": ["APP", "Transporte", "Seguridad", "PPP"]
     },
@@ -2370,7 +2383,7 @@
       "articulo": "57",
       "apartado": "2 f)",
       "importe": "300,52 a 2404,05 €",
-      "importe_reducido": "",
+      
       "descripcion": "La negativa o resistencia a suministrar datos o facilitar la información requerida por la autoridad o sus agentes, así como el suministro de información inexacta o documentación falsa.",
       "tags": ["APP", "Resistencia", "Información Falsa", "PPP"]
     },
@@ -2381,7 +2394,7 @@
       "articulo": "53",
       "apartado": "5",
       "importe": "150,30 a 300,51 €",
-      "importe_reducido": "",
+      
       "descripcion": "No comunicar la sustracción o pérdida de un animal potencialmente peligroso, en el plazo máximo de 48 horas al Registro Municipal.",
       "tags": ["APP", "Sustracción", "Pérdida", "Comunicación", "PPP"]
     },
@@ -2392,7 +2405,7 @@
       "articulo": "54",
       "apartado": "3 a)",
       "importe": "150,30 a 300,51 €",
-      "importe_reducido": "",
+      
       "descripcion": "No reunir las medidas de seguridad necesarias, que eviten su salida sin vigilancia o el acceso de personas sin el debido control de sus responsables, los locales o viviendas que alberguen animales potencialmente peligrosos. -No señalizar el local o vivienda en todos sus accesos, con cartel bien visible de que se alberga un animal potencialmente peligroso, indicando la especie o raza del mismo.",
       "tags": ["APP", "Medidas de Seguridad", "Señalización", "PPP"]
     },
@@ -2403,16 +2416,16 @@
       "articulo": "54",
       "apartado": "3 c)",
       "importe": "150,30 a 300,51 €",
-      "importe_reducido": "",
+      
       "descripcion": "Incumplimiento de las normas de presencia y circulación de perros potencialmente peligrosos en espacios públicos: animales no provistos de su correspondiente identificación (obligatoria con MICROCHIP para APP); uso de correa o cadena NO extensible de menos de 2 mts de longitud; uso de BOZAL homologado y adecuado a la raza; conducción por menores de edad; incitación a los animales a arremeter contra personas u otros animales; y conducción de más de un perro por persona.",
       "tags": ["APP", "Circulación", "Vía Pública", "Bozal", "Correa", "PPP"]
     }
      ]
     },
-    
-  {
+    {
     "identificador": "O.M Daimiel - ",
     "tematica": "Bienes Públicos y Convivencia Ciudadana",
+    "modelo_sancion": "solo_importe_rango",
     "rango":"Ordenanza",
     "ambito":"Local",
     "areaId":"seguridad_ciudadana",
@@ -2424,7 +2437,6 @@
       "articulo": "36",
       "apartado": "1",
       "importe": "Multa hasta 150 euros",
-      "importe_reducido": "",
       "descripcion": "La permanencia y concentración de personas que se encuentren consumiendo bebidas o realizando otras actividades que pongan en peligro la pacífica convivencia ciudadana fuera de las zonas del término municipal que el Ayuntamiento haya establecido como permitidas.",
       "tags": ["Botellón", "Consumo Bebidas", "Convivencia Ciudadana"]
     },
@@ -2435,7 +2447,7 @@
       "articulo": "36",
       "apartado": "2",
       "importe": "Multa hasta 150 euros",
-      "importe_reducido": "",
+      
       "descripcion": "El depósito y acopio de los residuos fuera de los contenedores de recogida correspondientes, así como su manipulación o selección.",
       "tags": ["Residuos", "Depósito Ilegal", "Recogida Selectiva"]
     },
@@ -2446,7 +2458,7 @@
       "articulo": "36",
       "apartado": "3",
       "importe": "Multa hasta 150 euros",
-      "importe_reducido": "",
+      
       "descripcion": "Esparcir en la vía pública los residuos depositados en las papeleras y demás contenedores instalados en los espacios públicos.",
       "tags": ["Vía Pública", "Residuos", "Limpieza"]
     },
@@ -2457,7 +2469,7 @@
       "articulo": "36",
       "apartado": "4",
       "importe": "Multa hasta 150 euros",
-      "importe_reducido": "",
+      
       "descripcion": "Rasgar, arrancar y tirar al espacio público carteles, pancartas, y objetos de publicidad similares.",
       "tags": ["Publicidad", "Deterioro", "Vandalismo"]
     },
@@ -2468,7 +2480,7 @@
       "articulo": "36",
       "apartado": "5",
       "importe": "Multa hasta 150 euros",
-      "importe_reducido": "",
+      
       "descripcion": "Lavarse o bañarse en las fuentes, estanques y similares.",
       "tags": ["Espacios Públicos", "Fuentes", "Normas de Higiene"]
     },
@@ -2479,7 +2491,7 @@
       "articulo": "36",
       "apartado": "6",
       "importe": "Multa hasta 150 euros",
-      "importe_reducido": "",
+      
       "descripcion": "Ensuciar, enturbiar o alterar las características del agua de fuentes, estanques o similares.",
       "tags": ["Fuentes", "Contaminación", "Agua"]
     },
@@ -2490,7 +2502,7 @@
       "articulo": "36",
       "apartado": "7",
       "importe": "Multa hasta 150 euros",
-      "importe_reducido": "",
+      
       "descripcion": "Hacer en los espacios públicos necesidades fisiológicas como defecar u orinar.",
       "tags": ["Higiene Pública", "Vía Pública", "Defecar", "Orinar"]
     },
@@ -2501,7 +2513,7 @@
       "articulo": "36",
       "apartado": "8",
       "importe": "Multa hasta 150 euros",
-      "importe_reducido": "",
+      
       "descripcion": "Esparcir y tirar toda clase de papeles, publicidad, prensa y otros soportes o reclamos publicitarios en los espacios públicos.",
       "tags": ["Publicidad", "Limpieza", "Vía Pública"]
     },
@@ -2512,7 +2524,7 @@
       "articulo": "37",
       "apartado": "1",
       "importe": "151 a 1.500 euros",
-      "importe_reducido": "",
+      
       "descripcion": "El consumo de bebidas alcohólicas por menores de dieciocho años en los espacios abiertos.",
       "tags": ["Menores", "Alcohol", "Consumo"]
     },
@@ -2523,7 +2535,7 @@
       "articulo": "37",
       "apartado": "2",
       "importe": "151 a 1.500 euros",
-      "importe_reducido": "",
+      
       "descripcion": "La entrega o dispensación por parte de los establecimientos comerciales de bebidas alcohólicas fuera del horario establecido normativamente para la venta.",
       "tags": ["Alcohol", "Venta", "Horario Comercial"]
     },
@@ -2534,7 +2546,7 @@
       "articulo": "37",
       "apartado": "3",
       "importe": "151 a 1.500 euros",
-      "importe_reducido": "",
+      
       "descripcion": "La venta o dispensación por parte de los establecimientos de hostelería o de esparcimiento de bebidas alcohólicas, para su consumo fuera del establecimiento y de las zonas anexas a los mismos debidamente autorizadas.",
       "tags": ["Alcohol", "Hostelería", "Consumo Exterior"]
     },
@@ -2545,7 +2557,7 @@
       "articulo": "37",
       "apartado": "4",
       "importe": "151 a 1.500 euros",
-      "importe_reducido": "",
+      
       "descripcion": "Arrojar basuras o residuos a la red de alcantarillado y a los espacios públicos que dificulten el tránsito o generen riesgos de insalubridad.",
       "tags": ["Residuos", "Insalubridad", "Alcantarillado"]
     },
@@ -2556,7 +2568,7 @@
       "articulo": "37",
       "apartado": "5",
       "importe": "151 a 1.500 euros",
-      "importe_reducido": "",
+      
       "descripcion": "Causar daños en árboles, plantas y jardines públicos que no constituyan infracción muy grave.",
       "tags": ["Jardines Públicos", "Daños", "Plantas"]
     },
@@ -2567,7 +2579,7 @@
       "articulo": "37",
       "apartado": "6",
       "importe": "151 a 1.500 euros",
-      "importe_reducido": "",
+      
       "descripcion": "La realización de todo tipo de grafito, pintada, garabato, firma, escrito, inscripción, mancha o grafismo, con cualquier materia (tinta, pintura o similares), o bien rayando la superficie sobre cualquier elemento del espacio público, así como en el interior y exterior de equipamientos, mobiliario, infraestructuras, instalaciones y demás elementos de un servicio público, incluidos mobiliario urbano, árboles, zonas verdes.",
       "tags": ["Graffiti", "Pintadas", "Vandalismo", "Mobiliario Urbano"]
     },
@@ -2578,7 +2590,7 @@
       "articulo": "37",
       "apartado": "7",
       "importe": "151 a 1.500 euros",
-      "importe_reducido": "",
+      
       "descripcion": "La colocación de carteles, vallas, rótulos, pancartas, adhesivos, papeles pegados o cualquier otra forma de publicidad, anuncio o propaganda, en lugares o elementos no habilitados o autorizados por el Ayuntamiento.",
       "tags": ["Publicidad", "Carteles", "Vía Pública"]
     },
@@ -2589,7 +2601,7 @@
       "articulo": "37",
       "apartado": "8",
       "importe": "151 a 1.500 euros",
-      "importe_reducido": "",
+      
       "descripcion": "Dejar propaganda fuera del recinto del portal de los edificios o, en su caso, fuera de los buzones de correspondencia o de publicidad existentes en el exterior y que resulten accesibles desde la vía pública.",
       "tags": ["Publicidad", "Propaganda", "Buzones"]
     },
@@ -2600,7 +2612,7 @@
       "articulo": "37",
       "apartado": "9",
       "importe": "151 a 1.500 euros",
-      "importe_reducido": "",
+      
       "descripcion": "Los actos de deterioro, inutilización o destrozo del espacio público o de cualquiera de sus instalaciones y equipamientos.",
       "tags": ["Deterioro", "Vandalismo", "Mobiliario Urbano"]
     },
@@ -2611,7 +2623,7 @@
       "articulo": "37",
       "apartado": "10",
       "importe": "151 a 1.500 euros",
-      "importe_reducido": "",
+      
       "descripcion": "Circular o estacionar con los equipos reproductores de sonido a una potencia que trascienda al exterior y que causen molestias produciendo ruidos innecesarios, haciendo sonar el claxon, aceleraciones o frenadas bruscas.",
       "tags": ["Ruido", "Vehículos", "Molestias"]
     },
@@ -2622,7 +2634,7 @@
       "articulo": "37",
       "apartado": "11",
       "importe": "151 a 1.500 euros",
-      "importe_reducido": "",
+      
       "descripcion": "Disparar petardos, cohetes y toda clase de artículos pirotécnicos que puedan producir ruidos, salvo excepciones para eventos autorizados.",
       "tags": ["Pirotecnia", "Ruido", "Eventos"]
     },
@@ -2633,7 +2645,7 @@
       "articulo": "37",
       "apartado": "12",
       "importe": "151 a 1.500 euros",
-      "importe_reducido": "",
+      
       "descripcion": "La emisión de cualquier ruido doméstico que por su volumen u horario exceda de los límites que exija la tranquilidad pública y en todo caso se supere el nivel sonoro legalmente establecido para los locales interiores de una edificación.",
       "tags": ["Ruido Doméstico", "Horario", "Tranquilidad Pública"]
     },
@@ -2644,7 +2656,7 @@
       "articulo": "37",
       "apartado": "13",
       "importe": "151 a 1.500 euros",
-      "importe_reducido": "",
+      
       "descripcion": "La reiteración de dos o más infracciones leves en el transcurso de un año.",
       "tags": ["Reiteración", "Infracciones Leves"]
     },
@@ -2655,7 +2667,7 @@
       "articulo": "38",
       "apartado": "1",
       "importe": "1.501 a 3.000 euros",
-      "importe_reducido": "",
+      
       "descripcion": "La reiteración de dos o más infracciones graves en el transcurso de un año.",
       "tags": ["Reiteración", "Infracciones Graves"]
     },
@@ -2666,7 +2678,7 @@
       "articulo": "38",
       "apartado": "2",
       "importe": "1.501 a 3.000 euros",
-      "importe_reducido": "",
+      
       "descripcion": "Cualquier acto que constituya infracción leve o grave, que se realice sobre monumentos o edificios catalogados o protegidos y cuando tengan lugar en las señales de tráfico o de identificación viaria, o en cualquier elemento del mobiliario urbano cuando implique la inutilización o pérdida total o parcial de la funcionalidad del elemento.",
       "tags": ["Monumentos", "Edificios Protegidos", "Mobiliario Urbano", "Inutilización"]
     },
@@ -2677,14 +2689,12 @@
       "articulo": "38",
       "apartado": "3",
       "importe": "1.501 a 3.000 euros",
-      "importe_reducido": "",
+      
       "descripcion": "Cualquier acto que constituya infracción leve o grave cuando los daños producidos alcancen el 70% del valor de reposición del bien afectado y, en todo caso, cuando los actos de deterioro producidos sobre los bienes que puedan afectar a la salud e integridad personal, en especial cuando tengan lugar sobre juegos infantiles.",
       "tags": ["Daños Materiales", "Salud", "Juegos Infantiles", "Peligro"]
     }
-    ]
-  }
-
-
+      ]
+    }
 
   ]
 }
