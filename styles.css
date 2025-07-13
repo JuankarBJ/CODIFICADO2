@@ -147,6 +147,7 @@ main.infracciones-agrupadas {
     display: flex;
     align-items: center;
     user-select: none;
+    min-width: 480px;
 }
 .infraccion-group-header .icon {
     transition: transform 0.3s ease;
@@ -205,6 +206,7 @@ main.infracciones-agrupadas {
     border-left: 8px solid var(--color-accent-red);
     cursor: pointer;
     color: var(--color-light-text); 
+    min-width: 480px;
 }
 .infraccion:last-child { margin-bottom: 0; }
 
