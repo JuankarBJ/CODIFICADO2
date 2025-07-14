@@ -3,26 +3,31 @@
     "grandesAreas": {
     "urbanismo": {
         "nombre": "Urbanismo",
-        "color": "#... (color)",
+        "color": "#54b4d3",
         "icon": "building" 
     },
     "trafico": {
         "nombre": "Tráfico",
-        "color": "#... (color)",
+        "color": "#f4a261",
         "icon": "car" 
     },
     "animales": {
         "nombre": "Animales",
-        "color": "#... (color)",
+        "color": "#2a9d8f",
         "icon": "dog" 
     },
     "seguridad_ciudadana": {
         "nombre": "Seguridad Ciudadana",
-        "color": "#... (color)",
+        "color": "#e76f51",
         "icon": "handcuffs" 
-    }
+    },
     
-},
+    "espectaculos": {
+        "nombre": "Espectáculos Públicos",
+        "color":"#e3455b",
+        "icon":"circus"
+    }
+    },
   "settings": {
     "ambitoOrder": [
       "Estatal",

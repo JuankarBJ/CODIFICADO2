@@ -148,6 +148,7 @@ main.infracciones-agrupadas {
     align-items: center;
     user-select: none;
     min-width: 480px;
+    padding-top: 1.5rem;
 }
 .infraccion-group-header .icon {
     transition: transform 0.3s ease;
@@ -468,4 +469,7 @@ h1 a {
 
 .area-group-icon.icon-building::before {
     content: "🏗️"; 
+}
+.area-group-icon.icon-circus::before {
+    content: "🎪"; /* Icono de carpa de circo */
 }
