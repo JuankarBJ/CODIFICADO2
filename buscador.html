@@ -20,13 +20,31 @@
         </div>
     </div>
 
+    <div class="active-filters-container">
+        </div>
+
     <main class="infracciones-agrupadas">
         <p class="loading-message">Cargando infracciones... Si no aparecen, asegúrate de que JavaScript está habilitado.</p>
     </main>
 
     <aside class="sidebar">
         <div class="sidebar-content">
-            <p>Contenido de la barra lateral (próximamente)</p>
+            <h2>Opciones de Búsqueda</h2>
+            <div class="filter-option-group">
+                <label for="area-filter">Filtrar por Área:</label>
+                <select id="area-filter" class="custom-select">
+                    <option value="">Todas las Áreas</option>
+                    </select>
+            </div>
+
+            <div class="filter-option-group">
+                <label for="rango-filter">Filtrar por Rango:</label>
+                <select id="rango-filter" class="custom-select">
+                    <option value="">Todos los Rangos</option>
+                    </select>
+            </div>
+            
+            <p style="margin-top: 2rem;">Contenido adicional de la barra lateral (próximamente)</p>
             <button id="closeSidebarBtn">Cerrar</button>
         </div>
     </aside>

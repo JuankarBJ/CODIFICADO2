@@ -128,6 +128,57 @@ h1 {
     padding-right: 2.5rem;
 }
 
+.active-filters-container {
+    max-width: 1200px;
+    margin: 0.5rem auto 0;
+    padding: 0 var(--spacing-unit);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    min-height: 2.5rem;
+    align-items: center;
+}
+
+.filter-badge {
+    background-color: var(--color-mid-blue);
+    color: var(--color-light-text);
+    padding: 0.4rem 0.75rem;
+    border-radius: var(--border-radius-md);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.filter-badge:hover {
+    background-color: var(--color-accent-red);
+}
+
+.filter-badge .clear-filter-btn {
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 1.1em;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0 0.2em;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+
+.filter-badge .clear-filter-btn:hover {
+    opacity: 1;
+}
+
+.filter-badge.area-filter-badge {
+    background-color: var(--area-color-active-filter, var(--color-mid-blue));
+    color: var(--color-dark-bg);
+    font-weight: bold;
+}
+
+
 .collapsible-header {
     background-color: var(--color-card-bg);
     max-height: 0;
@@ -319,7 +370,6 @@ main.infracciones-agrupadas {
 }
 .infraccion .norma strong { color: var(--color-light-text); }
 
-/* --- SECCIÓN DE IMPORTES AL FINAL DE LA TARJETA --- */
 .importe-container {
     display: flex;
     flex-wrap: wrap;
@@ -330,18 +380,16 @@ main.infracciones-agrupadas {
     border-top: 1px dashed var(--color-mid-blue);
 }
 
-.importe-row { /* Este es el contenedor de cada "píldora" */
+.importe-row {
     display: flex;
     align-items: center;
     gap: 0.3rem;
     padding: 0.3rem 0.6rem;
     border-radius: var(--border-radius-md);
     white-space: nowrap;
-    /* Color de texto por defecto para las píldoras de importe */
     color: var(--color-dark-bg); 
 }
 
-/* APLICAMOS LOS COLORES DE FONDO A LAS CLASES DEL IMPORTE-ROW */
 .importe-row.importe-principal {
     background-color: var(--color-accent-red);
 }
@@ -352,27 +400,23 @@ main.infracciones-agrupadas {
 
 .importe-row.puntos {
     background-color: var(--color-points);
-    /* Aseguramos que el texto dentro de la píldora de puntos sea del color dark-bg (negro/azul oscuro) */
-    color: var(--color-dark-bg); 
+    color: var(--color-dark-bg);
 }
 
-/* Estilos generales para las cifras clave (los valores dentro de las píldoras) */
 .importe, .importe-reducido, .puntos {
     font-weight: bold;
     font-size: 0.9rem;
-    color: inherit; /* Hereda el color de texto del contenedor .importe-row */
+    color: inherit;
     background-color: transparent;
     padding: 0;
 }
 
-/* Estilo para las leyendas de los importes y puntos */
 .importe-info .label, .importe-container .label {
-    color: var(--color-dark-bg); /* Texto de la etiqueta en color dark-bg para que contraste */
+    color: var(--color-dark-bg);
     font-weight: normal;
     font-size: 0.8rem;
 }
 
-/* Ocultar elementos para los modelos que no los usan */
 .infraccion.modelo-solo_importe_rango .importe-row.reducido,
 .infraccion.modelo-solo_importe_rango .importe-row.puntos {
     display: none;
@@ -402,6 +446,7 @@ main.infracciones-agrupadas {
     color: var(--color-light-text);
 }
 
+/* --- BARRA LATERAL (SIDEBAR) --- */
 .sidebar {
     position: fixed;
     top: 0;
@@ -413,13 +458,81 @@ main.infracciones-agrupadas {
     z-index: 2000;
     transform: translateX(100%);
     transition: transform 0.4s ease-in-out;
+    display: flex;
+    flex-direction: column;
 }
 .sidebar.open {
     transform: translateX(0);
 }
 .sidebar-content {
     padding: 2rem 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
+.sidebar-content h2 {
+    margin-top: 0;
+    color: var(--color-accent-primary);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.filter-option-group {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.filter-option-group label {
+    font-size: 0.9rem;
+    color: var(--color-muted-text);
+    margin-bottom: 0.2rem;
+}
+
+.custom-select {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--color-mid-blue);
+    border-radius: var(--border-radius-md);
+    font-size: 1rem;
+    background-color: var(--color-mid-blue);
+    color: var(--color-light-text);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23e8f0f7" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    cursor: pointer;
+}
+
+.custom-select option {
+    background-color: var(--color-mid-blue);
+    color: var(--color-light-text); 
+    padding-left: 25px; 
+    position: relative;
+}
+
+.custom-select option::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--area-color-option, transparent);
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+.custom-select option:checked,
+.custom-select option:hover {
+    background-color: var(--color-mid-blue);
+    color: var(--color-light-text);
+}
+
+
 #closeSidebarBtn {
     background-color: var(--color-mid-blue);
     color: var(--color-light-text);
@@ -427,7 +540,7 @@ main.infracciones-agrupadas {
     padding: 0.5rem 1rem;
     border-radius: var(--border-radius-md);
     cursor: pointer;
-    margin-top: 1rem;
+    margin-top: auto;
 }
 #closeSidebarBtn:hover {
     background-color: var(--color-accent-red);
@@ -474,6 +587,48 @@ footer {
     filter: brightness(1.5);
 }
 
+/* --- Botones de acción flotantes (FABs) --- */
+.floating-action-buttons {
+    position: fixed; /* Esto los fija en la ventana */
+    bottom: 1.5rem; /* Separación del borde inferior */
+    right: 1.5rem;  /* Separación del borde derecho */
+    z-index: 1000; /* Asegura que estén por encima de la mayoría de los elementos */
+    display: flex;
+    flex-direction: column; /* Apila los botones verticalmente */
+    gap: 0.75rem; /* Espacio entre los botones */
+    align-items: flex-end; /* Alinea los botones a la derecha si no tienen el mismo ancho */
+}
+
+.fab {
+    background-color: var(--color-accent-primary);
+    color: var(--color-light-text);
+    border: none;
+    border-radius: 50%; /* Para hacerlos circulares */
+    width: 56px; /* Tamaño estándar de FAB */
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem; /* Tamaño del icono */
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.fab:hover {
+    background-color: #617f9a; /* Un tono un poco más oscuro o claro */
+    transform: translateY(-2px); /* Pequeño efecto al pasar el ratón */
+}
+
+/* Estilo para el botón de "subir al inicio" cuando está oculto */
+.fab.hidden {
+    opacity: 0;
+    pointer-events: none; /* Desactiva los eventos de ratón cuando está oculto */
+    transform: translateY(10px); /* Oculta más abajo */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Media queries para responsividad */
 @media (max-width: 768px) {
     main.infracciones-agrupadas {
         padding: var(--spacing-unit);
@@ -517,6 +672,19 @@ footer {
     }
     .area-group-icon {
         font-size: 24px;
+    }
+    .sidebar {
+        width: 250px;
+    }
+    .floating-action-buttons {
+        bottom: 1rem;
+        right: 1rem;
+        gap: 0.5rem;
+    }
+    .fab {
+        width: 48px;
+        height: 48px;
+        font-size: 1.3rem;
     }
 }
 

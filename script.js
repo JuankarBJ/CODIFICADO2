@@ -1,6 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 1. CARGA DE DATOS DESDE JSON ---
+    let allInfraccionesData = [];
+    let allGrandesAreas = {};
+    let allSettings = {};
+
+    let currentFilters = {
+        searchTerm: '',
+        areaId: '',
+        rango: ''
+    };
+
     fetch('database.json')
         .then(response => {
             if (!response.ok) {
@@ -9,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.json();
         })
         .then(data => {
-            const allInfracciones = data.normas.flatMap(norma =>
+            allInfraccionesData = data.normas.flatMap(norma =>
                 norma.infracciones.map(infraccion => ({
                     ...infraccion,
                     normagris_identificador: norma.identificador,
@@ -21,7 +30,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 }))
             );
             
-            iniciarApp(allInfracciones, data.settings, data.grandesAreas);
+            allGrandesAreas = data.grandesAreas;
+            allSettings = data.settings;
+            
+            iniciarApp(allInfraccionesData, allSettings, allGrandesAreas);
         })
         .catch(error => {
             console.error('Error fatal al cargar los datos:', error);
@@ -34,16 +46,107 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
 
-    // --- 2. FUNCIÓN PRINCIPAL DE LA APP ---
     function iniciarApp(infraccionesData, settings, grandesAreas) {
         
         const searchInput = document.querySelector('.buscador');
         const groupedInfraccionesContainer = document.querySelector('.infracciones-agrupadas');
         const loadingMessage = document.querySelector('.loading-message');
+        const areaFilterSelect = document.getElementById('area-filter');
+        const rangoFilterSelect = document.getElementById('rango-filter');
+        const activeFiltersContainer = document.querySelector('.active-filters-container');
 
         if (loadingMessage) {
             loadingMessage.style.display = 'none';
         }
+
+        const iconEmojiMap = {
+            'building': '🏗️',
+            'car': '🚗',
+            'dog': '🐶',
+            'handcuffs': '⛓️',
+            'circus': '🎪'
+        };
+
+
+        function populateAreaFilter() {
+            areaFilterSelect.innerHTML = '<option value="">Todas las Áreas</option>';
+            for (const areaId in grandesAreas) {
+                const areaInfo = grandesAreas[areaId];
+                const option = document.createElement('option');
+                option.value = areaId;
+                
+                let optionText = areaInfo.nombre;
+                if (areaInfo.icon && iconEmojiMap[areaInfo.icon]) {
+                    optionText = `${iconEmojiMap[areaInfo.icon]} ${areaInfo.nombre}`;
+                }
+                option.textContent = optionText;
+                option.classList.add('area-option');
+                option.style.setProperty('--area-color-option', areaInfo.color); 
+                
+                areaFilterSelect.appendChild(option);
+            }
+        }
+        populateAreaFilter();
+
+        function populateRangoFilter() {
+            rangoFilterSelect.innerHTML = '<option value="">Todos los Rangos</option>';
+            settings.rangoOrder.forEach(rango => {
+                const option = document.createElement('option');
+                option.value = rango;
+                option.textContent = rango;
+                rangoFilterSelect.appendChild(option);
+            });
+        }
+        populateRangoFilter();
+
+
+        function renderActiveFilters() {
+            activeFiltersContainer.innerHTML = '';
+
+            if (currentFilters.searchTerm) {
+                const badge = document.createElement('span');
+                badge.classList.add('filter-badge', 'text-filter-badge');
+                badge.innerHTML = `Texto: "${currentFilters.searchTerm}" <button class="clear-filter-btn" data-filter-type="searchTerm">❌</button>`;
+                activeFiltersContainer.appendChild(badge);
+            }
+
+            if (currentFilters.areaId) {
+                const areaInfo = grandesAreas[currentFilters.areaId];
+                if (areaInfo) {
+                    const badge = document.createElement('span');
+                    badge.classList.add('filter-badge', 'area-filter-badge');
+                    badge.style.setProperty('--area-color-active-filter', areaInfo.color);
+                    let badgeText = areaInfo.nombre;
+                    if (areaInfo.icon && iconEmojiMap[areaInfo.icon]) {
+                        badgeText = `${iconEmojiMap[areaInfo.icon]} ${areaInfo.nombre}`;
+                    }
+                    badge.innerHTML = `Área: ${badgeText} <button class="clear-filter-btn" data-filter-type="areaId">❌</button>`;
+                    activeFiltersContainer.appendChild(badge);
+                }
+            }
+
+            if (currentFilters.rango) {
+                const badge = document.createElement('span');
+                badge.classList.add('filter-badge', 'rango-filter-badge');
+                badge.innerHTML = `Rango: "${currentFilters.rango}" <button class="clear-filter-btn" data-filter-type="rango">❌</button>`;
+                activeFiltersContainer.appendChild(badge);
+            }
+
+            activeFiltersContainer.querySelectorAll('.clear-filter-btn').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const filterType = event.target.dataset.filterType;
+                    if (filterType === 'searchTerm') {
+                        searchInput.value = '';
+                    } else if (filterType === 'areaId') {
+                        areaFilterSelect.value = '';
+                    } else if (filterType === 'rango') {
+                        rangoFilterSelect.value = '';
+                    }
+                    applyFilters();
+                });
+            });
+        }
+
 
         function createInfraccionElement(data) {
             const infraccionDiv = document.createElement('div');
@@ -55,11 +158,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const apartadoHtml = data.apartado && data.apartado.trim() !== '' ? ` | Apdo. ${data.apartado}` : '';
             const tagsHtml = data.tags && data.tags.length > 0 ? `<div class="infraccion-tags">${data.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>` : '';
 
-            // --- Generamos el contenido de los importes en un nuevo contenedor ---
             let importeRowsHtml = '';
 
             if (data.importe) {
-                // Añadimos la clase 'importe-principal' aquí
                 importeRowsHtml += `
                     <div class="importe-row importe-principal">
                         <span class="label">Importe:</span>
@@ -238,28 +339,36 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         function applyFilters() {
-            const searchTerm = searchInput.value.toLowerCase().trim();
-            
-            const filteredInfracciones = infraccionesData.filter(infraccion => {
-                if (!searchTerm) return true;
+            currentFilters.searchTerm = searchInput.value.toLowerCase().trim();
+            currentFilters.areaId = areaFilterSelect.value;
+            currentFilters.rango = rangoFilterSelect.value;
 
-                const matchesSearch = infraccion.descripcion.toLowerCase().includes(searchTerm) ||
-                    infraccion.norma.toLowerCase().includes(searchTerm) ||
-                    infraccion.articulo.includes(searchTerm) ||
-                    (infraccion.apartado && infraccion.apartado.includes(searchTerm)) || 
-                    (infraccion.tags && infraccion.tags.some(tag => tag.toLowerCase().includes(searchTerm))) ||
-                    infraccion.normagris_identificador.toLowerCase().includes(searchTerm) ||
-                    infraccion.normagris_tematica.toLowerCase().includes(searchTerm);
+            renderActiveFilters();
 
-                return matchesSearch;
+            const filteredInfracciones = allInfraccionesData.filter(infraccion => {
+                const matchesSearch = !currentFilters.searchTerm || 
+                    infraccion.descripcion.toLowerCase().includes(currentFilters.searchTerm) ||
+                    infraccion.norma.toLowerCase().includes(currentFilters.searchTerm) ||
+                    infraccion.articulo.includes(currentFilters.searchTerm) ||
+                    (infraccion.apartado && infraccion.apartado.includes(currentFilters.searchTerm)) || 
+                    (infraccion.tags && infraccion.tags.some(tag => tag.toLowerCase().includes(currentFilters.searchTerm))) ||
+                    infraccion.normagris_identificador.toLowerCase().includes(currentFilters.searchTerm) ||
+                    infraccion.normagris_tematica.toLowerCase().includes(currentFilters.searchTerm);
+
+                const matchesArea = !currentFilters.areaId || infraccion.areaId === currentFilters.areaId;
+                const matchesRango = !currentFilters.rango || infraccion.rango === currentFilters.rango;
+
+                return matchesSearch && matchesArea && matchesRango;
             });
             
             renderGroupedInfracciones(filteredInfracciones);
         }
 
         applyFilters();
-        
+
         searchInput.addEventListener('input', applyFilters);
+        areaFilterSelect.addEventListener('change', applyFilters);
+        rangoFilterSelect.addEventListener('change', applyFilters);
 
         document.querySelectorAll('.clear-button').forEach(button => {
             button.addEventListener('click', (event) => {
@@ -272,14 +381,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- LÓGICA DE UI (BARRA LATERAL Y BOTONES FLOTANTES) ---
     const sidebar = document.querySelector('.sidebar');
     const toggleSidebarBtn = document.getElementById('toggleSidebarBtn');
     const closeSidebarBtn = document.getElementById('closeSidebarBtn');
     const scrollTopBtn = document.getElementById('scrollTopBtn');
 
     if (toggleSidebarBtn && sidebar) {
+        // Modificado para que el botón de toggleSidebarBtn abra y cierre la sidebar
         toggleSidebarBtn.addEventListener('click', () => {
-            sidebar.classList.add('open');
+            sidebar.classList.toggle('open');
         });
     }
 
