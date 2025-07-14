@@ -186,8 +186,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 groupHeader.innerHTML = `
                     <span class="icon">▶</span>
                     <div class="norma-main-info">
+                        <span class="normagris-tematica">${tematica || ''}</span><br>
                         <span class="normagris-identificador">${identificador}</span>
-                        <span class="normagris-tematica">${tematica || ''}</span>
                     </div>
                 ` + currentHeaderContent; // Añade el contenido principal y mantiene el icono si se añadió.
 

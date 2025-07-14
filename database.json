@@ -45,7 +45,7 @@
   },
   "normas": [
     {
-      "identificador": "Ley 7/2020, de 31 de agosto - ",
+      "identificador": "Ley 7/2020, de 31 de agosto",
       "tematica": "Bienestar, Protección y Defensa de los Animales de Castilla-La Mancha.",
       "modelo_sancion": "solo_importe_rango",
       "rango": "Ley Ordinaria",
@@ -682,7 +682,7 @@
       ]
     },
     {
-    "identificador": "Ley Orgánica 4/2015, de 30 de marzo - ",
+    "identificador": "Ley Orgánica 4/2015, de 30 de marzo",
     "tematica": "Protección De La Seguridad Ciudadana.",
     "modelo_sancion": "solo_importe_rango",
     "rango": "Ley Orgánica",
@@ -1177,7 +1177,7 @@
       ]
     },
     {
-      "identificador": "O.M Daimiel - ",
+      "identificador": "O.M Daimiel",
       "tematica": "Parada y Estacionamiento",
       "modelo_sancion": "estandar_sin_puntos",
       "rango": "Ordenanza",
@@ -1770,7 +1770,7 @@
       ]
     },
     {
-      "identificador": "O.M Daimiel - ",
+      "identificador": "O.M Daimiel",
       "tematica": "Tenecia y Protección de Animales",
       "modelo_sancion": "solo_importe_rango",
       "rango": "Ordenanza",
@@ -2253,7 +2253,7 @@
       ]
     },
     {
-      "identificador": "O.M Daimiel - ",
+      "identificador": "O.M Daimiel",
       "tematica": "Tenecia y Protección de Animales PPP",
       "modelo_sancion": "solo_importe_rango",
       "rango": "Ordenanza",
@@ -2428,7 +2428,7 @@
      ]
     },
     {
-    "identificador": "O.M Daimiel - ",
+    "identificador": "O.M Daimiel",
     "tematica": "Bienes Públicos y Convivencia Ciudadana",
     "modelo_sancion": "solo_importe_rango",
     "rango":"Ordenanza",
