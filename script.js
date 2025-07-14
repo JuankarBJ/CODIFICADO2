@@ -7,7 +7,15 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentFilters = {
         searchTerm: '',
         areaId: '',
-        rango: ''
+        rango: '', // Este filtro sigue existiendo en el estado y para ordenar, pero no se mostrará en el header del grupo
+        ambito: ''
+    };
+
+    // Mapeo de colores para los ámbitos (nuevos colores)
+    const ambitoColors = {
+        'Estatal': 'var(--color-ambito-estatal)',
+        'Autonómico': 'var(--color-ambito-autonomico)',
+        'Local': 'var(--color-ambito-local)'
     };
 
     fetch('database.json')
@@ -53,6 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const loadingMessage = document.querySelector('.loading-message');
         const areaFilterSelect = document.getElementById('area-filter');
         const rangoFilterSelect = document.getElementById('rango-filter');
+        const ambitoFilterSelect = document.getElementById('ambito-filter');
         const activeFiltersContainer = document.querySelector('.active-filters-container');
 
         if (loadingMessage) {
@@ -99,6 +108,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         populateRangoFilter();
 
+        function populateAmbitoFilter() {
+            if (ambitoFilterSelect) {
+                ambitoFilterSelect.innerHTML = '<option value="">Todos los Ámbitos</option>';
+                settings.ambitoOrder.forEach(ambito => {
+                    const option = document.createElement('option');
+                    option.value = ambito;
+                    option.textContent = ambito;
+                    option.classList.add('ambito-option');
+                    option.style.setProperty('--ambito-color-option', ambitoColors[ambito]);
+                    ambitoFilterSelect.appendChild(option);
+                });
+            } else {
+                console.error("Error: Elemento con ID 'ambito-filter' no encontrado. Asegúrate de que el ID sea correcto en el HTML y el script se carga al final del body o con DOMContentLoaded.");
+            }
+        }
+        populateAmbitoFilter();
+
 
         function renderActiveFilters() {
             activeFiltersContainer.innerHTML = '';
@@ -132,6 +158,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 activeFiltersContainer.appendChild(badge);
             }
 
+            if (currentFilters.ambito) {
+                const badge = document.createElement('span');
+                badge.classList.add('filter-badge', 'ambito-filter-badge');
+                badge.style.backgroundColor = ambitoColors[currentFilters.ambito];
+                badge.style.color = 'white';
+                badge.innerHTML = `Ámbito: ${currentFilters.ambito} <button class="clear-filter-btn" data-filter-type="ambito">❌</button>`;
+                activeFiltersContainer.appendChild(badge);
+            }
+
             activeFiltersContainer.querySelectorAll('.clear-filter-btn').forEach(button => {
                 button.addEventListener('click', (event) => {
                     const filterType = event.target.dataset.filterType;
@@ -141,6 +176,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         areaFilterSelect.value = '';
                     } else if (filterType === 'rango') {
                         rangoFilterSelect.value = '';
+                    } else if (filterType === 'ambito') {
+                        ambitoFilterSelect.value = '';
                     }
                     applyFilters();
                 });
@@ -212,7 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!acc[normaGrisKey]) {
                     acc[normaGrisKey] = { 
                         rango: infraccion.rango, 
-                        ambito: infraccion.ambito, 
+                        ambito: infraccion.ambito,
                         areaId: infraccion.areaId, 
                         infracciones: [] 
                     };
@@ -250,10 +287,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 const normaMainInfo = document.createElement('div');
                 normaMainInfo.classList.add('norma-main-info');
                 const [identificador, tematica] = normaGrisKey.split(' - ');
+
+                // --- Modificación clave aquí para la estructura del header del grupo ---
+                // Preparamos el tag de ámbito si existe
+                const ambitoTagHtml = groupInfo.ambito ? 
+                    `<span class="ambito-tag" style="background-color: ${ambitoColors[groupInfo.ambito] || 'transparent'}; color: white;">${groupInfo.ambito}</span>` : '';
+                
+                // Construimos la línea donde irá la temática y el identificador
+                // Usamos un flex-container interno para alinear el tag y el identificador
                 normaMainInfo.innerHTML = `
-                    <span class="normagris-tematica">${tematica || ''}</span><br>
-                    <span class="normagris-identificador">${identificador}</span>
+                    <span class="normagris-tematica">${tematica || ''}</span>
+                    <div class="identificador-and-ambito">
+                        ${ambitoTagHtml}
+                        ${groupInfo.ambito && identificador ? '<span class="separator">|</span>' : ''}
+                        <span class="normagris-identificador">${identificador}</span>
+                    </div>
                 `;
+                // Eliminado el <br> anterior y se usan flexbox para organizar
                 groupHeader.appendChild(normaMainInfo);
 
                 const areaInfo = grandesAreas[groupInfo.areaId];
@@ -342,6 +392,7 @@ document.addEventListener('DOMContentLoaded', () => {
             currentFilters.searchTerm = searchInput.value.toLowerCase().trim();
             currentFilters.areaId = areaFilterSelect.value;
             currentFilters.rango = rangoFilterSelect.value;
+            currentFilters.ambito = ambitoFilterSelect.value;
 
             renderActiveFilters();
 
@@ -357,8 +408,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const matchesArea = !currentFilters.areaId || infraccion.areaId === currentFilters.areaId;
                 const matchesRango = !currentFilters.rango || infraccion.rango === currentFilters.rango;
+                const matchesAmbito = !currentFilters.ambito || infraccion.ambito === currentFilters.ambito;
 
-                return matchesSearch && matchesArea && matchesRango;
+                return matchesSearch && matchesArea && matchesRango && matchesAmbito;
             });
             
             renderGroupedInfracciones(filteredInfracciones);
@@ -369,6 +421,7 @@ document.addEventListener('DOMContentLoaded', () => {
         searchInput.addEventListener('input', applyFilters);
         areaFilterSelect.addEventListener('change', applyFilters);
         rangoFilterSelect.addEventListener('change', applyFilters);
+        ambitoFilterSelect.addEventListener('change', applyFilters);
 
         document.querySelectorAll('.clear-button').forEach(button => {
             button.addEventListener('click', (event) => {
@@ -381,14 +434,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- LÓGICA DE UI (BARRA LATERAL Y BOTONES FLOTANTES) ---
     const sidebar = document.querySelector('.sidebar');
     const toggleSidebarBtn = document.getElementById('toggleSidebarBtn');
     const closeSidebarBtn = document.getElementById('closeSidebarBtn');
     const scrollTopBtn = document.getElementById('scrollTopBtn');
 
     if (toggleSidebarBtn && sidebar) {
-        // Modificado para que el botón de toggleSidebarBtn abra y cierre la sidebar
         toggleSidebarBtn.addEventListener('click', () => {
             sidebar.classList.toggle('open');
         });

@@ -16,6 +16,12 @@
     --color-accent-primary: #7296b1;
     --color-points: #6a9edc;
 
+    /* Nuevos colores para Ámbitos */
+    --color-ambito-estatal: #8B4513;   /* Marrón tierra */
+    --color-ambito-autonomico: #483D8B; /* Azul pizarra oscuro */
+    --color-ambito-local: #20B2AA;    /* Verde claro / Menta */
+
+
     /* Otros */
     --border-radius-lg: 1rem;
     --border-radius-md: 0.75rem;
@@ -285,6 +291,45 @@ main.infracciones-agrupadas {
 
 .normagris-tematica { font-weight: bold; }
 
+/* El norma-secondary-info ya no es necesario, el contenido se mueve directamente a norma-main-info */
+/* .norma-secondary-info {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.25rem;
+    font-size: 0.85rem;
+    color: var(--color-muted-text);
+    flex-wrap: wrap;
+} */
+
+/* Estilos para el contenedor del identificador y el ámbito */
+.identificador-and-ambito {
+    display: flex;
+    align-items: center; /* Alinea verticalmente el tag y el identificador */
+    gap: 0.5rem; /* Espacio entre el tag y el identificador/separador */
+    font-size: 0.85rem; /* Fuente un poco más pequeña */
+    color: var(--color-muted-text); /* Color de texto sutil para el identificador */
+    flex-wrap: wrap; /* Permitir que salten si no hay espacio */
+    line-height: 1.2; /* Ajustar altura de línea para compactar */
+}
+
+.identificador-and-ambito .separator {
+    color: var(--color-muted-text);
+    font-weight: normal;
+}
+
+/* Estilos específicos para el tag de Ámbito en el header del grupo */
+.ambito-tag {
+    background-color: var(--ambito-color-header, var(--color-dark-bg));
+    color: #fff;
+    padding: 0.2em 0.5em;
+    border-radius: var(--border-radius-md);
+    white-space: nowrap;
+    flex-shrink: 0; /* Asegura que la píldora no se encoja */
+}
+
+/* Eliminar estilos para .rango-tag si ya no se muestra */
+
+
 .severity-filter-bar {
     display: flex;
     gap: 0.5rem;
@@ -349,12 +394,14 @@ main.infracciones-agrupadas {
 
 .header-info {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Cambiado a columna para apilar temática y la nueva línea */
     flex-grow: 1;
     min-width: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    /* Eliminadas las propiedades de nowrap y ellipsis del header-info principal */
+    /* ya que los nuevos divs internos manejarán el nowrap/ellipsis */
+    white-space: normal; 
+    overflow: visible;
+    text-overflow: clip;
 }
 
 .infraccion .articulo-apartado {
@@ -364,7 +411,7 @@ main.infracciones-agrupadas {
     line-height: 1.2;
     margin-bottom: 0.1rem;
 }
-.infraccion .norma {
+.infraccion .norma { /* Esta es ahora la temática, en la primera línea de normaMainInfo */
     font-size: 0.8rem;
     color: var(--color-muted-text);
 }
@@ -466,15 +513,18 @@ main.infracciones-agrupadas {
 }
 .sidebar-content {
     padding: 2rem 1.5rem;
-    flex-grow: 1;
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 .sidebar-content h2 {
     margin-top: 0;
     color: var(--color-accent-primary);
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
+    flex-shrink: 0;
 }
 
 .filter-option-group {
@@ -482,6 +532,7 @@ main.infracciones-agrupadas {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    flex-shrink: 0;
 }
 .filter-option-group label {
     font-size: 0.9rem;
@@ -522,7 +573,8 @@ main.infracciones-agrupadas {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background-color: var(--area-color-option, transparent);
+    /* Prioridad: --area-color-option, luego --ambito-color-option, luego transparente */
+    background-color: var(--area-color-option, var(--ambito-color-option, transparent));
     border: 1px solid rgba(255,255,255,0.3);
 }
 
@@ -541,6 +593,7 @@ main.infracciones-agrupadas {
     border-radius: var(--border-radius-md);
     cursor: pointer;
     margin-top: auto;
+    flex-shrink: 0;
 }
 #closeSidebarBtn:hover {
     background-color: var(--color-accent-red);
@@ -568,7 +621,7 @@ footer {
     display: flex;
     align-items: center;
     gap: 0.3rem;
-    width: 180px;
+    min-width: 180px;
 }
 
 .area-icon {
@@ -587,48 +640,45 @@ footer {
     filter: brightness(1.5);
 }
 
-/* --- Botones de acción flotantes (FABs) --- */
 .floating-action-buttons {
-    position: fixed; /* Esto los fija en la ventana */
-    bottom: 1.5rem; /* Separación del borde inferior */
-    right: 1.5rem;  /* Separación del borde derecho */
-    z-index: 1000; /* Asegura que estén por encima de la mayoría de los elementos */
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 1000;
     display: flex;
-    flex-direction: column; /* Apila los botones verticalmente */
-    gap: 0.75rem; /* Espacio entre los botones */
-    align-items: flex-end; /* Alinea los botones a la derecha si no tienen el mismo ancho */
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-end;
 }
 
 .fab {
     background-color: var(--color-accent-primary);
     color: var(--color-light-text);
     border: none;
-    border-radius: 50%; /* Para hacerlos circulares */
-    width: 56px; /* Tamaño estándar de FAB */
+    border-radius: 50%;
+    width: 56px;
     height: 56px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem; /* Tamaño del icono */
+    font-size: 1.5rem;
     cursor: pointer;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .fab:hover {
-    background-color: #617f9a; /* Un tono un poco más oscuro o claro */
-    transform: translateY(-2px); /* Pequeño efecto al pasar el ratón */
+    background-color: #617f9a;
+    transform: translateY(-2px);
 }
 
-/* Estilo para el botón de "subir al inicio" cuando está oculto */
 .fab.hidden {
     opacity: 0;
-    pointer-events: none; /* Desactiva los eventos de ratón cuando está oculto */
-    transform: translateY(10px); /* Oculta más abajo */
+    pointer-events: none;
+    transform: translateY(10px);
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* Media queries para responsividad */
 @media (max-width: 768px) {
     main.infracciones-agrupadas {
         padding: var(--spacing-unit);
@@ -692,13 +742,22 @@ footer {
     .infraccion .articulo-apartado {
         font-size: 1.1rem;
     }
-    .infraccion .norma {
+    .infraccion .norma { /* Esta es la temática */
         font-size: 0.7rem;
     }
+    .normagris-identificador { /* El identificador de norma se ajusta un poco */
+        font-size: 0.75rem;
+    }
+    .identificador-and-ambito {
+        flex-direction: column; /* Apilar en móviles muy pequeños */
+        align-items: flex-start;
+        gap: 0.1em;
+    }
+    .ambito-tag {
+        padding: 0.1em 0.3em; /* Reducir padding en móviles muy pequeños */
+        font-size: 0.7rem;
+    }
+    .identificador-and-ambito .separator {
+        display: none; /* Ocultar el separador si se apila */
+    }
 }
-
-.area-group-icon.icon-car::before { content: "🚗"; }
-.area-group-icon.icon-dog::before { content: "🐶"; }
-.area-group-icon.icon-handcuffs::before { content: "⛓️"; }
-.area-group-icon.icon-building::before { content: "🏗️"; }
-.area-group-icon.icon-circus::before { content: "🎪"; }
