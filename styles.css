@@ -31,14 +31,75 @@ body {
     padding: 0;
 }
 
-h1 { 
+h1 {
     font-size: 1.75rem;
     margin: 1.5rem 0 0.5rem 0;
     color: var(--color-accent-primary);
     text-align: center;
 }
 
-/* --- BARRA DE BÚSQUEDA FIJA --- */
+.main-header {
+    background-color: var(--color-dark-bg);
+    padding-top: 1.5rem;
+    padding-bottom: 0.5rem;
+    text-align: center;
+}
+
+.home-link {
+    text-decoration: none;
+    display: inline-block;
+}
+
+.home-link h1 {
+    margin: 0;
+}
+
+.landing-container {
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 2rem;
+    text-align: center;
+    background-color: var(--color-card-bg);
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.landing-container h1 {
+    color: var(--color-accent-primary);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.landing-container p {
+    font-size: 1.1rem;
+    color: var(--color-light-text);
+    margin-bottom: 2rem;
+}
+
+.access-button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.access-button {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--color-dark-bg);
+    background-color: var(--color-accent-green);
+    border: none;
+    border-radius: var(--border-radius-md);
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.access-button:hover {
+    background-color: #26897e;
+}
+
 .search-bar-fixed {
     position: sticky;
     top: 0;
@@ -67,7 +128,6 @@ h1 {
     padding-right: 2.5rem;
 }
 
-/* --- CABECERA DESPLEGABLE (Mantenido para compatibilidad aunque ya no esté en buscador.html) --- */
 .collapsible-header {
     background-color: var(--color-card-bg);
     max-height: 0;
@@ -79,7 +139,6 @@ h1 {
     padding-top: var(--spacing-unit);
     padding-bottom: var(--spacing-unit);
 }
-/* --- FILTROS (dentro del desplegable) --- */
 .filter-row.compact {
     display: flex;
     flex-wrap: wrap;
@@ -125,15 +184,21 @@ h1 {
     line-height: 1;
 }
 
-/* --- CONTENIDO PRINCIPAL --- */
 main.infracciones-agrupadas {
     padding: var(--spacing-unit) calc(var(--spacing-unit) * 2);
     max-width: 1200px;
     margin: 0 auto;
 }
+
+.loading-message {
+    text-align: center;
+    color: var(--color-muted-text);
+    padding: 2rem;
+}
+
 .infraccion-group {
     margin-bottom: 1.5rem;
-    background-color: var(--color-card-bg); 
+    background-color: var(--color-card-bg);
     border-radius: var(--border-radius-lg);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     overflow: hidden;
@@ -147,7 +212,6 @@ main.infracciones-agrupadas {
     display: flex;
     align-items: center;
     user-select: none;
-    min-width: 480px;
     padding-top: 1.5rem;
 }
 .infraccion-group-header .icon {
@@ -168,16 +232,14 @@ main.infracciones-agrupadas {
     padding-bottom: var(--spacing-unit);
 }
 
-/* Estilo de la norma y temática (negrita) */
 .normagris-tematica { font-weight: bold; }
 
-/* Barra de filtros de gravedad dentro del grupo */
 .severity-filter-bar {
     display: flex;
     gap: 0.5rem;
-    padding: 0 1.5rem 1rem 1.5rem; 
-    background-color: var(--color-card-bg); 
-    display: none; 
+    padding: 0 1.5rem 1rem 1.5rem;
+    background-color: var(--color-card-bg);
+    display: none;
 }
 .infraccion-group.open .severity-filter-bar { display: flex; }
 .severity-btn {
@@ -185,47 +247,42 @@ main.infracciones-agrupadas {
     cursor: pointer; transition: transform 0.2s ease, border-color 0.2s ease;
 }
 .severity-btn:hover { transform: scale(1.1); }
-/* Colores de botones de gravedad */
 .severity-btn.grave { background-color: var(--color-accent-red); margin-top: 0.75rem;}
 .severity-btn.media { background-color: var(--color-accent-yellow); margin-top: 0.75rem;}
 .severity-btn.leve { background-color: var(--color-accent-green); margin-top: 0.75rem;}
-/* Estilo para botón activo */
 .severity-btn.active {
     border-color: #fff;
     transform: scale(1.1);
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
-/* --- Tarjeta de Infracción Individual --- */
-
 .infraccion {
     background-color: #354656;
     border-radius: var(--border-radius-md);
-    padding: 1rem 1.5rem; 
-    /* REDUCIMOS EL MARGEN INFERIOR para mayor compacidad */
-    margin-bottom: 0.75rem; 
+    padding: 1rem 1.5rem;
+    margin-bottom: 0.75rem;
     border-left: 8px solid var(--color-accent-red);
     cursor: pointer;
-    color: var(--color-light-text); 
-    min-width: 480px;
+    color: var(--color-light-text);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
 }
 .infraccion:last-child { margin-bottom: 0; }
 
-/* Colores de gravedad */
 .infraccion.media { border-left-color: var(--color-accent-yellow); }
 .infraccion.leve { border-left-color: var(--color-accent-green); }
 .infraccion.grave .circulo { background-color: var(--color-accent-red); }
 .infraccion.media .circulo { background-color: var(--color-accent-yellow); }
 .infraccion.leve .circulo { background-color: var(--color-accent-green); }
 
-/* Estructura del encabezado de la tarjeta */
 .infraccion-header {
     display: flex;
     align-items: center;
-    margin-bottom: 0.5rem; 
     gap: 1rem;
+    flex-wrap: nowrap;
 }
-/* Círculo de tipo */
+
 .infraccion .circulo {
     flex-shrink: 0;
     width: 36px;
@@ -233,26 +290,28 @@ main.infracciones-agrupadas {
     border-radius: 50%;
     color: white;
     font-weight: bold;
-    font-size: 1.2rem; 
+    font-size: 1.2rem;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/* Información de artículo y norma */
 .header-info {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-/* Ajuste para destacar Artículo y Apartado */
 .infraccion .articulo-apartado {
-    font-size: 1.3rem; 
+    font-size: 1.3rem;
     font-weight: 700;
     color: var(--color-light-text);
     line-height: 1.2;
-    margin-bottom: 0.1rem; 
+    margin-bottom: 0.1rem;
 }
 .infraccion .norma {
     font-size: 0.8rem;
@@ -260,76 +319,71 @@ main.infracciones-agrupadas {
 }
 .infraccion .norma strong { color: var(--color-light-text); }
 
-/* --- ARMÓNIZACIÓN Y VISIBILIDAD DE IMPORTES Y PUNTOS --- */
-
-/* Contenedor de importes: Ahora apila los div.importe-row verticalmente */
-.importe-info {
+/* --- SECCIÓN DE IMPORTES AL FINAL DE LA TARJETA --- */
+.importe-container {
     display: flex;
-    flex-direction: column;
-    align-items: flex-end; 
-    gap: 0.1rem; 
-    margin-left: auto; 
-    font-size: 0.9rem; 
-    white-space: nowrap;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: flex-start;
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px dashed var(--color-mid-blue);
 }
 
-/* Nuevo contenedor para cada fila (Importe/Reducida/Puntos) */
-.importe-row {
-    display: flex; /* Asegura que la etiqueta y el valor estén en la misma línea */
+.importe-row { /* Este es el contenedor de cada "píldora" */
+    display: flex;
     align-items: center;
-    gap: 0.5rem; /* Espaciado entre la etiqueta y el valor */
+    gap: 0.3rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: var(--border-radius-md);
+    white-space: nowrap;
+    /* Color de texto por defecto para las píldoras de importe */
+    color: var(--color-dark-bg); 
 }
 
-/* Estilos generales para las cifras clave (más compactos) */
-.importe, .importe-reducido, .puntos { 
-    font-weight: bold; 
-    font-size: 0.8rem; 
-    padding: 0.1rem 0.2rem; 
-    border-radius: 0.25rem;
-    transition: all 0.2s ease;
-    text-align: center;
-    display: inline-block; 
+/* APLICAMOS LOS COLORES DE FONDO A LAS CLASES DEL IMPORTE-ROW */
+.importe-row.importe-principal {
+    background-color: var(--color-accent-red);
+}
+
+.importe-row.reducido {
+    background-color: var(--color-accent-yellow);
+}
+
+.importe-row.puntos {
+    background-color: var(--color-points);
+    /* Aseguramos que el texto dentro de la píldora de puntos sea del color dark-bg (negro/azul oscuro) */
+    color: var(--color-dark-bg); 
+}
+
+/* Estilos generales para las cifras clave (los valores dentro de las píldoras) */
+.importe, .importe-reducido, .puntos {
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: inherit; /* Hereda el color de texto del contenedor .importe-row */
+    background-color: transparent;
+    padding: 0;
 }
 
 /* Estilo para las leyendas de los importes y puntos */
-.importe-info .label {
-    color: var(--color-muted-text);
+.importe-info .label, .importe-container .label {
+    color: var(--color-dark-bg); /* Texto de la etiqueta en color dark-bg para que contraste */
     font-weight: normal;
-    font-size: 0.7rem; 
-    display: inline-block;
-}
-
-/* Colores de los elementos */
-.importe { 
-    color: var(--color-light-text);
-    background-color: var(--color-accent-red); 
-}
-.importe-reducido { 
-    color: var(--color-dark-bg); 
-    background-color: var(--color-accent-yellow); 
-}
-.puntos { 
-    color: var(--color-dark-bg);
-    background-color: var(--color-points); 
+    font-size: 0.8rem;
 }
 
 /* Ocultar elementos para los modelos que no los usan */
-.infraccion.modelo-solo_importe_rango .importe-reducido,
-.infraccion.modelo-solo_importe_rango .puntos {
-    display: none;
-}
-.infraccion.modelo-solo_importe_rango .importe {
-    font-size: 0.9rem; 
-    color: var(--color-light-text); 
-}
-
-.infraccion.modelo-estandar_sin_puntos .puntos {
+.infraccion.modelo-solo_importe_rango .importe-row.reducido,
+.infraccion.modelo-solo_importe_rango .importe-row.puntos {
     display: none;
 }
 
-/* --- ESTILOS PARA ETIQUETAS DESPLEGABLES (Ocultas) --- */
+.infraccion.modelo-estandar_sin_puntos .importe-row.puntos {
+    display: none;
+}
+
 .infraccion-tags {
-    display: none; 
+    display: none;
 }
 
 .tag {
@@ -341,17 +395,13 @@ main.infracciones-agrupadas {
     font-weight: 600;
 }
 
-/* Estilo para la Descripción */
 .descripcion {
-    margin-top: var(--spacing-unit);
+    margin-top: 0;
     line-height: 1.5;
-    font-size: 0.95rem; 
+    font-size: 0.95rem;
     color: var(--color-light-text);
-    border-top: 1px solid var(--color-light-blue);
-    padding-top: var(--spacing-unit);
 }
 
-/* --- BARRA LATERAL (SIDEBAR) --- */
 .sidebar {
     position: fixed;
     top: 0;
@@ -361,11 +411,11 @@ main.infracciones-agrupadas {
     background-color: var(--color-card-bg);
     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
     z-index: 2000;
-    transform: translateX(100%); 
+    transform: translateX(100%);
     transition: transform 0.4s ease-in-out;
 }
 .sidebar.open {
-    transform: translateX(0); 
+    transform: translateX(0);
 }
 .sidebar-content {
     padding: 2rem 1.5rem;
@@ -383,7 +433,6 @@ main.infracciones-agrupadas {
     background-color: var(--color-accent-red);
 }
 
-/* Estilo para el footer */
 footer {
     text-align: center;
     padding: 1rem 0;
@@ -392,89 +441,96 @@ footer {
     color: var(--color-muted-text);
 }
 
-/* Ajuste para el enlace del título en buscador.html */
-h1 a {
-    text-decoration: none;
-    color: var(--color-accent-primary);
-}
-
-/* --- CORRECCIÓN AREA BADGE Y AÑADIR ICONOS --- */
-/* Estilos para el area-badge (etiqueta superior izquierda) */
 .area-badge {
     position: absolute;
     top: 0;
     right: 0;
-    background-color: var(--area-color); /* Usamos var(--area-color) para el color dinámico del área */
+    background-color: var(--area-color);
     color: #fff;
     padding: 0.1rem 0.8rem;
     font-size: 0.75rem;
     font-weight: bold;
     border-bottom-left-radius: var(--border-radius-md);
     text-transform: uppercase;
-    /* Eliminamos el filtro de brillo para devolver el color vibrante */
-    /* filter: brightness(0.8); */
-    
-    
-    /* Añadido para el icono */
     display: flex;
     align-items: center;
-    gap: 0.3rem; 
-    
+    gap: 0.3rem;
     width: 180px;
 }
 
-/* Estilo para el icono dentro del badge (si se genera) */
 .area-icon {
     font-size: 0.8rem;
     line-height: 1;
-    
 }
 
-/* --- ICONO GRANDE EN EL EXTREMO DERECHO DEL HEADER --- */
-
-/* Este es el icono grande que aparecerá a la derecha del encabezado del grupo */
 .area-group-icon {
-    /* Posicionamiento para que esté a la derecha del header */
-    margin-left: auto; 
+    margin-left: auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    
-    /* El tamaño del icono será la altura del encabezado del grupo. */
     height: 80%;
-    
-    /* Coloreamos el icono con el color del área */
-    color: var(--area-color); 
-    
-    /* Ajuste para que el icono se vea más grande */
-    font-size: 30px; 
-    
-    /* Aplicamos un filtro de brillo para que se vea más claro sobre el fondo oscuro */
+    color: var(--area-color);
+    font-size: 30px;
     filter: brightness(1.5);
-    
-    /* Aseguramos que el icono esté alineado correctamente */
-    padding-top: 1rem;
-    padding-right: 1rem;
-    
-    
 }
 
-/* Iconos específicos para las áreas solicitadas (usando ::before y caracteres para simular iconos) */
-.area-group-icon.icon-car::before {
-    content: "🚗"; 
+@media (max-width: 768px) {
+    main.infracciones-agrupadas {
+        padding: var(--spacing-unit);
+    }
+    .infraccion-group-header, .infraccion {
+        min-width: unset;
+    }
+    .infraccion-group-header {
+        font-size: 1.2rem;
+        padding: 1rem;
+    }
+    .infraccion {
+        padding: 0.8rem 1rem;
+    }
+    .infraccion .circulo {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+    }
+    .infraccion .header-info {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+    }
+    .importe-container {
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 0.5rem;
+    }
+    .importe-row {
+        padding: 0.2rem 0.4rem;
+        font-size: 0.8rem;
+    }
+    .importe-container .label {
+        font-size: 0.7rem;
+    }
+    .area-badge {
+        width: 120px;
+        font-size: 0.65rem;
+        padding: 0.1rem 0.5rem;
+    }
+    .area-group-icon {
+        font-size: 24px;
+    }
 }
 
-.area-group-icon.icon-dog::before {
-    content: "🐶"; 
+@media (max-width: 480px) {
+    .infraccion .articulo-apartado {
+        font-size: 1.1rem;
+    }
+    .infraccion .norma {
+        font-size: 0.7rem;
+    }
 }
 
-.area-group-icon.icon-handcuffs::before {
-    content: "⛓️"; 
-}
-
-.area-group-icon.icon-building::before {
-    content: "🏗️"; 
-}
-.area-group-icon.icon-circus::before {
-    content: "🎪"; /* Icono de carpa de circo */
-}
+.area-group-icon.icon-car::before { content: "🚗"; }
+.area-group-icon.icon-dog::before { content: "🐶"; }
+.area-group-icon.icon-handcuffs::before { content: "⛓️"; }
+.area-group-icon.icon-building::before { content: "🏗️"; }
+.area-group-icon.icon-circus::before { content: "🎪"; }

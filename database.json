@@ -3226,6 +3226,28 @@
       "tags": ["Incumplimiento", "Vulneración", "Obligaciones"]
     }
       ]
+    },
+    {
+      "identificador": "Real Decreto 1428/2003, de 21 de noviembre.",
+      "tematica": "Reglamento General de Circulación",
+      "modelo_sancion":"modelo_estandar",
+      "rango": "Real Decreto Ley",
+      "ambito": "Estatal",
+      "areaId": "trafico",
+      "infracciones": [
+        {
+          "tipo": "media",
+          "circulo": "G",
+          "norma": "REGLAMENTO GENERAL DE CIRCULACIÓN",
+          "articulo": "41",
+          "apartado": "1",
+          "puntos":"4",
+          "importe": "200",
+          "importe_reducido": "100",
+          "descripcion": "No obedecer la señal de stop.",
+          "tags": ["puntos", "stop", "circulacion"]
+        }
+      ]
     }
 
   ]
