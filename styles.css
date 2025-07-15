@@ -16,7 +16,7 @@
     --color-accent-primary: #7296b1;
     --color-points: #6a9edc;
 
-    /* Nuevos colores para Ámbitos */
+    /* Nuevos colores para Ámbitos (usados directamente en JS para estilos inline) */
     --color-ambito-estatal: #8B4513;   /* Marrón tierra */
     --color-ambito-autonomico: #483D8B; /* Azul pizarra oscuro */
     --color-ambito-local: #20B2AA;    /* Verde claro / Menta */
@@ -291,43 +291,32 @@ main.infracciones-agrupadas {
 
 .normagris-tematica { font-weight: bold; }
 
-/* El norma-secondary-info ya no es necesario, el contenido se mueve directamente a norma-main-info */
-/* .norma-secondary-info {
+.identificador-and-ambito {
     display: flex;
-    gap: 0.75rem;
-    margin-top: 0.25rem;
+    align-items: center;
+    gap: 0.5rem;
     font-size: 0.85rem;
     color: var(--color-muted-text);
     flex-wrap: wrap;
-} */
-
-/* Estilos para el contenedor del identificador y el ámbito */
-.identificador-and-ambito {
-    display: flex;
-    align-items: center; /* Alinea verticalmente el tag y el identificador */
-    gap: 0.5rem; /* Espacio entre el tag y el identificador/separador */
-    font-size: 0.85rem; /* Fuente un poco más pequeña */
-    color: var(--color-muted-text); /* Color de texto sutil para el identificador */
-    flex-wrap: wrap; /* Permitir que salten si no hay espacio */
-    line-height: 1.2; /* Ajustar altura de línea para compactar */
+    line-height: 1.2;
+    margin-top: 0.25rem;
 }
 
 .identificador-and-ambito .separator {
     color: var(--color-muted-text);
     font-weight: normal;
+    flex-shrink: 0;
+    white-space: nowrap;
 }
 
-/* Estilos específicos para el tag de Ámbito en el header del grupo */
 .ambito-tag {
     background-color: var(--ambito-color-header, var(--color-dark-bg));
     color: #fff;
     padding: 0.2em 0.5em;
     border-radius: var(--border-radius-md);
     white-space: nowrap;
-    flex-shrink: 0; /* Asegura que la píldora no se encoja */
+    flex-shrink: 0;
 }
-
-/* Eliminar estilos para .rango-tag si ya no se muestra */
 
 
 .severity-filter-bar {
@@ -394,28 +383,74 @@ main.infracciones-agrupadas {
 
 .header-info {
     display: flex;
-    flex-direction: column; /* Cambiado a columna para apilar temática y la nueva línea */
+    flex-direction: column; /* Apila los elementos verticalmente (Norma, y Art/Apdo/Opc) */
     flex-grow: 1;
     min-width: 0;
-    /* Eliminadas las propiedades de nowrap y ellipsis del header-info principal */
-    /* ya que los nuevos divs internos manejarán el nowrap/ellipsis */
-    white-space: normal; 
+    white-space: normal;
     overflow: visible;
     text-overflow: clip;
 }
 
-.infraccion .articulo-apartado {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--color-light-text);
-    line-height: 1.2;
-    margin-bottom: 0.1rem;
-}
-.infraccion .norma { /* Esta es ahora la temática, en la primera línea de normaMainInfo */
-    font-size: 0.8rem;
+/* Estilo para la línea de la Norma */
+.norma-display {
+    font-size: 0.9rem;
     color: var(--color-muted-text);
+    margin-bottom: 0.2rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
-.infraccion .norma strong { color: var(--color-light-text); }
+.norma-display strong {
+    color: var(--color-light-text);
+    font-weight: bold;
+}
+
+
+/* --- Contenedor de las píldoras de Artículo, Apartado y Opción --- */
+.art-apto-opc-group {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap; /* Permitir que las píldoras salten de línea si no hay espacio */
+    gap: 0.5rem; /* Espacio entre las píldoras/segmentos */
+    margin-bottom: 0.1rem;
+    line-height: 1.2;
+    min-width: 0;
+}
+
+/* Estilo base para todos los segmentos de Artículo, Apartado, Opción */
+.articulo-apartado-pill, .opcion-pill {
+    display: inline-flex; /* Usar inline-flex para píldora en línea */
+    align-items: baseline; /* Alinea el texto base y el valor si son de distinto tamaño */
+    gap: 0.25em; /* Espacio entre el label (Art./Apdo./Opc.) y el valor */
+    padding: 0.3rem 0.6rem;
+    border-radius: var(--border-radius-md);
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-size: 0.95rem; /* Tamaño base para las píldoras */
+}
+
+/* Estilo específico para la píldora de Artículo/Apartado unificada */
+.articulo-apartado-pill {
+    background-color: var(--color-accent-primary); /* Fondo llamativo (azul principal) */
+    color: var(--color-dark-bg); /* ¡Texto "Art." y "Apdo." en color oscuro para contraste! */
+}
+.articulo-apartado-pill .value { /* El número del artículo/apartado */
+    font-size: 1.2em; /* Más grande que el "Art."/"Apdo." */
+    font-weight: bold;
+    color: white; /* ¡Cambiado a blanco para los números! */
+}
+
+/* Estilo específico para la Opción */
+.opcion-pill {
+    background-color: var(--color-accent-green); /* Color distintivo (verde) */
+    color: var(--color-dark-bg); /* ¡Texto "Opc." en color oscuro para contraste! */
+}
+.opcion-pill .value { /* El valor de la opción */
+    font-size: 1.2em; /* Igual de grande que los números de Art/Apdo */
+    font-weight: bold;
+    color: white; /* ¡Cambiado a blanco para el valor de la opción! */
+}
+
 
 .importe-container {
     display: flex;
@@ -486,12 +521,40 @@ main.infracciones-agrupadas {
     font-weight: 600;
 }
 
+/* Estilos para el contenido de la descripción generado por Markdown */
 .descripcion {
     margin-top: 0;
     line-height: 1.5;
     font-size: 0.95rem;
     color: var(--color-light-text);
 }
+
+.descripcion p {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.descripcion ul, .descripcion ol {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    color: var(--color-light-text);
+}
+
+.descripcion li {
+    margin-bottom: 0.25rem;
+    color: var(--color-light-text);
+}
+
+.descripcion strong {
+    color: var(--color-light-text);
+}
+
+.descripcion em {
+    font-style: italic;
+    color: var(--color-light-text);
+}
+
 
 /* --- BARRA LATERAL (SIDEBAR) --- */
 .sidebar {
@@ -518,6 +581,7 @@ main.infracciones-agrupadas {
     flex-grow: 1;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    padding-bottom: 1.5rem;
 }
 .sidebar-content h2 {
     margin-top: 0;
@@ -526,6 +590,24 @@ main.infracciones-agrupadas {
     margin-bottom: 1.5rem;
     flex-shrink: 0;
 }
+
+/* Botón de cerrar dentro de sidebar-content */
+#closeSidebarBtn {
+    background-color: var(--color-mid-blue);
+    color: var(--color-light-text);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+    flex-shrink: 0;
+    align-self: flex-start;
+}
+#closeSidebarBtn:hover {
+    background-color: var(--color-accent-red);
+}
+
 
 .filter-option-group {
     margin-bottom: 1.5rem;
@@ -573,7 +655,6 @@ main.infracciones-agrupadas {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    /* Prioridad: --area-color-option, luego --ambito-color-option, luego transparente */
     background-color: var(--area-color-option, var(--ambito-color-option, transparent));
     border: 1px solid rgba(255,255,255,0.3);
 }
@@ -584,20 +665,6 @@ main.infracciones-agrupadas {
     color: var(--color-light-text);
 }
 
-
-#closeSidebarBtn {
-    background-color: var(--color-mid-blue);
-    color: var(--color-light-text);
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: var(--border-radius-md);
-    cursor: pointer;
-    margin-top: auto;
-    flex-shrink: 0;
-}
-#closeSidebarBtn:hover {
-    background-color: var(--color-accent-red);
-}
 
 footer {
     text-align: center;
@@ -610,13 +677,13 @@ footer {
 .area-badge {
     position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
     background-color: var(--area-color);
     color: #fff;
     padding: 0.1rem 0.8rem;
     font-size: 0.75rem;
     font-weight: bold;
-    border-bottom-right-radius: var(--border-radius-md);
+    border-bottom-left-radius: var(--border-radius-md);
     text-transform: uppercase;
     display: flex;
     align-items: center;
@@ -640,17 +707,16 @@ footer {
     filter: brightness(1.5);
 }
 
+/* --- Botones de acción flotantes (FABs) --- */
 .floating-action-buttons {
-    position: fixed; /* Mantiene los botones fijos en la ventana */
-    bottom: 1.5rem;  /* Separación del borde inferior */
-    left: 1.5rem;    /* ¡Mueve los botones al margen izquierdo! */
-    /* Eliminamos 'right: 1.5rem;' si estaba antes */
-    z-index: 1000;   /* Asegura que estén por encima de la mayoría de los elementos */
+    position: fixed;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    z-index: 1000;
     display: flex;
-    flex-direction: column; /* Apila los botones verticalmente */
-    gap: 0.75rem; /* Espacio entre los botones */
-    /* Cambiamos la alineación para que se apilen desde la izquierda */
-    align-items: flex-start; /* Alinea los botones a la izquierda dentro de su contenedor */
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
 }
 
 .fab {
@@ -705,6 +771,16 @@ footer {
         overflow: visible;
         text-overflow: clip;
     }
+    .art-apto-opc-group {
+        gap: 0.4rem;
+    }
+    .articulo-apartado-pill, .opcion-pill {
+        font-size: 0.9rem; /* Reducir en móviles */
+        padding: 0.25rem 0.5rem;
+    }
+    .articulo-apartado-pill .value, .opcion-pill .value {
+        font-size: 1em; /* Ajustar el tamaño del valor relativo al padre */
+    }
     .importe-container {
         flex-direction: row;
         justify-content: flex-start;
@@ -728,11 +804,10 @@ footer {
     .sidebar {
         width: 250px;
     }
-     .floating-action-buttons {
-        bottom: 1rem; /* Un poco menos de margen en móviles */
-        left: 1rem;   /* Mantiene el margen izquierdo en móviles */
-        /* Eliminamos 'right: 1rem;' si estaba antes en este media query */
-        gap: 0.5rem;  /* Espacio entre botones reducido en móviles */
+    .floating-action-buttons {
+        bottom: 1rem;
+        left: 1rem;
+        gap: 0.5rem;
     }
     .fab {
         width: 48px;
@@ -742,25 +817,37 @@ footer {
 }
 
 @media (max-width: 480px) {
-    .infraccion .articulo-apartado {
+    .infraccion .articulo-apartado { /* Ya no usado, ahora es .art-apto-opc-group */
         font-size: 1.1rem;
     }
-    .infraccion .norma { /* Esta es la temática */
-        font-size: 0.7rem;
+    .infraccion .normagris-tematica {
+        font-size: 1.1rem;
     }
-    .normagris-identificador { /* El identificador de norma se ajusta un poco */
+    .normagris-identificador {
         font-size: 0.75rem;
     }
     .identificador-and-ambito {
-        flex-direction: column; /* Apilar en móviles muy pequeños */
+        flex-direction: column;
         align-items: flex-start;
         gap: 0.1em;
     }
     .ambito-tag {
-        padding: 0.1em 0.3em; /* Reducir padding en móviles muy pequeños */
+        padding: 0.15em 0.4em;
         font-size: 0.7rem;
     }
     .identificador-and-ambito .separator {
-        display: none; /* Ocultar el separador si se apila */
+        display: none;
+    }
+    .art-apto-opc-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.2rem;
+    }
+    .articulo-apartado-pill, .opcion-pill {
+        font-size: 0.8rem;
+        padding: 0.2rem 0.4rem;
+    }
+    .articulo-apartado-pill .value, .opcion-pill .value {
+        font-size: 1em;
     }
 }

@@ -1884,7 +1884,7 @@
       "apartado": "",
       "importe": "151 a 300 €",
       
-      "descripcion": "Las infracciones al Art. 44 de la ordenanza, en materia de requisitos de los establecimientos para el fomento y cuidado de animales de compañía, incluyendo: a) Construcciones, instalaciones y equipos adecuados para asegurar un ambiente higiénico y zoosanitario; b) Dotación de agua corriente y desagües adecuados; c) Disposición de medios suficientes para limpieza y desinfección; d) Realización de desinfectaciones, desinsectaciones y desratizaciones periódicas; e) Cumplimiento de lo establecido en el artículo 35; f) Eliminación higiénica de cadáveres o restos; g) Disposición obligatoria de sala de espera; h) Declaración como Núcleo zoológico para la concesión de licencia de apertura por el Ayuntamiento; 2. Contar con servicio veterinario colaborador que garantice el adecuado estado sanitario de los animales antes de su venta; 3. Venta de animales desparasitados, libres de enfermedades y con vacunas pertinentes; 4. Obligación del vendedor de entregar documentación acreditativa y/o cartilla sanitaria.",
+      "descripcion": "Las infracciones al Art. 44 de la ordenanza, en materia de requisitos de los establecimientos para el fomento y cuidado de animales de compañía, incluyendo:\n\n* **a)** Construcciones, instalaciones y equipos adecuados para asegurar un ambiente higiénico y zoosanitario;\n* **b)** Dotación de agua corriente y desagües adecuados;\n* **c)** Disposición de medios suficientes para limpieza y desinfección;\n* **d)** Realización de desinfecciones, desinsectaciones y desratizaciones periódicas;\n* **e)** Cumplimiento de lo establecido en el artículo 35;\n* **f)** Eliminación higiénica de cadáveres o restos;\n* **g)** Disposición obligatoria de sala de espera;\n* **h)** Declaración como Núcleo zoológico para la concesión de licencia de apertura por el Ayuntamiento.\n\nAdicionalmente, se requiere:\n\n1.  Contar con servicio veterinario colaborador que garantice el adecuado estado sanitario de los animales antes de su venta.\n2.  Venta de animales desparasitados, libres de enfermedades y con vacunas pertinentes.\n3.  Obligación del vendedor de entregar documentación acreditativa y/o cartilla sanitaria.",
       "tags": ["Establecimientos Animales", "Núcleo Zoológico", "Sanidad Veterinaria"]
     },
     {
@@ -3235,19 +3235,44 @@
       "ambito": "Estatal",
       "areaId": "trafico",
       "infracciones": [
-        {
-          "tipo": "media",
-          "circulo": "G",
-          "norma": "REGLAMENTO GENERAL DE CIRCULACIÓN",
-          "articulo": "41",
-          "apartado": "1",
-          "puntos":"4",
-          "importe": "200",
-          "importe_reducido": "100",
-          "descripcion": "No obedecer la señal de stop. (infracción de prueba)",
-          "tags": ["puntos", "stop", "circulacion"]
-        }
-      ]
+  {
+    "tipo": "grave",
+    "circulo": "MG",
+    "norma": "LTSV",
+    "articulo": "13",
+    "apartado": "6.5.A",
+    "puntos": "0",
+    "importe": "3000",
+    "importe_reducido": "0",
+    "descripcion": "Instalar un **inhibidor** de radar o cinemómetro o cualesquiera otros mecanismos encaminados a interferir en el correcto funcionamiento de los sistemas de vigilancia del tráfico (el responsable de esta infracción será el taller o persona que lo haya instalado).",
+    "tags": ["inhibidor", "radar", "cinemometro", "instalacion", "taller", "interferir"]
+  },
+  {
+    "tipo": "media",
+    "circulo": "G",
+    "norma": "LTSV",
+    "articulo": "13",
+    "apartado": "6",
+    "opc": "5C",
+    "puntos": "3",
+    "importe": "200",
+    "importe_reducido": "100",
+    "descripcion": "Conducir el vehículo reseñado llevando mecanismos de detección de radares o cinemómetros. Nota: Deberá concretarse el mecanismo o sistema instalado especificándose la marca, modelo, color y, a ser posible, su número de serie, y adjuntar fotografía del mismo a la denuncia.",
+    "tags": ["detector", "radar", "cinemometro", "conducir", "puntos"]
+  },
+  {
+    "tipo": "leve",
+    "circulo": "L",
+    "norma": "LTSV",
+    "articulo": "13",
+    "apartado": "6.5.D",
+    "puntos": "0",
+    "importe": "100",
+    "importe_reducido": "50",
+    "descripcion": "Conducir el vehículo reseñado emitiendo o haciendo señales con el fin de eludir o interferir en el correcto funcionamiento de los sistemas de vigilancia del tráfico. Nota: Deberá especificarse la forma concreta o método utilizados para la emisión o realización de señales con tal finalidad.",
+    "tags": ["señales", "eludir", "interferir", "vigilancia", "avisar"]
+  }
+]
     }
 
   ]

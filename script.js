@@ -7,15 +7,14 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentFilters = {
         searchTerm: '',
         areaId: '',
-        rango: '', // Este filtro sigue existiendo en el estado y para ordenar, pero no se mostrará en el header del grupo
+        rango: '',
         ambito: ''
     };
 
-    // Mapeo de colores para los ámbitos (nuevos colores)
-    const ambitoColors = {
-        'Estatal': 'var(--color-ambito-estatal)',
-        'Autonómico': 'var(--color-ambito-autonomico)',
-        'Local': 'var(--color-ambito-local)'
+    const ambitoColorsMap = {
+        'Estatal': '#8B4513',
+        'Autonómico': '#483D8B',
+        'Local': '#20B2AA'
     };
 
     fetch('database.json')
@@ -37,10 +36,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     modelo_sancion: norma.modelo_sancion
                 }))
             );
-            
+
             allGrandesAreas = data.grandesAreas;
             allSettings = data.settings;
-            
+
             iniciarApp(allInfraccionesData, allSettings, allGrandesAreas);
         })
         .catch(error => {
@@ -55,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     function iniciarApp(infraccionesData, settings, grandesAreas) {
-        
+
         const searchInput = document.querySelector('.buscador');
         const groupedInfraccionesContainer = document.querySelector('.infracciones-agrupadas');
         const loadingMessage = document.querySelector('.loading-message');
@@ -63,6 +62,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const rangoFilterSelect = document.getElementById('rango-filter');
         const ambitoFilterSelect = document.getElementById('ambito-filter');
         const activeFiltersContainer = document.querySelector('.active-filters-container');
+
+        const sidebar = document.querySelector('.sidebar');
+        const toggleSidebarBtn = document.getElementById('toggleSidebarBtn');
+        const closeSidebarBtn = document.getElementById('closeSidebarBtn');
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        const showSearchBtn = document.getElementById('showSearchBtn');
+
 
         if (loadingMessage) {
             loadingMessage.style.display = 'none';
@@ -83,15 +89,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 const areaInfo = grandesAreas[areaId];
                 const option = document.createElement('option');
                 option.value = areaId;
-                
+
                 let optionText = areaInfo.nombre;
                 if (areaInfo.icon && iconEmojiMap[areaInfo.icon]) {
                     optionText = `${iconEmojiMap[areaInfo.icon]} ${areaInfo.nombre}`;
                 }
                 option.textContent = optionText;
                 option.classList.add('area-option');
-                option.style.setProperty('--area-color-option', areaInfo.color); 
-                
+                option.style.setProperty('--area-color-option', areaInfo.color);
+
                 areaFilterSelect.appendChild(option);
             }
         }
@@ -116,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     option.value = ambito;
                     option.textContent = ambito;
                     option.classList.add('ambito-option');
-                    option.style.setProperty('--ambito-color-option', ambitoColors[ambito]);
+                    option.style.setProperty('--ambito-color-option', `var(--color-ambito-${ambito.toLowerCase()})`);
                     ambitoFilterSelect.appendChild(option);
                 });
             } else {
@@ -161,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (currentFilters.ambito) {
                 const badge = document.createElement('span');
                 badge.classList.add('filter-badge', 'ambito-filter-badge');
-                badge.style.backgroundColor = ambitoColors[currentFilters.ambito];
+                badge.style.backgroundColor = ambitoColorsMap[currentFilters.ambito];
                 badge.style.color = 'white';
                 badge.innerHTML = `Ámbito: ${currentFilters.ambito} <button class="clear-filter-btn" data-filter-type="ambito">❌</button>`;
                 activeFiltersContainer.appendChild(badge);
@@ -192,7 +198,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
             infraccionDiv.classList.add('infraccion', tipoClase, modeloSancionClase);
 
-            const apartadoHtml = data.apartado && data.apartado.trim() !== '' ? ` | Apdo. ${data.apartado}` : '';
+            // --- Nueva estructura para Artículo, Apartado y Opción ---
+            let artAptoOpcHtml = '';
+            // Construcción del contenido de la píldora de Artículo/Apartado
+            let articuloAptoContent = `Art. <strong class="value">${data.articulo}</strong>`;
+            if (data.apartado && data.apartado.trim() !== '') {
+                articuloAptoContent += ` Apdo. <strong class="value">${data.apartado}</strong>`;
+            }
+            artAptoOpcHtml += `<span class="articulo-apartado-pill">${articuloAptoContent}</span>`;
+
+            // Construcción de la píldora de Opción
+            if (data.opc && data.opc.trim() !== '') {
+                artAptoOpcHtml += `<span class="opcion-pill">Opc. <strong class="value">${data.opc}</strong></span>`;
+            }
+            
             const tagsHtml = data.tags && data.tags.length > 0 ? `<div class="infraccion-tags">${data.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>` : '';
 
             let importeRowsHtml = '';
@@ -205,7 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 `;
             }
-            
+
             if (data.importe_reducido) {
                 importeRowsHtml += `
                     <div class="importe-row reducido">
@@ -226,15 +245,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const importeContainerHtml = importeRowsHtml ? `<div class="importe-container">${importeRowsHtml}</div>` : '';
 
+            const descriptionRenderedHtml = marked.parse(data.descripcion || '');
+
             infraccionDiv.innerHTML = `
                 <div class="infraccion-header">
                     <div class="circulo">${data.circulo}</div>
                     <div class="header-info">
-                        <div class="articulo-apartado">Art. ${data.articulo}${apartadoHtml}</div>
-                        <div class="norma">Norma: <strong>${data.norma}</strong></div>
+                        <div class="norma-display">Norma: <strong>${data.norma}</strong></div>
+                        <div class="art-apto-opc-group">
+                            ${artAptoOpcHtml}
+                        </div>
                     </div>
                 </div>
-                <div class="descripcion">${data.descripcion}</div>
+                <div class="descripcion">${descriptionRenderedHtml}</div>
                 ${importeContainerHtml}
                 ${tagsHtml}
             `;
@@ -247,11 +270,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const groupedData = infraccionesToDisplay.reduce((acc, infraccion) => {
                 const normaGrisKey = `${infraccion.normagris_identificador.trim()} - ${infraccion.normagris_tematica.trim()}`;
                 if (!acc[normaGrisKey]) {
-                    acc[normaGrisKey] = { 
-                        rango: infraccion.rango, 
+                    acc[normaGrisKey] = {
+                        rango: infraccion.rango,
                         ambito: infraccion.ambito,
-                        areaId: infraccion.areaId, 
-                        infracciones: [] 
+                        areaId: infraccion.areaId,
+                        infracciones: []
                     };
                 }
                 acc[normaGrisKey].infracciones.push(infraccion);
@@ -261,11 +284,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const sortedNormaGrisKeys = Object.keys(groupedData).sort((keyA, keyB) => {
                 const normaInfoA = groupedData[keyA];
                 const normaInfoB = groupedData[keyB];
-                
+
                 const indexA_ambito = settings.ambitoOrder.indexOf(normaInfoA.ambito);
                 const indexB_ambito = settings.ambitoOrder.indexOf(normaInfoB.ambito);
                 if (indexA_ambito !== indexB_ambito) return indexA_ambito - indexB_ambito;
-                
+
                 const indexA_rango = settings.rangoOrder.indexOf(normaInfoA.rango);
                 const indexB_rango = settings.rangoOrder.indexOf(normaInfoB.rango);
                 return indexA_rango - indexB_rango;
@@ -288,22 +311,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 normaMainInfo.classList.add('norma-main-info');
                 const [identificador, tematica] = normaGrisKey.split(' - ');
 
-                // --- Modificación clave aquí para la estructura del header del grupo ---
-                // Preparamos el tag de ámbito si existe
-                const ambitoTagHtml = groupInfo.ambito ? 
-                    `<span class="ambito-tag" style="background-color: ${ambitoColors[groupInfo.ambito] || 'transparent'}; color: white;">${groupInfo.ambito}</span>` : '';
-                
-                // Construimos la línea donde irá la temática y el identificador
-                // Usamos un flex-container interno para alinear el tag y el identificador
+                const ambitoTagHtml = groupInfo.ambito ?
+                    `<span class="ambito-tag" style="background-color: ${ambitoColorsMap[groupInfo.ambito] || 'transparent'}; color: white;">${groupInfo.ambito}</span>` : '';
+
+                const showSeparator = groupInfo.ambito && identificador;
+                const separatorHtml = showSeparator ? '<span class="separator">|</span>' : '';
+
                 normaMainInfo.innerHTML = `
                     <span class="normagris-tematica">${tematica || ''}</span>
                     <div class="identificador-and-ambito">
                         ${ambitoTagHtml}
-                        ${groupInfo.ambito && identificador ? '<span class="separator">|</span>' : ''}
+                        ${separatorHtml}
                         <span class="normagris-identificador">${identificador}</span>
                     </div>
                 `;
-                // Eliminado el <br> anterior y se usan flexbox para organizar
                 groupHeader.appendChild(normaMainInfo);
 
                 const areaInfo = grandesAreas[groupInfo.areaId];
@@ -319,11 +340,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (areaInfo.icon) {
                         const areaIconDiv = document.createElement('div');
                         areaIconDiv.className = `area-group-icon icon-${areaInfo.icon}`;
-                        areaIconDiv.dataset.icon = areaInfo.icon; 
+                        areaIconDiv.dataset.icon = areaInfo.icon;
                         groupHeader.appendChild(areaIconDiv);
                     }
                 }
-                
+
                 groupDiv.appendChild(groupHeader);
 
                 const severityFilterBar = document.createElement('div');
@@ -337,19 +358,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const infractionsContent = document.createElement('div');
                 infractionsContent.classList.add('infracciones-content');
-                
+
                 groupInfo.infracciones.sort((a, b) => {
                     const artA = parseInt(a.articulo, 10);
                     const artB = parseInt(b.articulo, 10);
                     if (artA !== artB) return artA - artB;
                     const aptoNumA = parseInt(a.apartado, 10) || 0;
                     const aptoNumB = parseInt(b.apartado, 10) || 0;
-                    return aptoNumA - aptoNumB;
+                    const opcA = a.opc || '';
+                    const opcB = b.opc || '';
+                    return aptoNumA - aptoNumB || opcA.localeCompare(opcB);
                 }).forEach(infraccionData => {
                     const infraccionElement = createInfraccionElement(infraccionData);
                     infractionsContent.appendChild(infraccionElement);
                 });
-                
+
                 groupDiv.appendChild(infractionsContent);
 
                 groupHeader.addEventListener('click', () => {
@@ -362,13 +385,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         infractionsContent.querySelectorAll('.infraccion').forEach(inf => inf.style.display = '');
                     }
                 });
-                
+
                 severityFilterBar.querySelectorAll('.severity-btn').forEach(btn => {
                     btn.addEventListener('click', (e) => {
                         e.stopPropagation();
                         const clickedButton = e.currentTarget;
                         const severityToFilter = clickedButton.dataset.severity;
-                        
+
                         if (clickedButton.classList.contains('active')) {
                             clickedButton.classList.remove('active');
                             infractionsContent.querySelectorAll('.infraccion').forEach(inf => inf.style.display = '');
@@ -387,7 +410,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 groupedInfraccionesContainer.appendChild(groupDiv);
             });
         }
-        
+
         function applyFilters() {
             currentFilters.searchTerm = searchInput.value.toLowerCase().trim();
             currentFilters.areaId = areaFilterSelect.value;
@@ -397,11 +420,12 @@ document.addEventListener('DOMContentLoaded', () => {
             renderActiveFilters();
 
             const filteredInfracciones = allInfraccionesData.filter(infraccion => {
-                const matchesSearch = !currentFilters.searchTerm || 
+                const matchesSearch = !currentFilters.searchTerm ||
                     infraccion.descripcion.toLowerCase().includes(currentFilters.searchTerm) ||
                     infraccion.norma.toLowerCase().includes(currentFilters.searchTerm) ||
                     infraccion.articulo.includes(currentFilters.searchTerm) ||
-                    (infraccion.apartado && infraccion.apartado.includes(currentFilters.searchTerm)) || 
+                    (infraccion.apartado && infraccion.apartado.toLowerCase().includes(currentFilters.searchTerm)) ||
+                    (infraccion.opc && infraccion.opc.toLowerCase().includes(currentFilters.searchTerm)) ||
                     (infraccion.tags && infraccion.tags.some(tag => tag.toLowerCase().includes(currentFilters.searchTerm))) ||
                     infraccion.normagris_identificador.toLowerCase().includes(currentFilters.searchTerm) ||
                     infraccion.normagris_tematica.toLowerCase().includes(currentFilters.searchTerm);
@@ -412,7 +436,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 return matchesSearch && matchesArea && matchesRango && matchesAmbito;
             });
-            
+
             renderGroupedInfracciones(filteredInfracciones);
         }
 
@@ -432,33 +456,52 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
-    }
 
-    const sidebar = document.querySelector('.sidebar');
-    const toggleSidebarBtn = document.getElementById('toggleSidebarBtn');
-    const closeSidebarBtn = document.getElementById('closeSidebarBtn');
-    const scrollTopBtn = document.getElementById('scrollTopBtn');
+        const floatingActionButtonsContainer = document.querySelector('.floating-action-buttons');
 
-    if (toggleSidebarBtn && sidebar) {
-        toggleSidebarBtn.addEventListener('click', () => {
-            sidebar.classList.toggle('open');
-        });
-    }
+        function updateFABVisibility() {
+            if (sidebar.classList.contains('open')) {
+                floatingActionButtonsContainer.style.display = 'none';
+            } else {
+                floatingActionButtonsContainer.style.display = 'flex';
+            }
+        }
 
-    if (closeSidebarBtn && sidebar) {
-        closeSidebarBtn.addEventListener('click', () => {
-            sidebar.classList.remove('open');
-        });
-    }
+        if (toggleSidebarBtn && sidebar) {
+            toggleSidebarBtn.addEventListener('click', () => {
+                sidebar.classList.toggle('open');
+                updateFABVisibility();
+            });
+        }
 
-    if (scrollTopBtn) {
-        window.addEventListener('scroll', () => {
-            const scrolledEnough = window.scrollY > window.innerHeight / 2;
-            scrollTopBtn.classList.toggle('hidden', !scrolledEnough);
-        });
+        if (closeSidebarBtn && sidebar) {
+            closeSidebarBtn.addEventListener('click', () => {
+                sidebar.classList.remove('open');
+                updateFABVisibility();
+            });
+        }
 
-        scrollTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+        if (scrollTopBtn) {
+            window.addEventListener('scroll', () => {
+                if (!sidebar.classList.contains('open')) {
+                    const scrolledEnough = window.scrollY > window.innerHeight / 2;
+                    scrollTopBtn.classList.toggle('hidden', !scrolledEnough);
+                } else {
+                    scrollTopBtn.classList.add('hidden');
+                }
+            });
+
+            scrollTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+
+        if (showSearchBtn) {
+            showSearchBtn.addEventListener('click', () => {
+                console.log('Botón "Mostrar filtros y título" clicado. Su funcionalidad es opcional aquí.');
+            });
+        }
+
+        updateFABVisibility();
     }
 });
