@@ -35,10 +35,11 @@ body {
     color: var(--color-light-text);
     line-height: 1.6;
     padding: 0;
+    font-size: 1.05rem; /* Ligeramente más grande para el texto base de la web */
 }
 
 h1 {
-    font-size: 1.75rem;
+    font-size: 2rem; /* Más grande para el título principal */
     margin: 1.5rem 0 0.5rem 0;
     color: var(--color-accent-primary);
     text-align: center;
@@ -71,13 +72,12 @@ h1 {
 }
 
 .landing-container h1 {
-    color: var(--color-accent-primary);
-    font-size: 2.5rem;
+    font-size: 3rem; /* Más grande para el h1 de la landing */
     margin-bottom: 1rem;
 }
 
 .landing-container p {
-    font-size: 1.1rem;
+    font-size: 1.25rem; /* Más grande para el párrafo de la landing */
     color: var(--color-light-text);
     margin-bottom: 2rem;
 }
@@ -91,7 +91,7 @@ h1 {
 
 .access-button {
     padding: 1rem 2rem;
-    font-size: 1.2rem;
+    font-size: 1.3rem; /* Más grande para los botones de acceso */
     font-weight: bold;
     color: var(--color-dark-bg);
     background-color: var(--color-accent-green);
@@ -125,10 +125,10 @@ h1 {
 }
 .buscador {
     width: 100%;
-    padding: 0.6rem 1.25rem;
+    padding: 0.75rem 1.25rem; /* Ligeramente más grande */
     border: 1px solid var(--color-mid-blue);
     border-radius: var(--border-radius-md);
-    font-size: 1rem;
+    font-size: 1.1rem; /* Más grande */
     background-color: var(--color-mid-blue);
     color: var(--color-light-text);
     padding-right: 2.5rem;
@@ -150,7 +150,7 @@ h1 {
     color: var(--color-light-text);
     padding: 0.4rem 0.75rem;
     border-radius: var(--border-radius-md);
-    font-size: 0.9rem;
+    font-size: 1rem; /* Ligeramente más grande */
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -264,7 +264,7 @@ main.infracciones-agrupadas {
 .infraccion-group-header {
     background-color: var(--color-mid-blue);
     padding: var(--spacing-unit) 1.5rem;
-    font-size: 1.4rem;
+    font-size: 1.55rem; /* Ligeramente más grande */
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -295,7 +295,7 @@ main.infracciones-agrupadas {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.85rem;
+    font-size: 0.95rem; /* Más grande */
     color: var(--color-muted-text);
     flex-wrap: wrap;
     line-height: 1.2;
@@ -344,7 +344,7 @@ main.infracciones-agrupadas {
 .infraccion {
     background-color: #354656;
     border-radius: var(--border-radius-md);
-    padding: 1rem 1.5rem;
+    padding: 1.25rem 1.5rem; /* Ligeramente más padding */
     margin-bottom: 0.75rem;
     border-left: 8px solid var(--color-accent-red);
     cursor: pointer;
@@ -370,12 +370,12 @@ main.infracciones-agrupadas {
 
 .infraccion .circulo {
     flex-shrink: 0;
-    width: 36px;
-    height: 36px;
+    width: 40px; /* Ligeramente más grande */
+    height: 40px; /* Ligeramente más grande */
     border-radius: 50%;
     color: white;
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1.3rem; /* Más grande */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -383,7 +383,7 @@ main.infracciones-agrupadas {
 
 .header-info {
     display: flex;
-    flex-direction: column; /* Apila los elementos verticalmente (Norma, y Art/Apdo/Opc) */
+    flex-direction: column;
     flex-grow: 1;
     min-width: 0;
     white-space: normal;
@@ -393,7 +393,7 @@ main.infracciones-agrupadas {
 
 /* Estilo para la línea de la Norma */
 .norma-display {
-    font-size: 0.9rem;
+    font-size: 1rem; /* Más grande */
     color: var(--color-muted-text);
     margin-bottom: 0.2rem;
     white-space: nowrap;
@@ -410,45 +410,45 @@ main.infracciones-agrupadas {
 .art-apto-opc-group {
     display: flex;
     align-items: center;
-    flex-wrap: wrap; /* Permitir que las píldoras salten de línea si no hay espacio */
-    gap: 0.5rem; /* Espacio entre las píldoras/segmentos */
+    flex-wrap: wrap;
+    gap: 0.6rem; /* Más espacio entre píldoras */
     margin-bottom: 0.1rem;
     line-height: 1.2;
     min-width: 0;
 }
 
-/* Estilo base para todos los segmentos de Artículo, Apartado, Opción */
+/* Estilo base para todas las píldoras de Art/Apdo/Opc */
 .articulo-apartado-pill, .opcion-pill {
-    display: inline-flex; /* Usar inline-flex para píldora en línea */
-    align-items: baseline; /* Alinea el texto base y el valor si son de distinto tamaño */
-    gap: 0.25em; /* Espacio entre el label (Art./Apdo./Opc.) y el valor */
-    padding: 0.3rem 0.6rem;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.3em; /* Más espacio entre label y valor */
+    padding: 0.4rem 0.8rem; /* Más padding */
     border-radius: var(--border-radius-md);
     white-space: nowrap;
     flex-shrink: 0;
-    font-size: 0.95rem; /* Tamaño base para las píldoras */
+    font-size: 1.05rem; /* Tamaño base un poco más grande */
 }
 
 /* Estilo específico para la píldora de Artículo/Apartado unificada */
 .articulo-apartado-pill {
-    background-color: var(--color-accent-primary); /* Fondo llamativo (azul principal) */
-    color: var(--color-dark-bg); /* ¡Texto "Art." y "Apdo." en color oscuro para contraste! */
+    background-color: var(--color-accent-primary);
+    color: var(--color-dark-bg); /* Texto "Art." y "Apdo." en color oscuro */
 }
-.articulo-apartado-pill .value { /* El número del artículo/apartado */
-    font-size: 1.2em; /* Más grande que el "Art."/"Apdo." */
+.articulo-apartado-pill .value {
+    font-size: 1.3em; /* Más grande y negrita */
     font-weight: bold;
-    color: white; /* ¡Cambiado a blanco para los números! */
+    color: white; /* Números en blanco */
 }
 
 /* Estilo específico para la Opción */
 .opcion-pill {
-    background-color: var(--color-accent-green); /* Color distintivo (verde) */
-    color: var(--color-dark-bg); /* ¡Texto "Opc." en color oscuro para contraste! */
+    background-color: var(--color-accent-green);
+    color: var(--color-dark-bg); /* Texto "Opc." en color oscuro */
 }
-.opcion-pill .value { /* El valor de la opción */
-    font-size: 1.2em; /* Igual de grande que los números de Art/Apdo */
+.opcion-pill .value {
+    font-size: 1.3em; /* Igual que los números de Art/Apdo */
     font-weight: bold;
-    color: white; /* ¡Cambiado a blanco para el valor de la opción! */
+    color: white; /* Valor de la opción en blanco */
 }
 
 
@@ -521,28 +521,27 @@ main.infracciones-agrupadas {
     font-weight: 600;
 }
 
-/* Estilos para el contenido de la descripción generado por Markdown */
 .descripcion {
     margin-top: 0;
-    line-height: 1.5;
-    font-size: 0.95rem;
+    line-height: 1.6; /* Ligeramente más espaciado para la descripción */
+    font-size: 1.05rem; /* Más grande */
     color: var(--color-light-text);
 }
 
 .descripcion p {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+    margin-top: 0.75rem; /* Más margen */
+    margin-bottom: 0.75rem;
 }
 
 .descripcion ul, .descripcion ol {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    padding-left: 1.5rem;
+    margin-top: 0.75rem; /* Más margen */
+    margin-bottom: 0.75rem;
+    padding-left: 1.8rem; /* Más indentación */
     color: var(--color-light-text);
 }
 
 .descripcion li {
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.35rem; /* Más espacio entre items de lista */
     color: var(--color-light-text);
 }
 
@@ -586,7 +585,7 @@ main.infracciones-agrupadas {
 .sidebar-content h2 {
     margin-top: 0;
     color: var(--color-accent-primary);
-    font-size: 1.5rem;
+    font-size: 1.6rem; /* Más grande */
     margin-bottom: 1.5rem;
     flex-shrink: 0;
 }
@@ -596,13 +595,14 @@ main.infracciones-agrupadas {
     background-color: var(--color-mid-blue);
     color: var(--color-light-text);
     border: none;
-    padding: 0.5rem 1rem;
+    padding: 0.6rem 1.1rem; /* Más grande */
     border-radius: var(--border-radius-md);
     cursor: pointer;
     margin-top: 0.5rem;
     margin-bottom: 1.5rem;
     flex-shrink: 0;
     align-self: flex-start;
+    font-size: 1rem; /* Asegura un tamaño legible */
 }
 #closeSidebarBtn:hover {
     background-color: var(--color-accent-red);
@@ -617,17 +617,17 @@ main.infracciones-agrupadas {
     flex-shrink: 0;
 }
 .filter-option-group label {
-    font-size: 0.9rem;
+    font-size: 1rem; /* Más grande */
     color: var(--color-muted-text);
     margin-bottom: 0.2rem;
 }
 
 .custom-select {
     width: 100%;
-    padding: 0.6rem 1rem;
+    padding: 0.7rem 1rem; /* Más grande */
     border: 1px solid var(--color-mid-blue);
     border-radius: var(--border-radius-md);
-    font-size: 1rem;
+    font-size: 1.1rem; /* Más grande */
     background-color: var(--color-mid-blue);
     color: var(--color-light-text);
     -webkit-appearance: none;
@@ -670,7 +670,7 @@ footer {
     text-align: center;
     padding: 1rem 0;
     margin-top: 2rem;
-    font-size: 0.8rem;
+    font-size: 0.9rem; /* Ligeramente más grande */
     color: var(--color-muted-text);
 }
 
@@ -681,7 +681,7 @@ footer {
     background-color: var(--area-color);
     color: #fff;
     padding: 0.1rem 0.8rem;
-    font-size: 0.75rem;
+    font-size: 0.8rem; /* Ligeramente más grande */
     font-weight: bold;
     border-bottom-left-radius: var(--border-radius-md);
     text-transform: uppercase;
@@ -703,7 +703,7 @@ footer {
     justify-content: center;
     height: 80%;
     color: var(--area-color);
-    font-size: 30px;
+    font-size: 32px; /* Ligeramente más grande */
     filter: brightness(1.5);
 }
 
@@ -724,12 +724,12 @@ footer {
     color: var(--color-light-text);
     border: none;
     border-radius: 50%;
-    width: 56px;
-    height: 56px;
+    width: 58px; /* Ligeramente más grande */
+    height: 58px; /* Ligeramente más grande */
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
+    font-size: 1.6rem; /* Más grande */
     cursor: pointer;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
     transition: background-color 0.3s ease, transform 0.2s ease;
@@ -748,38 +748,58 @@ footer {
 }
 
 @media (max-width: 768px) {
-    main.infracciones-agrupadas {
-        padding: var(--spacing-unit);
+    body {
+        font-size: 1rem; /* Vuelve al tamaño base para móviles */
     }
-    .infraccion-group-header, .infraccion {
-        min-width: unset;
+    h1 {
+        font-size: 1.75rem; /* Tamaño original de móvil */
+    }
+    .landing-container h1 {
+        font-size: 2.5rem;
+    }
+    .landing-container p {
+        font-size: 1.1rem;
+    }
+    .access-button {
+        font-size: 1.2rem;
+    }
+    .buscador {
+        padding: 0.6rem 1.25rem;
+        font-size: 1rem;
+    }
+    .active-filters-container {
+        font-size: 0.9rem;
+    }
+    .filter-badge {
+        font-size: 0.9rem;
     }
     .infraccion-group-header {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
         padding: 1rem;
     }
     .infraccion {
         padding: 0.8rem 1rem;
     }
     .infraccion .circulo {
-        width: 32px;
-        height: 32px;
-        font-size: 1rem;
+        width: 36px;
+        height: 36px;
+        font-size: 1.2rem;
     }
-    .infraccion .header-info {
-        white-space: normal;
-        overflow: visible;
-        text-overflow: clip;
+    .infraccion .normagris-tematica {
+        font-size: 1.4rem;
+    }
+    .norma-display {
+        font-size: 0.9rem;
     }
     .art-apto-opc-group {
         gap: 0.4rem;
     }
     .articulo-apartado-pill, .opcion-pill {
-        font-size: 0.9rem; /* Reducir en móviles */
+        font-size: 0.95rem; /* Mantener tamaño original de móvil */
         padding: 0.25rem 0.5rem;
     }
     .articulo-apartado-pill .value, .opcion-pill .value {
-        font-size: 1em; /* Ajustar el tamaño del valor relativo al padre */
+        font-size: 1.2em; /* Mantener tamaño original de móvil */
     }
     .importe-container {
         flex-direction: row;
@@ -804,6 +824,23 @@ footer {
     .sidebar {
         width: 250px;
     }
+    .sidebar-content h2 {
+        font-size: 1.5rem;
+    }
+    #closeSidebarBtn {
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+    }
+    .filter-option-group label {
+        font-size: 0.9rem;
+    }
+    .custom-select {
+        padding: 0.6rem 1rem;
+        font-size: 1rem;
+    }
+    footer {
+        font-size: 0.8rem;
+    }
     .floating-action-buttons {
         bottom: 1rem;
         left: 1rem;
@@ -817,7 +854,7 @@ footer {
 }
 
 @media (max-width: 480px) {
-    .infraccion .articulo-apartado { /* Ya no usado, ahora es .art-apto-opc-group */
+    .infraccion .articulo-apartado {
         font-size: 1.1rem;
     }
     .infraccion .normagris-tematica {
