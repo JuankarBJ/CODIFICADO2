@@ -7,9 +7,10 @@
     --color-card-bg: #2b3a4a; /* Fondo para tarjetas y secciones generales */
     --color-mid-blue: #40566b;
     --color-light-blue: #6c839a;
+    --color-infraccion: #212931;
 
     /* Nuevo: Color de fondo para la sección de la descripción (ligeramente diferente) */
-    --color-description-bg: #3d4e5e; /* Ligeramente más claro que --color-card-bg para contraste sutil */
+    --color-description-bg: #293642; /* Ligeramente más claro que --color-card-bg para contraste sutil */
 
     /* Colores de Texto */
     --color-light-text: #e8f0f7; /* Texto principal claro */
@@ -120,6 +121,82 @@ h1 {
 
 .access-button:hover {
     background-color: #26897e;
+}
+/* =========================================================
+   4.1. SECCIÓN DE ÁREAS EN LA PÁGINA DE INICIO (areas-section)
+   ========================================================= */
+.areas-section {
+    margin-top: 3rem; /* Espacio para separar de los botones de acceso */
+    padding-top: 2rem; /* Padding superior */
+    border-top: 1px solid var(--color-mid-blue); /* Separador visual */
+}
+.areas-section h2 {
+    font-size: 2rem;
+    color: var(--color-accent-primary);
+    margin-bottom: 2rem;
+}
+.areas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Columnas responsivas */
+    gap: 1.5rem; /* Espacio entre tarjetas */
+    justify-content: center; /* Centrar las tarjetas si no llenan la cuadrícula */
+}
+.area-card {
+    background-color: var(--area-card-color); /* ¡Color de fondo inyectado por JS! */
+    color: white; /* Texto blanco por defecto para buen contraste */
+    padding: 1.5rem 1rem;
+    border-radius: var(--border-radius-md); /* Bordes redondeados */
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column; /* Apila icono y nombre */
+    align-items: center; /* Centra horizontalmente */
+    justify-content: center; /* Centra verticalmente */
+    min-height: 150px; /* Altura mínima para tarjetas */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidad */
+}
+.area-card:hover {
+    transform: translateY(-5px); /* Efecto de elevación al pasar el ratón */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+}
+.area-card .icon { /* Estilo para el icono (emoji) dentro de la tarjeta */
+    font-size: 3.5rem; /* Tamaño grande para el icono */
+    margin-bottom: 0.5rem;
+    line-height: 1; /* Asegurar que no haya espacio extra */
+}
+.area-card .name { /* Estilo para el nombre del área */
+    font-size: 1.25rem;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+/* ----------------------------------------------------------------------------------
+   Ajuste para móviles: Separación entre el grupo de botones de acceso y la sección de áreas
+   Si necesitas más espacio en móvil, puedes ajustar esto en tu media query @media (max-width: 768px)
+   en la regla .access-button-group
+   ----------------------------------------------------------------------------------
+*/
+@media (max-width: 768px) {
+    .areas-grid {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Reducir min-width de columnas en móviles */
+        gap: 1rem; /* Reducir gap en móviles */
+    }
+    .area-card {
+        padding: 1rem 0.5rem; /* Menos padding en móviles */
+        min-height: 120px;
+    }
+    .area-card .icon {
+        font-size: 3rem; /* Icono un poco más pequeño en móviles */
+    }
+    .area-card .name {
+        font-size: 1rem; /* Nombre un poco más pequeño en móviles */
+    }
+
+    /* Añade o ajusta este margen si ves que la sección de áreas está muy pegada en móvil */
+    .landing-container .access-button-group {
+        margin-bottom: 2rem; 
+    }
 }
 
 /* =========================================================
@@ -238,7 +315,7 @@ main.infracciones-agrupadas {
 
 .infraccion-group {
     margin-bottom: 1.5rem;
-    background-color: #0c1a24;
+    background-color: var(--color-card-bg);
     border-radius: var(--border-radius-lg);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     overflow: hidden; /* Asegura que el contenido redondeado no se desborde */
@@ -354,10 +431,7 @@ main.infracciones-agrupadas {
     transition: max-height 0.5s ease-out;
     padding: 0; /* Padding se maneja dentro de infraccion-header, descripcion, importe-container */
 }
-.infraccion-group.open .infracciones-content {
-    /* max-height se ajusta en JS */
-    /* Padding interno no aquí, ya que cada sección de infracción lo tiene */
-}
+
 
 /* Barra de filtros de gravedad dentro del grupo */
 .severity-filter-bar {
@@ -388,7 +462,7 @@ main.infracciones-agrupadas {
    8. TARJETA DE INFRACCIÓN INDIVIDUAL (infraccion) - Rediseño Visual
    ========================================================= */
 .infraccion {
-    background-color: var(--color-card-bg); /* Fondo de la tarjeta principal (coincide con header y importes) */
+    background-color: var(--color-infraccion); /* Fondo de la tarjeta principal (coincide con header y importes) */
     border-radius: var(--border-radius-md);
     padding: 0; /* Padding se mueve a las sub-secciones */
     margin-bottom: 0.75rem;
@@ -412,7 +486,7 @@ main.infracciones-agrupadas {
 
 /* Contenedor del header de la infracción (Círculo, Norma, Art/Apdo/Opc) */
 .infraccion-header {
-    background-color: var(--color-card-bg); /* Mismo fondo que la tarjeta principal */
+    background-color: var(--color-infraccion); /* Mismo fondo que la tarjeta principal */
     padding: 1.25rem 1.5rem; /* Padding interno */
     display: flex;
     align-items: center;
@@ -509,15 +583,15 @@ main.infracciones-agrupadas {
 .importe-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem;
+    gap: 0.25rem;
     justify-content: flex-start;
     margin-top: 0; /* Elimina margen superior para pegar a la descripción */
-    padding-top: 0.75rem;
+    padding-top: 0.5rem;
     border-top: 1px dashed var(--color-mid-blue); /* Separador visual */
     padding-left: 1.5rem; /* Asegurar padding izquierdo */
     padding-right: 1.5rem; /* Asegurar padding derecho */
-    padding-bottom: 1.25rem; /* Padding inferior de la tarjeta */
-    background-color: var(--color-card-bg); /* Mismo color que la tarjeta principal y header */
+    padding-bottom: 0.5rem; /* Padding inferior de la tarjeta */
+    background-color: var(--color-infraccion); /* Mismo color que la tarjeta principal y header */
 }
 
 .importe-row {
@@ -533,7 +607,7 @@ main.infracciones-agrupadas {
 /* Colores de fondo para las píldoras de importe */
 .importe-row.importe-principal { background-color: var(--color-accent-red); }
 .importe-row.reducido { background-color: var(--color-accent-yellow); }
-.importe-row.puntos { background-color: var(--color-points); }
+.importe-row.puntos { background-color: var(--color-points); padding: 0.3rem 0.6rem; }
 /* Asegurar el color del texto para los puntos sobre su fondo azul */
 .importe-row.puntos { color: var(--color-dark-bg); }
 

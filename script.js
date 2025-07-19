@@ -3,8 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let allInfraccionesData = []; // Contendrá todas las infracciones cargadas del database.json
     let allGrandesAreas = {};
     let allSettings = {};
-    // originalGroupedInfraccionesData se construye en el .then() inicial, no necesita ser global aquí
-    let originalGroupedInfraccionesData = {}; 
+    let originalGroupedInfraccionesData = {}; // Para almacenar el total de infracciones por grupo sin filtrar
 
     let currentFilters = {
         searchTerm: '',
@@ -29,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.json();
         })
         .then(data => {
-            // Aplanar la estructura de las infracciones y añadir propiedades de la norma padre
+            // Aplanar la estructura de las normas y sus infracciones
             allInfraccionesData = data.normas.flatMap(norma =>
                 norma.infracciones.map(infraccion => ({
                     ...infraccion,
@@ -38,7 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     rango: norma.rango,
                     ambito: norma.ambito,
                     areaId: norma.areaId,
-                    modelo_sancion: norma.modelo_sancion
+                    modelo_sancion: norma.modelo_sancion,
+                    // Asegurar que el campo 'norma' dentro de infracción también está presente
+                    norma: infraccion.norma || norma.identificador // Prioriza 'norma' si existe en la infracción, sino usa identificador de la norma padre
                 }))
             );
 
@@ -140,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Rellenar el select de ámbitos
         function populateAmbitoFilter() {
-            if (ambitoFilterSelect) {
+            if (ambitoFilterSelect) { // Asegurarse de que el elemento existe
                 ambitoFilterSelect.innerHTML = '<option value="">Todos los Ámbitos</option>';
                 settings.ambitoOrder.forEach(ambito => {
                     const option = document.createElement('option');
@@ -160,8 +161,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Renderizar los badges de filtros activos
         function renderActiveFilters() {
-            activeFiltersContainer.innerHTML = '';
+            activeFiltersContainer.innerHTML = ''; // Limpiar el contenedor de badges
 
+            // Badge de búsqueda por texto
             if (currentFilters.searchTerm) {
                 const badge = document.createElement('span');
                 badge.classList.add('filter-badge', 'text-filter-badge');
@@ -169,6 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 activeFiltersContainer.appendChild(badge);
             }
 
+            // Badge de filtro por área
             if (currentFilters.areaId) {
                 const areaInfo = grandesAreas[currentFilters.areaId];
                 if (areaInfo) {
@@ -184,6 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
+            // Badge de filtro por rango
             if (currentFilters.rango) {
                 const badge = document.createElement('span');
                 badge.classList.add('filter-badge', 'rango-filter-badge');
@@ -191,6 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 activeFiltersContainer.appendChild(badge);
             }
 
+            // Badge de filtro por ámbito
             if (currentFilters.ambito) {
                 const badge = document.createElement('span');
                 badge.classList.add('filter-badge', 'ambito-filter-badge');
@@ -304,8 +309,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const groupedData = infraccionesToDisplay.reduce((acc, infraccion) => {
                 const normaGrisKey = `${infraccion.normagris_identificador.trim()} - ${infraccion.normagris_tematica.trim()}`;
                 if (!acc[normaGrisKey]) {
-                    // Encontrar la meta original para obtener totalInfracciones
-                    // (allInfraccionesData ya tiene la información de 'norma', no necesitamos 'normasMetadata' aquí si el total ya está en originalGroupedInfraccionesData)
                     acc[normaGrisKey] = {
                         infracciones: [] // Estas son las infracciones *filtradas globalmente* para este grupo
                     };
@@ -332,7 +335,8 @@ document.addEventListener('DOMContentLoaded', () => {
             // Renderiza cada grupo de infracciones
             sortedNormaGrisKeys.forEach(normaGrisKey => {
                 const groupInfo = groupedData[normaGrisKey]; // Contiene las infracciones *filtradas globalmente*
-                const totalInfraccionesGrupoOriginal = originalGroupedInfraccionesData[normaGrisKey]?.totalInfracciones || 0; // Obtener total original sin filtrar
+                // Obtener total original sin filtrar para el contador del grupo
+                const totalInfraccionesGrupoOriginal = originalGroupedInfraccionesData[normaGrisKey]?.totalInfracciones || 0; 
                 const infraccionesVisiblesGlobalmenteEnGrupo = groupInfo.infracciones.length; // Coincidencias tras filtros globales
 
                 const groupDiv = document.createElement('div');
@@ -390,11 +394,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
 
-                // El contador de infracciones
+                // El contador de infracciones del grupo
                 const infraccionCounter = document.createElement('span');
                 infraccionCounter.classList.add('infraccion-count');
                 infraccionCounter.textContent = `${infraccionesVisiblesGlobalmenteEnGrupo} / ${totalInfraccionesGrupoOriginal}`;
-                // Guardar el total original en dataset para fácil acceso en filtrado interno
                 infraccionCounter.dataset.totalCount = totalInfraccionesGrupoOriginal; 
                 groupHeader.appendChild(infraccionCounter);
 
@@ -434,7 +437,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 groupHeader.addEventListener('click', () => {
                     groupDiv.classList.toggle('open');
                     if (groupDiv.classList.contains('open')) {
-                        // Recalcular scrollHeight dinámicamente al abrir
                         infractionsContent.style.maxHeight = `${infractionsContent.scrollHeight}px`;
                     } else {
                         infractionsContent.style.maxHeight = null;
@@ -449,11 +451,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Función para configurar el filtro de gravedad de un grupo
                 function setupSeverityFilter(severityBar, infractionsContainer, counterElement) {
                     severityBar.querySelectorAll('.severity-btn').forEach(btn => {
-                        // Usar addEventListener para permitir múltiples llamadas si el grupo se re-renderiza.
-                        // Limpiar previamente listeners antiguos si el elemento se crea de nuevo cada vez.
-                        // Como en este modelo los grupos no se recrean, addEventListener está bien.
                         btn.addEventListener('click', (e) => { 
-                            e.stopPropagation(); // Evita que el clic en el botón de gravedad cierre el grupo
+                            e.stopPropagation(); 
                             const clickedButton = e.currentTarget;
                             const severityToFilter = clickedButton.dataset.severity;
                             
@@ -462,8 +461,9 @@ document.addEventListener('DOMContentLoaded', () => {
                             // Si ya está activo, desactiva y muestra todas las infracciones visibles por filtro global
                             if (clickedButton.classList.contains('active')) {
                                 clickedButton.classList.remove('active');
+                                // Contamos las que ya estaban visibles antes de este filtro de gravedad
                                 infractionsContainer.querySelectorAll('.infraccion').forEach(inf => {
-                                    inf.style.display = ''; // Mostrar todas las que ya estaban en el DOM del grupo
+                                    inf.style.display = ''; 
                                     currentVisibleCount++;
                                 });
                             } else {
@@ -509,7 +509,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             renderActiveFilters(); // Muestra los badges de filtros activos
 
-            // Filtrar sobre el array completo de infracciones (allInfraccionesData)
+            // Filtrar sobre el array completo de infracciones (totalInfraccionesData)
             const filteredInfracciones = totalInfraccionesData.filter(infraccion => {
                 // Búsqueda por texto en múltiples campos
                 const matchesSearch = !currentFilters.searchTerm ||
@@ -535,6 +535,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Inicializar filtros al cargar la página
+        // Comprobar si hay un filtro de área inicial de la página de inicio (desde sessionStorage)
+        const initialAreaFilter = sessionStorage.getItem('initialAreaFilter');
+        if (initialAreaFilter) {
+            currentFilters.areaId = initialAreaFilter; // Establecer el filtro actual
+            areaFilterSelect.value = initialAreaFilter; // Seleccionar la opción en el dropdown
+            sessionStorage.removeItem('initialAreaFilter'); // Limpiar para que no se aplique de nuevo en futuras cargas
+        }
         applyFilters(); 
 
         // Event Listeners para los elementos de filtro
