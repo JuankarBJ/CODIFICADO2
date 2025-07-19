@@ -7,7 +7,7 @@
     --color-card-bg: #2b3a4a; /* Fondo para tarjetas y secciones generales */
     --color-mid-blue: #40566b;
     --color-light-blue: #6c839a;
-    --color-infraccion: #212931;
+    --color-infraccion: #1a2531;
 
     /* Nuevo: Color de fondo para la sección de la descripción (ligeramente diferente) */
     --color-description-bg: #293642; /* Ligeramente más claro que --color-card-bg para contraste sutil */
@@ -317,7 +317,7 @@ main.infracciones-agrupadas {
 
 .infraccion-group {
     margin-bottom: 1.5rem;
-    background-color: var(--color-card-bg);
+    background-color: #404753;
     border-radius: var(--border-radius-lg);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     overflow: hidden; /* Asegura que el contenido redondeado no se desborde */
@@ -467,8 +467,11 @@ main.infracciones-agrupadas {
     background-color: var(--color-infraccion); /* Fondo de la tarjeta principal (coincide con header y importes) */
     border-radius: var(--border-radius-md);
     padding: 0; /* Padding se mueve a las sub-secciones */
-    margin-bottom: 0.75rem;
-    border-left: 8px solid var(--color-accent-red); /* Indicador de gravedad */
+    margin-bottom: 0.5rem;
+    border: 5px solid var(--color-accent-red);
+    border-bottom: 0px;
+    border-right: 0px;
+    /* Indicador de gravedad */
     cursor: pointer;
     color: var(--color-light-text);
     display: flex;
@@ -479,8 +482,8 @@ main.infracciones-agrupadas {
 .infraccion:last-child { margin-bottom: 0; }
 
 /* Colores del borde de gravedad */
-.infraccion.media { border-left-color: var(--color-accent-yellow); }
-.infraccion.leve { border-left-color: var(--color-accent-green); }
+.infraccion.media { border-color: var(--color-accent-yellow);  }
+.infraccion.leve { border-color: var(--color-accent-green); }
 /* Círculo de gravedad */
 .infraccion.grave .circulo { background-color: var(--color-accent-red); }
 .infraccion.media .circulo { background-color: var(--color-accent-yellow); }
@@ -526,6 +529,7 @@ main.infracciones-agrupadas {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    
 }
 .norma-display strong {
     color: var(--color-light-text);
@@ -563,8 +567,8 @@ main.infracciones-agrupadas {
     color: var(--color-light-text); /* Texto "Art." y "Apdo." en color oscuro */
 }
 .articulo-apartado-pill .value {
-    font-size: 1.5em;
-    font-weight: bold;
+    font-size: 1.2em;
+   
     color: var(--color-accent-art); /* Números en blanco */
 }
 
@@ -577,7 +581,7 @@ main.infracciones-agrupadas {
 }
 .opcion-pill .value {
     font-size: 1.2em;
-    font-weight: bold;
+    
     color: var(--color-accent-green); /* Valor de la opción en blanco */
 }
 
@@ -620,8 +624,8 @@ main.infracciones-agrupadas {
 
 /* Estilos generales para las cifras clave (los valores dentro de las píldoras) */
 .importe, .importe-reducido, .puntos {
-    font-weight: bold;
-    font-size: 0.9rem;
+    
+    font-size: 1.2rem;
     color: inherit; /* Hereda el color de texto del contenedor .importe-row */
     background-color: transparent;
     padding: 0;
