@@ -22,7 +22,9 @@
     --color-accent-yellow: #f4a261; /* Amarillo (media) */
     --color-accent-green: #2a9d8f;  /* Verde (leve) */
     --color-accent-primary: #7296b1; /* Azul principal de la marca */
+    --color-accent-art: #a1b6f8;
     --color-points: #6a9edc;        /* Azul para puntos */
+    --color-importe: #fd5858;  
 
     /* Nuevos colores para Ámbitos (usados directamente en JS para estilos inline) */
     --color-ambito-estatal: #8B4513;   /* Marrón tierra */
@@ -556,24 +558,27 @@ main.infracciones-agrupadas {
 
 /* Estilo específico para la píldora de Artículo/Apartado unificada */
 .articulo-apartado-pill {
-    background-color: var(--color-accent-primary);
-    color: var(--color-dark-bg); /* Texto "Art." y "Apdo." en color oscuro */
+    background-color: var(--color-infraccion);
+    font-style: italic;
+    color: var(--color-light-text); /* Texto "Art." y "Apdo." en color oscuro */
 }
 .articulo-apartado-pill .value {
-    font-size: 1.2em;
+    font-size: 1.5em;
     font-weight: bold;
-    color: white; /* Números en blanco */
+    color: var(--color-accent-art); /* Números en blanco */
 }
 
 /* Estilo específico para la Opción */
 .opcion-pill {
-    background-color: var(--color-accent-green);
-    color: var(--color-dark-bg); /* Texto "Opc." en color oscuro */
+    background-color: var(--color-infraccion);
+    
+    font-style: italic;
+    color: var(--color-light-text); /* Texto "Opc." en color oscuro */
 }
 .opcion-pill .value {
     font-size: 1.2em;
     font-weight: bold;
-    color: white; /* Valor de la opción en blanco */
+    color: var(--color-accent-green); /* Valor de la opción en blanco */
 }
 
 
@@ -592,6 +597,7 @@ main.infracciones-agrupadas {
     padding-right: 1.5rem; /* Asegurar padding derecho */
     padding-bottom: 0.5rem; /* Padding inferior de la tarjeta */
     background-color: var(--color-infraccion); /* Mismo color que la tarjeta principal y header */
+
 }
 
 .importe-row {
@@ -605,11 +611,11 @@ main.infracciones-agrupadas {
 }
 
 /* Colores de fondo para las píldoras de importe */
-.importe-row.importe-principal { background-color: var(--color-accent-red); }
-.importe-row.reducido { background-color: var(--color-accent-yellow); }
-.importe-row.puntos { background-color: var(--color-points); padding: 0.3rem 0.6rem; }
+.importe-row.importe-principal { color: var(--color-importe); }
+.importe-row.reducido { color: var(--color-accent-yellow); }
+.importe-row.puntos { color: var(--color-points); padding: 0.3rem 0.6rem; }
 /* Asegurar el color del texto para los puntos sobre su fondo azul */
-.importe-row.puntos { color: var(--color-dark-bg); }
+.importe-row.puntos { color: var(--color-ambito-local); }
 
 
 /* Estilos generales para las cifras clave (los valores dentro de las píldoras) */
@@ -622,7 +628,7 @@ main.infracciones-agrupadas {
 }
 /* Estilo para las leyendas de los importes y puntos (ej. "Importe:") */
 .importe-info .label, .importe-container .label {
-    color: var(--color-dark-bg);
+    color: var(--color-light-text);
     font-weight: normal;
     font-size: 0.8rem;
 }
@@ -652,7 +658,7 @@ main.infracciones-agrupadas {
    ========================================================= */
 .descripcion {
     background-color: var(--color-description-bg); /* ¡Nuevo: Fondo específico para la descripción! */
-    padding: 1.25rem 1.5rem; /* Padding interno para el texto */
+    padding: 0rem 1.5rem; /* Padding interno para el texto */
     margin-top: 0; /* Asegura que no haya espacio extra arriba del todo si no hay borde superior */
     margin-left: 1rem; /* Margen lateral para el efecto de "rectángulo dentro" */
     margin-right: 1rem; /* Margen lateral para el efecto de "rectángulo dentro" */
