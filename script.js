@@ -1,9 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    let allInfraccionesData = []; // Contendrá todas las infracciones cargadas del database.json
+    let allInfraccionesData = []; // Contendrá todas las infracciones (globales + locales seleccionadas)
+    let globalNorms = []; // Solo las normas no locales, cargadas de config.json
+    let localidadesMeta = []; // Metadata de todas las localidades, de config.json
     let allGrandesAreas = {};
     let allSettings = {};
-    let originalGroupedInfraccionesData = {}; // Para almacenar el total de infracciones por grupo sin filtrar
+    let originalGroupedInfraccionesData = {}; // Para el contador: total de infracciones por grupo sin filtrar (de normas globales + de la localidad activa)
+    let localOrdinancesCache = {}; // Caché para almacenar las ordenanzas locales ya cargadas
 
     let currentFilters = {
         searchTerm: '',
@@ -11,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         rango: '',
         ambito: ''
     };
+    let currentSelectedLocalityId = ''; // Almacena la ID de la localidad seleccionada actualmente
 
     // Mapeo de colores para los ámbitos (valores directos para asignación inline en JS)
     const ambitoColorsMap = { 
@@ -19,17 +23,17 @@ document.addEventListener('DOMContentLoaded', () => {
         'Local': '#20B2AA'
     };
 
-    // --- FASE 1: Cargar la base de datos completa ---
-    fetch('database.json')
+    // --- FASE 1: Cargar la base de datos de configuración (config.json) ---
+    fetch('config.json') // Cambiado a config.json
         .then(response => {
             if (!response.ok) {
-                throw new Error(`No se pudo cargar database.json: ${response.status} - ${response.statusText}. Verifica que el archivo exista y no tenga errores.`);
+                throw new Error(`No se pudo cargar config.json: ${response.status} - ${response.statusText}. Verifica que el archivo exista y no tenga errores.`);
             }
             return response.json();
         })
         .then(data => {
-            // Aplanar la estructura de las normas y sus infracciones
-            allInfraccionesData = data.normas.flatMap(norma =>
+            // Procesar normas globales (Estatal, Autonómico) desde config.json
+            globalNorms = data.normas.flatMap(norma =>
                 norma.infracciones.map(infraccion => ({
                     ...infraccion,
                     normagris_identificador: norma.identificador,
@@ -38,47 +42,35 @@ document.addEventListener('DOMContentLoaded', () => {
                     ambito: norma.ambito,
                     areaId: norma.areaId,
                     modelo_sancion: norma.modelo_sancion,
-                    // Asegurar que el campo 'norma' dentro de infracción también está presente
-                    norma: infraccion.norma || norma.identificador // Prioriza 'norma' si existe en la infracción, sino usa identificador de la norma padre
+                    norma: infraccion.norma || norma.identificador // Prioriza 'norma' si existe, sino usa identificador
                 }))
             );
 
-            // Agrupar la data original para obtener los totales por grupo (para el contador)
-            originalGroupedInfraccionesData = allInfraccionesData.reduce((acc, infraccion) => {
-                const normaGrisKey = `${infraccion.normagris_identificador.trim()} - ${infraccion.normagris_tematica.trim()}`;
-                if (!acc[normaGrisKey]) {
-                    acc[normaGrisKey] = {
-                        totalInfracciones: 0
-                    };
-                }
-                acc[normaGrisKey].totalInfracciones++;
-                return acc;
-            }, {});
-
+            localidadesMeta = data.localidadesMeta; // Guardar metadata de localidades
             allGrandesAreas = data.grandesAreas;
             allSettings = data.settings;
 
-            // Ocultar mensaje de carga una vez que los datos se han cargado y la app va a iniciar
+            // Ocultar mensaje de carga inicial del body
             const loadingMessage = document.querySelector('.loading-message');
             if (loadingMessage) {
                 loadingMessage.style.display = 'none';
             }
 
-            // Iniciar la aplicación con todos los datos cargados
-            iniciarApp(allInfraccionesData, allSettings, allGrandesAreas);
+            // Iniciar la aplicación con los datos cargados
+            iniciarApp(allSettings, allGrandesAreas);
         })
         .catch(error => {
-            console.error('Error fatal al cargar los datos:', error);
+            console.error('Error fatal al cargar los datos iniciales (config.json):', error);
             const mainContainer = document.querySelector('main');
             if (mainContainer) {
-                mainContainer.innerHTML = `<p style="color: red; text-align: center;">${error.message}<br>Asegúrate de que 'database.json' existe y está bien formateado.</p>`;
+                mainContainer.innerHTML = `<p style="color: red; text-align: center;">${error.message}<br>Asegúrate de que 'config.json' existe y está bien formateado.</p>`;
             } else {
                 document.body.innerHTML = `<p style="color: red; text-align: center;">${error.message}</p>`;
             }
         });
 
 
-    function iniciarApp(totalInfraccionesData, settings, grandesAreas) {
+    function iniciarApp(settings, grandesAreas) {
 
         // Selectores DOM
         const searchInput = document.querySelector('.buscador');
@@ -93,6 +85,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const closeSidebarBtn = document.getElementById('closeSidebarBtn');
         const scrollTopBtn = document.getElementById('scrollTopBtn');
         const showSearchBtn = document.getElementById('showSearchBtn'); // Botón de búsqueda (actualmente sin función)
+
+        const currentLocalityDisplay = document.getElementById('current-locality-display'); // Selector del display de localidad actual
+        const sidebarLocalitySelect = document.getElementById('sidebar-locality-select'); // Selector del select de localidad en sidebar
 
 
         // Mapeo de iconos para mostrar en las opciones de filtro (si aplica)
@@ -119,7 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 option.textContent = optionText;
                 option.classList.add('area-option');
-                // Pasar el color para el pseudo-elemento CSS
                 option.style.setProperty('--area-color-option', areaInfo.color); 
                 
                 areaFilterSelect.appendChild(option);
@@ -141,27 +135,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Rellenar el select de ámbitos
         function populateAmbitoFilter() {
-            if (ambitoFilterSelect) { // Asegurarse de que el elemento existe
+            if (ambitoFilterSelect) { 
                 ambitoFilterSelect.innerHTML = '<option value="">Todos los Ámbitos</option>';
                 settings.ambitoOrder.forEach(ambito => {
                     const option = document.createElement('option');
                     option.value = ambito;
                     option.textContent = ambito;
                     option.classList.add('ambito-option');
-                    // Pasar el color de la variable CSS para el pseudo-elemento
                     option.style.setProperty('--ambito-color-option', `var(--color-ambito-${ambito.toLowerCase()})`);
                     ambitoFilterSelect.appendChild(option);
                 });
             } else {
-                console.error("Error: Elemento con ID 'ambito-filter' no encontrado. Asegúrate de que el ID sea correcto en el HTML.");
+                console.error("Error: Elemento con ID 'ambito-filter' no encontrado.");
             }
         }
         populateAmbitoFilter();
 
+        // Rellenar el selector de localidades en el sidebar
+        function populateSidebarLocalitySelect() {
+            if (sidebarLocalitySelect) {
+                sidebarLocalitySelect.innerHTML = '<option value="">Todas las Localidades</option>';
+                localidadesMeta.forEach(loc => {
+                    const option = document.createElement('option');
+                    option.value = loc.id;
+                    option.textContent = loc.nombre;
+                    sidebarLocalitySelect.appendChild(option);
+                });
+            } else {
+                console.error("Error: Elemento con ID 'sidebar-locality-select' no encontrado.");
+            }
+        }
+        populateSidebarLocalitySelect();
+
 
         // Renderizar los badges de filtros activos
         function renderActiveFilters() {
-            activeFiltersContainer.innerHTML = ''; // Limpiar el contenedor de badges
+            activeFiltersContainer.innerHTML = ''; 
 
             // Badge de búsqueda por texto
             if (currentFilters.searchTerm) {
@@ -199,14 +208,27 @@ document.addEventListener('DOMContentLoaded', () => {
             if (currentFilters.ambito) {
                 const badge = document.createElement('span');
                 badge.classList.add('filter-badge', 'ambito-filter-badge');
-                // Asigna el color de fondo usando el mapa de colores (valor HEX/RGB directo)
                 badge.style.backgroundColor = ambitoColorsMap[currentFilters.ambito];
-                badge.style.color = 'white'; // Asegura que el texto sea blanco para un buen contraste
+                badge.style.color = 'white'; 
                 badge.innerHTML = `Ámbito: ${currentFilters.ambito} <button class="clear-filter-btn" data-filter-type="ambito">❌</button>`;
                 activeFiltersContainer.appendChild(badge);
             }
 
-            // Añadir listener a los botones de borrar filtro en los badges
+            // Badge de localidad seleccionada
+            if (currentSelectedLocalityId && currentSelectedLocalityId !== "todas_localidades") { // Asumiendo "todas_localidades" es el ID para deseleccionar
+                const localityInfo = localidadesMeta.find(loc => loc.id === currentSelectedLocalityId);
+                if (localityInfo) {
+                    const badge = document.createElement('span');
+                    badge.classList.add('filter-badge', 'locality-filter-badge'); // Clase específica para localidad
+                    badge.style.backgroundColor = 'var(--color-mid-blue)'; // Puedes usar un color específico para el badge de localidad
+                    badge.style.color = 'white';
+                    badge.innerHTML = `Localidad: ${localityInfo.nombre}`; // CAMBIADO: Eliminado el botón "❌"
+                    activeFiltersContainer.appendChild(badge);
+                }
+            }
+
+
+            // Añadir listener a los botones de borrar filtro en los badges (delegación)
             activeFiltersContainer.querySelectorAll('.clear-filter-btn').forEach(button => {
                 button.addEventListener('click', (event) => {
                     const filterType = event.target.dataset.filterType;
@@ -218,8 +240,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         rangoFilterSelect.value = '';
                     } else if (filterType === 'ambito') {
                         ambitoFilterSelect.value = '';
+                    } else if (filterType === 'localityId') { // Nuevo: limpiar filtro de localidad
+                        sidebarLocalitySelect.value = ''; // Resetear el select de localidad
+                        loadAndCombineNorms(''); // Recargar con "Todas las Localidades"
+                        return; // Salir para que applyFilters no se llame dos veces
                     }
-                    applyFilters(); // Re-aplicar filtros después de limpiar uno
+                    applyFilters(); 
                 });
             });
         }
@@ -228,28 +254,23 @@ document.addEventListener('DOMContentLoaded', () => {
         // Crea el elemento HTML para una infracción individual
         function createInfraccionElement(data) {
             const infraccionDiv = document.createElement('div');
-            // Clases para el borde izquierdo y círculo de gravedad
             const tipoClase = data.tipo === 'grave' ? 'grave' : (data.tipo === 'media' ? 'media' : 'leve');
-            // Clase para el modelo de sanción (ocultar/mostrar importes)
             const modeloSancionClase = data.modelo_sancion ? `modelo-${data.modelo_sancion}` : 'modelo-estandar';
 
             infraccionDiv.classList.add('infraccion', tipoClase, modeloSancionClase);
 
-            // --- Construcción de las píldoras de Artículo, Apartado y Opción ---
+            // Construcción de las píldoras de Artículo, Apartado y Opción
             let artAptoOpcHtml = '';
-            // Píldora de Artículo/Apartado
             let articuloAptoContent = `Art. <strong class="value">${data.articulo}</strong>`;
             if (data.apartado && data.apartado.trim() !== '') {
                 articuloAptoContent += ` Apdo. <strong class="value">${data.apartado}</strong>`;
             }
             artAptoOpcHtml += `<span class="articulo-apartado-pill">${articuloAptoContent}</span>`;
 
-            // Píldora de Opción
             if (data.opc && data.opc.trim() !== '') {
                 artAptoOpcHtml += `<span class="opcion-pill">Opc. <strong class="value">${data.opc}</strong></span>`;
             }
             
-            // Tags (ocultos por defecto con CSS, se pueden mostrar al expandir/clicar)
             const tagsHtml = data.tags && data.tags.length > 0 ? `<div class="infraccion-tags">${data.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>` : '';
 
             // Construcción de las filas de importes
@@ -499,6 +520,80 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
+        // Función para cargar ordenanzas locales y combinarlas con las globales
+        async function loadAndCombineNorms(selectedLocalityId) {
+            // Mostrar mensaje de carga
+            const mainLoadingMessage = document.querySelector('main .loading-message');
+            if (mainLoadingMessage) {
+                mainLoadingMessage.style.display = 'block';
+                mainLoadingMessage.textContent = `Cargando ordenanzas para "${localidadesMeta.find(loc => loc.id === selectedLocalityId)?.nombre || 'Todas las Localidades'}"...`;
+            }
+
+            let currentLocalNorms = [];
+            currentSelectedLocalityId = selectedLocalityId; // Actualizar la variable global de localidad seleccionada
+
+            // Si hay una localidad seleccionada y no es "Todas las Localidades" (si tienes ese ID en tu meta)
+            if (selectedLocalityId && selectedLocalityId !== 'todas_localidades') {
+                const selectedLocalityMeta = localidadesMeta.find(loc => loc.id === selectedLocalityId);
+                if (selectedLocalityMeta && selectedLocalityMeta.filePath) {
+                    if (localOrdinancesCache[selectedLocalityMeta.id]) {
+                        currentLocalNorms = localOrdinancesCache[selectedLocalityMeta.id];
+                    } else {
+                        try {
+                            const response = await fetch(selectedLocalityMeta.filePath);
+                            if (!response.ok) {
+                                throw new Error(`No se pudo cargar: ${selectedLocalityMeta.filePath}`);
+                            }
+                            const data = await response.json();
+                            // Aplanar y adjuntar propiedades padre a las infracciones locales
+                            currentLocalNorms = data.localNorms.flatMap(norma => // Asumo que el JSON local tiene un array 'localNorms'
+                                norma.infracciones.map(infraccion => ({
+                                    ...infraccion,
+                                    normagris_identificador: norma.identificador,
+                                    normagris_tematica: norma.tematica,
+                                    rango: norma.rango,
+                                    ambito: norma.ambito, // Asegurarse de que el ámbito sea 'Local' aquí
+                                    areaId: norma.areaId,
+                                    modelo_sancion: norma.modelo_sancion,
+                                    norma: infraccion.norma || norma.identificador,
+                                    localidadId: selectedLocalityId // Añadir la ID de la localidad a cada infracción
+                                }))
+                            );
+                            localOrdinancesCache[selectedLocalityMeta.id] = currentLocalNorms; // Guardar en caché
+                        } catch (error) {
+                            console.error(`Error al cargar ordenanzas de ${selectedLocalityMeta.nombre}:`, error);
+                            alert(`Error al cargar ordenanzas para ${selectedLocalityMeta.nombre}. Se mostrarán solo normas generales.`);
+                            currentLocalNorms = []; 
+                        }
+                    }
+                }
+            }
+
+            // Combinar normas globales con las ordenanzas locales cargadas
+            // Reconstruir allInfraccionesData cada vez
+            allInfraccionesData = []; // Limpiar
+            // Añadir normas globales
+            Array.prototype.push.apply(allInfraccionesData, globalNorms);
+            // Añadir normas locales cargadas (si hay)
+            Array.prototype.push.apply(allInfraccionesData, currentLocalNorms);
+
+            // Reconstruir originalGroupedInfraccionesData para los contadores (ahora para el conjunto combinado)
+            originalGroupedInfraccionesData = allInfraccionesData.reduce((acc, infraccion) => {
+                const normaGrisKey = `${infraccion.normagris_identificador.trim()} - ${infraccion.normagris_tematica.trim()}`;
+                if (!acc[normaGrisKey]) {
+                    acc[normaGrisKey] = { totalInfracciones: 0 };
+                }
+                acc[normaGrisKey].totalInfracciones++;
+                return acc;
+            }, {});
+
+            if (mainLoadingMessage) {
+                mainLoadingMessage.style.display = 'none';
+            }
+            applyFilters(); // Re-aplicar filtros con los datos combinados
+        }
+
+
         // Función principal para aplicar todos los filtros y renderizar
         function applyFilters() {
             // Actualizar el estado de los filtros
@@ -509,8 +604,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             renderActiveFilters(); // Muestra los badges de filtros activos
 
-            // Filtrar sobre el array completo de infracciones (totalInfraccionesData)
-            const filteredInfracciones = totalInfraccionesData.filter(infraccion => {
+            // Filtrar sobre el array completo de infracciones (allInfraccionesData)
+            const filteredInfracciones = allInfraccionesData.filter(infraccion => {
                 // Búsqueda por texto en múltiples campos
                 const matchesSearch = !currentFilters.searchTerm ||
                     infraccion.descripcion.toLowerCase().includes(currentFilters.searchTerm) ||
@@ -525,24 +620,70 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Filtros de selección
                 const matchesArea = !currentFilters.areaId || infraccion.areaId === currentFilters.areaId;
                 const matchesRango = !currentFilters.rango || infraccion.rango === currentFilters.rango;
-                const matchesAmbito = !currentFilters.ambito || infraccion.ambito === currentFilters.ambito;
+                
+                // === LÓGICA CLAVE DE FILTRADO POR ÁMBITO Y LOCALIDAD (ACTUALIZADA) ===
+                let matchesAmbitoAndLocality = false;
 
-                return matchesSearch && matchesArea && matchesRango && matchesAmbito;
+                // Si se ha seleccionado una localidad específica (ej. "daimiel")
+                if (currentSelectedLocalityId && currentSelectedLocalityId !== 'todas_localidades') {
+                    // Las normas Estatales y Autonómicas siempre pasan este filtro de localidad
+                    if (infraccion.ambito === 'Estatal' || infraccion.ambito === 'Autonómico') {
+                        // Y además, deben coincidir con el filtro de ámbito si está activo
+                        matchesAmbitoAndLocality = !currentFilters.ambito || infraccion.ambito === currentFilters.ambito;
+                    } 
+                    // Las normas Locales solo pasan si pertenecen a la localidad seleccionada
+                    else if (infraccion.ambito === 'Local') {
+                        matchesAmbitoAndLocality = infraccion.localidadId === currentSelectedLocalityId &&
+                                                  (!currentFilters.ambito || currentFilters.ambito === 'Local');
+                    }
+                    // Si el ámbito de la infracción no es ninguno de los anteriores, no coincide
+                    else {
+                        matchesAmbitoAndLocality = false;
+                    }
+                } 
+                // Si NO hay una localidad específica seleccionada (es decir, "Todas las Localidades" o al inicio)
+                else {
+                    // Comportamiento original: el filtro de ámbito funciona normalmente
+                    matchesAmbitoAndLocality = !currentFilters.ambito || infraccion.ambito === currentFilters.ambito;
+                }
+                
+                return matchesSearch && matchesArea && matchesRango && matchesAmbitoAndLocality;
             });
 
             // Renderizar las infracciones que han pasado todos los filtros globales
             renderGroupedInfracciones(filteredInfracciones);
+
+            // Actualizar el display de la localidad actual en la sidebar
+            const localityNameToShow = localidadesMeta.find(loc => loc.id === currentSelectedLocalityId)?.nombre || 'Global';
+            if (currentLocalityDisplay) {
+                currentLocalityDisplay.textContent = localityNameToShow;
+            }
+            // Asegurarse de que el select de la sidebar tenga el valor correcto
+            if (sidebarLocalitySelect) {
+                sidebarLocalitySelect.value = currentSelectedLocalityId;
+            }
         }
 
-        // Inicializar filtros al cargar la página
-        // Comprobar si hay un filtro de área inicial de la página de inicio (desde sessionStorage)
+        // --- Lógica de carga inicial al abrir buscador.html ---
+        // Comprobar si hay un filtro de área y/o localidad inicial desde sessionStorage
         const initialAreaFilter = sessionStorage.getItem('initialAreaFilter');
+        const initialLocalidadFilter = sessionStorage.getItem('initialLocalidadFilter');
+        
+        // Aplicar filtro de área si existe
         if (initialAreaFilter) {
-            currentFilters.areaId = initialAreaFilter; // Establecer el filtro actual
-            areaFilterSelect.value = initialAreaFilter; // Seleccionar la opción en el dropdown
-            sessionStorage.removeItem('initialAreaFilter'); // Limpiar para que no se aplique de nuevo en futuras cargas
+            currentFilters.areaId = initialAreaFilter; 
+            areaFilterSelect.value = initialAreaFilter;
+            sessionStorage.removeItem('initialAreaFilter'); // Limpiar después de usar
         }
-        applyFilters(); 
+
+        // Aplicar filtro de localidad si existe y luego cargar las normas
+        if (initialLocalidadFilter) {
+            currentSelectedLocalityId = initialLocalidadFilter;
+            // No limpiar sessionStorage aquí, se limpia en la carga inicial de loadAndCombineNorms
+        }
+        // Llamada inicial para cargar las normas (globales + opcionalmente locales)
+        loadAndCombineNorms(currentSelectedLocalityId); 
+
 
         // Event Listeners para los elementos de filtro
         searchInput.addEventListener('input', applyFilters);
@@ -550,14 +691,24 @@ document.addEventListener('DOMContentLoaded', () => {
         rangoFilterSelect.addEventListener('change', applyFilters);
         ambitoFilterSelect.addEventListener('change', applyFilters);
 
-        // Listener para el botón de limpiar el campo de búsqueda principal
+        // Listener para el selector de localidad en el sidebar
+        sidebarLocalitySelect.addEventListener('change', async () => {
+            const selectedId = sidebarLocalitySelect.value;
+            // No llamar a applyFilters directamente, loadAndCombineNorms lo hará
+            await loadAndCombineNorms(selectedId); 
+        });
+
+        // Listener para los botones de limpiar el campo de búsqueda principal y badges
         document.querySelectorAll('.clear-button').forEach(button => {
             button.addEventListener('click', (event) => {
                 const inputToClear = document.querySelector(`.${event.target.dataset.filterTarget}`);
                 if (inputToClear) {
                     inputToClear.value = '';
-                    applyFilters();
+                    // Si limpiamos la búsqueda de texto, pero hay una localidad seleccionada,
+                    // no deberíamos recargar todas las normas, solo aplicar los filtros.
+                    // applyFilters() ya lo maneja bien.
                 }
+                applyFilters(); 
             });
         });
 

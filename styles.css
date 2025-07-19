@@ -65,16 +65,45 @@ h1 {
     background-color: var(--color-dark-bg);
     padding-top: 1.5rem;
     padding-bottom: 0.5rem;
-    text-align: center;
+    text-align: center; /* Esto aún puede estar, pero el flexbox lo gestionará */
+
+    /* AÑADIR/MODIFICAR ESTAS LÍNEAS para Flexbox */
+    display: flex;
+    align-items: center; /* Alinea verticalmente los elementos */
+    justify-content: space-between; /* Empuja los elementos a los extremos, dejando espacio en el medio */
+    padding-left: 1.5rem; /* Asegurar padding a los lados del header */
+    padding-right: 1.5rem;
+}
+/* Nuevo: Botón de navegación en el header (ej. "Inicio") */
+.header-nav-button {
+    background-color: var(--color-mid-blue); /* Color de fondo del botón */
+    color: var(--color-light-text); /* Color del texto */
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius-md);
+    text-decoration: none; /* Quitar subrayado del enlace */
+    font-size: 0.9rem; /* Tamaño de fuente del botón */
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+    flex-shrink: 0; /* Evita que el botón se encoja demasiado */
+}
+.header-nav-button:hover {
+    background-color: #4f667c; /* Un tono ligeramente diferente al pasar el ratón */
 }
 
-.home-link {
+.home-title-link { /* Antes .home-link */
     text-decoration: none;
-    display: inline-block;
+    display: inline-block; /* Mantener esto o cambiar a flex para controlar el h1 */
+    flex-grow: 1; /* AÑADIR ESTO: Permite que el enlace del título ocupe espacio y empuje */
+    text-align: center; /* AÑADIR ESTO: Centra el h1 dentro de este enlace flexible */
+    min-width: 0; /* Permite el truncamiento en móviles */
 }
 
-.home-link h1 {
-    margin: 0; /* Elimina margen extra del h1 dentro del enlace */
+.home-title { /* Antes .home-link h1 */
+    /* Ya tenía un margin: 0; en el HTML, pero asegurarlo aquí para que no interfiera con flexbox */
+    margin: 0; /* AÑADIR/ASEGURAR ESTO */
+    white-space: nowrap; /* AÑADIR ESTO: Mantiene el título en una sola línea */
+    overflow: hidden; /* AÑADIR ESTO: Oculta el texto que se desborda */
+    text-overflow: ellipsis; /* AÑADIR ESTO: Añade "..." al final si el texto es muy largo */
 }
 
 /* =========================================================
@@ -948,7 +977,7 @@ footer {
         font-size: 0.95rem;
         padding: 0.25rem 0.5rem;
     }
-    .articulo-apartado-pill .value, .opcion-pill .value { font-size: 1em; }
+    .articulo-apartado-pill .value, .opcion-pill .value { font-size: 1.5em; }
 
     .importe-container {
         flex-direction: row;

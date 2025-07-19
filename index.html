@@ -10,25 +10,39 @@
 
     <main>
         <div class="landing-container">
-            <h1>Bienvenido al Codificador de Infracciones</h1>
+            <h1>Bienvenido al Codificado de Infracciones</h1>
             <p>
                 Accede a una base de datos organizada y codificada de infracciones de diversas normativas.
                 Utiliza la herramienta de búsqueda avanzada para encontrar rápidamente la infracción que necesitas.
             </p>
+            <div class="locality-section">
+                <h2>Selecciona tu Localidad</h2>
+                <div class="filter-option-group">
+                    <label for="locality-select">Localidad:</label>
+                    <select id="locality-select" class="custom-select">
+                        <option value="">Cargando localidades...</option>
+                        </select>
+                </div>
+                <p class="locality-info-text" style="color: var(--color-muted-text); font-size: 0.9em; margin-top: 1rem;">Selecciona una localidad para ver sus ordenanzas específicas.</p>
+            </div>
 
             <div class="access-button-group">
                 <a href="buscador.html" class="access-button">
                     Ir al Buscador de Infracciones
                 </a>
+                
             </div>
+            
             <div class="areas-section">
                 <h2>Explora por Área Temática</h2>
                 <div class="areas-grid">
                     </div>
             </div>
+
+            
         </div>
     </main>
-    <footer>&copy; Juan Carlos Ballisteros - Todos los derechos reservados</footer>
+    <footer>&copy; Juan Carlos Ballesteros - Todos los derechos reservados</footer>
 
     <script src="index_script.js"></script> 
 </body>
