@@ -717,11 +717,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Controla la visibilidad de los FABs (ocultos si sidebar abierto, visibles si cerrado)
         function updateFABVisibility() {
-            if (sidebar.classList.contains('open')) {
-                floatingActionButtonsContainer.style.display = 'none';
-            } else {
-                floatingActionButtonsContainer.style.display = 'flex';
-            }
+            floatingActionButtonsContainer.style.display = 'flex'; // AÑADIR ESTA LÍNEA: Siempre visible
         }
 
         // Toggle para abrir/cerrar sidebar
